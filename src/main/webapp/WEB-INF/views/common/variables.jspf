@@ -1,0 +1,6 @@
+
+<%
+	String pageName = "";
+	String pageSideName = "";
+	String pageImage = "";
+%>

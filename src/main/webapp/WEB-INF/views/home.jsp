@@ -10,8 +10,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/project/headerFooterStyle.css" type="text/css"/>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/project/Main.css" type="text/css"/>
+<link rel="stylesheet" href="/tour/resources/css/headerFooterStyle.css" type="text/css"/>
+<link rel="stylesheet" href="/tour/resources/css/Main.css" type="text/css"/>
+<%
+
+%>
 </head>
 	<script>
 		function setImage(){
@@ -20,7 +23,7 @@
 			var url = ['project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp',
 						'project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp']
 			for(i=1; i<=9; i++){
-				imglist += '<div><a href="'+url[i-1]+'"><img src="<%=request.getContextPath()%>/image/main_img_banner_';
+				imglist += '<div><a href="#"><img src="/tour/image/main_img_banner_';
 				
 				if(i<=9)
 				imglist += i;
@@ -44,13 +47,13 @@
 			
 			//배너 이미지 변경
 			$("#bannerImg").click(function(){
-				$("#bannerImg").attr("src","<%=request.getContextPath()%>/image/mainimg"+imgNum+".jpg");
+				$("#bannerImg").attr("src","/tour/image/mainimg"+imgNum+".jpg");
 				imgNum++;
 				if(imgNum>5)imgNum=1;
 			});
 			
 			$(".overlay").click(function(){
-				$("#bannerImg").attr("src","<%=request.getContextPath()%>/image/mainimg"+imgNum+".jpg");
+				$("#bannerImg").attr("src","/tour/image/mainimg"+imgNum+".jpg");
 				imgNum++;
 				if(imgNum>5)imgNum=1;
 			});
@@ -64,8 +67,6 @@
 			
 		});
 		
-
-		
 	</script>
 <body onload='setImage();'>
 		<header class="navbar navbar-expand-lg" id='mainbanner'>
@@ -73,24 +74,24 @@
 				<div id="mainMenu">
 					<!-- 작은메뉴 -->
 					<ul id="miniMenu" class="navbar-header">
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/board/list.do?commuPage=InfoCenter">고객센터</a></li>
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/shoppingbasket.jsp">여행바구니</a></li>
+					<li class="nav-item"><a href="#">고객센터</a></li>
+					<li class="nav-item"><a href="#">여행바구니</a></li>
 					<c:if test="${userName==null }">
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/registerForm.jsp">회원가입</a></li>
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/login.do">로그인</a></li>
+					<li class="nav-item"><a href="register/registerForm">회원가입</a></li>
+					<li class="nav-item"><a href="#">로그인</a></li>
 					</c:if>
 					<c:if test="${userName!=null }">
-					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/myPage.do">마이페이지</a></li>
-					<li class="nav-item">${userName }님 <a href="<%=request.getContextPath()%>/project/register/logout.do">로그아웃</a></li>
+					<li class="nav-item"><a href="#">마이페이지</a></li>
+					<li class="nav-item">${userName }님 <a href="#">로그아웃</a></li>
 					</c:if>
 					</ul>
 				<!-- 주메뉴 -->
 					<ul class="navbar-header"> 
-						<li class="nav-brand"><a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/image/Mainlogo.png"id="mainLogo"/></a></li>
-						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/sangfum_list.jsp">구트여행</a></li>
-						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/make_trip.jsp">여행만들기</a></li>
-						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/sangfum_list.jsp">출발지</a></li>
-						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/board/list.do?commuPage=reviewPage">여행후기</a></li>
+						<li class="nav-brand"><a href="/tour/"><img src="/tour/image/Mainlogo.png"id="mainLogo"/></a></li>
+						<li class="nav-item"><a href="#">구트여행</a></li>
+						<li class="nav-item"><a href="#">여행만들기</a></li>
+						<li class="nav-item"><a href="#">출발지</a></li>
+						<li class="nav-item"><a href="#">여행후기</a></li>
 						<li class="nav-item"><div><input type="text" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="submit"  style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
 					</ul><!--  돋보기 높이 설정 : vertical-align: 2px;  -->
 				</div>
@@ -100,7 +101,7 @@
 	<section>
 		<!-- 이미지배너 --> 
 		<div id="imgBanner">
-			<img src="<%=request.getContextPath()%>/image/mainimg1.jpg" id="bannerImg"/>
+			<img src="/tour/image/mainimg1.jpg" id="bannerImg"/>
 			<div>				<!-- 이동만 보려고 임시로 클릭이벤트로 해놓음. -->
 			<input type="text" placeholder="가고 싶은 여행지를 검색해보세요!" style="border:none; position:relative; z-index:200;  border-radius: 15px 0 0 15px; font-size:150%; font-style:italic ;  "/><input type="submit" onclick="location.href='project/search.jsp'" style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); position:relative; z-index:200; color:transparent; background-size: 40px 40px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0; vertical-align: 3px;">
 			</div>
@@ -111,13 +112,13 @@
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			  <div class="carousel-inner">
 			    <div class="carousel-item active">
-			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="First slide">
+			      <img class="d-block w-100" src="/tour/image/event_01.jpg" alt="First slide">
 			    </div>
 			    <div class="carousel-item">
-			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="Second slide">
+			      <img class="d-block w-100" src="/tour/image/event_01.jpg" alt="Second slide">
 			    </div>
 			    <div class="carousel-item">
-			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="Third slide">
+			      <img class="d-block w-100" src="/tour/image/event_01.jpg" alt="Third slide">
 			    </div>
 			  </div>
 			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -136,15 +137,15 @@
 	
 		<div style="margin-bottom:50px;">
 			<div class='row' id='rowdiv'>
-				<div id='hot1' style='background-image:url(<%=request.getContextPath()%>/image/jeju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+				<div id='hot1' style='background-image:url(/tour/image/jeju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
 					<h1 style="color:white"><a href="#">경주(Gyeongju)</a></h1>
 				</div>
 				
-				<div id='hot2' style='background-image:url(<%=request.getContextPath()%>/image/gyeongju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+				<div id='hot2' style='background-image:url(/tour/image/gyeongju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
 					<h1 style="color:white"><a href="#">제주(Jeju)</a></h1>
 				</div>
 				
-				<div id='hot3' style='background-image:url(<%=request.getContextPath()%>/image/seoul.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+				<div id='hot3' style='background-image:url(/tour/image/seoul.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
 					<h1 style="color:white"><a href="#">서울(Seoul)</a></h1>
 				</div>
 			</div> 

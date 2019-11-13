@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+.member_tit {
+	clear: both;
+	margin-top: 20px;
+	height: 25px;
+	font-size: 15px;
+	font-weight: bold;
+	color: #202020;
+	letter-spacing: -1px;
+}
+
+.member {
+	width: 1040px;
+	border: 1px solid #cccccc;
+}
+
+.member .stit {
+	width: 110px;
+	border: 1px solid #cccccc;
+	background-color: #f7f7f7;
+	height: 45px;
+	text-align: center;
+	color: #202020;
+	font-size: 14px;
+}
+
+.member .cont {
+	width: 360px;
+	padding-left: 10px;
+	border: 1px solid #cccccc;
+	height: 45px;
+}
+
+.member .frm {
+	width: 840px;
+	padding-left: 10px;
+	border: 1px solid #cccccc;
+	height: 60px;
+	color: #666666;
+}
+
+.member .frm2 {
+	border: 1px solid #cccccc;
+	height: 45px;
+	color: #666666;
+	text-align: center;
+	font-size: 14px;
+}
+
+.member .ipf2 {
+	width: 100px;
+	height: 35px;
+	font-size: 14px;
+	padding: 0 10px;
+	margin: 0 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.member .ipf {
+	height: 35px;
+	font-size: 14px;
+	padding: 0 10px;
+	margin: 0 5px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.tit {
+	font-weight: bold;
+	font-size: 1.5em
+}
+
+.tit_s {
+	color: deeppink;
+}
+
+#gaip {
+	margin: 0px 500px;
+	margin-top: 5px;
+}
+
+#txt {
+	width: 1028px;
+	height: 250px;
+	overflow-y: scroll;
+	text-align: left;
+	padding: 5px;
+	line-height: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+#txt2 {
+	width: 1028px;
+	height: 250px;
+	overflow-y: scroll;
+	text-align: left;
+	padding: 5px;
+	line-height: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+#btn {
+	margin-left: -100px;
+	margin-top: 10px
+}
+#regForm input{text-align:left}
+
+#regForm tr>td:nth-child(2){text-align:left;}
+#regForm tr:nth-child(6)>td,#regForm tr:nth-child(7)>td{text-align:left}
+
+#addr,#detailAddr{
+	width:600px;
+}
