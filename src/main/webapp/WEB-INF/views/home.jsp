@@ -1,9 +1,163 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div>
-	<h1>
-		section 섹션~
-	</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name = "viewport" content="width=device-width,initial-scale=1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/project/headerFooterStyle.css" type="text/css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/project/Main.css" type="text/css"/>
+</head>
+	<script>
+		function setImage(){
+			
+			var imglist = '';
+			var url = ['project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp',
+						'project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp']
+			for(i=1; i<=9; i++){
+				imglist += '<div><a href="'+url[i-1]+'"><img src="<%=request.getContextPath()%>/image/main_img_banner_';
+				
+				if(i<=9)
+				imglist += i;
+				imglist +='.jpg"/></a>'+i+'번째 이미지 </div>';
+		
+			}
+			document.getElementById('cjimg').innerHTML=imglist;
+		}
+	</script>
+	<script>
+		var imgNum = 1;
+		$(function(){
+			var sectionHeight = $("section").height();
+			var sideBarHeight = $("#sideBar").height();
+			
+			if(sideBarHeight>=sectionHeight){
+				$("section")};
+			
+			var imgBannerTextWidth = $("#imgBanner>div").width();
+			$("#imgBanner>div").css("left",(1920-imgBannerTextWidth)/2+"px");
+			
+			//배너 이미지 변경
+			$("#bannerImg").click(function(){
+				$("#bannerImg").attr("src","<%=request.getContextPath()%>/image/mainimg"+imgNum+".jpg");
+				imgNum++;
+				if(imgNum>5)imgNum=1;
+			});
+			
+			$(".overlay").click(function(){
+				$("#bannerImg").attr("src","<%=request.getContextPath()%>/image/mainimg"+imgNum+".jpg");
+				imgNum++;
+				if(imgNum>5)imgNum=1;
+			});
+			
+			
+			//자동이벤트 발생
+			setInterval(function(){
+					//						이벤트.
+					$("#bannerImg").trigger("click");
+			}, 8000);
+			
+		});
+		
+
+		
+	</script>
+<body onload='setImage();'>
+		<header class="navbar navbar-expand-lg" id='mainbanner'>
+			<div>
+				<div id="mainMenu">
+					<!-- 작은메뉴 -->
+					<ul id="miniMenu" class="navbar-header">
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/board/list.do?commuPage=InfoCenter">고객센터</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/shoppingbasket.jsp">여행바구니</a></li>
+					<c:if test="${userName==null }">
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/registerForm.jsp">회원가입</a></li>
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/login.do">로그인</a></li>
+					</c:if>
+					<c:if test="${userName!=null }">
+					<li class="nav-item"><a href="<%=request.getContextPath()%>/project/register/myPage.do">마이페이지</a></li>
+					<li class="nav-item">${userName }님 <a href="<%=request.getContextPath()%>/project/register/logout.do">로그아웃</a></li>
+					</c:if>
+					</ul>
+				<!-- 주메뉴 -->
+					<ul class="navbar-header"> 
+						<li class="nav-brand"><a href="<%=request.getContextPath()%>/index.jsp"><img src="<%=request.getContextPath()%>/image/Mainlogo.png"id="mainLogo"/></a></li>
+						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/sangfum_list.jsp">구트여행</a></li>
+						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/make_trip.jsp">여행만들기</a></li>
+						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/sangfum_list.jsp">출발지</a></li>
+						<li class="nav-item"><a href="<%=request.getContextPath()%>/project/board/list.do?commuPage=reviewPage">여행후기</a></li>
+						<li class="nav-item"><div><input type="text" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="submit"  style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
+					</ul><!--  돋보기 높이 설정 : vertical-align: 2px;  -->
+				</div>
+				
+			</div>
+		</header> 
+	<section>
+		<!-- 이미지배너 --> 
+		<div id="imgBanner">
+			<img src="<%=request.getContextPath()%>/image/mainimg1.jpg" id="bannerImg"/>
+			<div>				<!-- 이동만 보려고 임시로 클릭이벤트로 해놓음. -->
+			<input type="text" placeholder="가고 싶은 여행지를 검색해보세요!" style="border:none; position:relative; z-index:200;  border-radius: 15px 0 0 15px; font-size:150%; font-style:italic ;  "/><input type="submit" onclick="location.href='project/search.jsp'" style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); position:relative; z-index:200; color:transparent; background-size: 40px 40px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0; vertical-align: 3px;">
+			</div>
+		</div>
+		<div class="overlay"></div>
+		
+		<div id = "imgslide"><!-- 이벤트 이미지 슬라이드 -->
+			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="First slide">
+			    </div>
+			    <div class="carousel-item">
+			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="Second slide">
+			    </div>
+			    <div class="carousel-item">
+			      <img class="d-block w-100" src="<%=request.getContextPath()%>/image/event_01.jpg" alt="Third slide">
+			    </div>
+			  </div>
+			  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+		<div id='top-h1'>
+		<h1 style="font-family: fantasy; font-size: 50px;"><span style='color:red;font-family: fantasy;'>HOT</span> Place</h1><br><h5>인기 여행지로 즐거운 여행을 즐겨보세요.</h5>
+		</div>
 	
-	<P>  The time on the server is ${serverTime}. </P>
-</div>
+		<div style="margin-bottom:50px;">
+			<div class='row' id='rowdiv'>
+				<div id='hot1' style='background-image:url(<%=request.getContextPath()%>/image/jeju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+					<h1 style="color:white"><a href="#">경주(Gyeongju)</a></h1>
+				</div>
+				
+				<div id='hot2' style='background-image:url(<%=request.getContextPath()%>/image/gyeongju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+					<h1 style="color:white"><a href="#">제주(Jeju)</a></h1>
+				</div>
+				
+				<div id='hot3' style='background-image:url(<%=request.getContextPath()%>/image/seoul.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
+					<h1 style="color:white"><a href="#">서울(Seoul)</a></h1>
+				</div>
+			</div> 
+		</div> 
+			<hr class="hrStyle"/>
+			
+			
+			 <div style="margin-top:50px">
+				<h1 style="font-family: fantasy; font-size: 50px;"> <span style='color:red; font-family: fantasy;'>HOT</span> Recommend</h1><br>
+			 	<h5> 추천여행지로 원하시는 여행을 즐겨보세요. </h5>
+			 	<div id='cjimg' style='margin-top:50px;'></div>
+			 </div>
+
+	</section>
+</body>
+</html>

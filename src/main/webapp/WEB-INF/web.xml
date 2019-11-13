@@ -52,11 +52,15 @@
 
 	<!-- header, footer -->
 	<jsp-config>
-	  <jsp-property-group>
-	    <url-pattern>/WEB-INF/views/*</url-pattern>
-	    <include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
-	    <include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
-	  </jsp-property-group>
+		<jsp-property-group>
+	    	<url-pattern>/WEB-INF/views/home.jsp</url-pattern>
+	    	<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
+		<jsp-property-group>
+	    	<url-pattern>/WEB-INF/views/register/*</url-pattern>
+	    	<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+	    	<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
 	</jsp-config>
 
 </web-app>
