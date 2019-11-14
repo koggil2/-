@@ -68,8 +68,22 @@ $(function(){
 });
 	
 	
-	$('#idChk').click(function(){									//html은 px사용안함 javascript임
-		window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150');
+	$('#idChk').blur(function(){									//html은 px사용안함 javascript임
+		/* window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150'); */
+		var userId = $("#userId").val();
+		console.log(userId);
+		$.ajax({
+			type : "GET",
+			url : "/tour/register/idCheck",
+			data : "userId="+userId,
+			success : function(result){
+				console.log(result+", "+userId+", "+idChkResult);
+			},
+			error : function(e){
+				
+			}
+			
+		});
 		
 	});
 	//중복검사해제 키보드누르면 바로 Y에서 N로바뀜
@@ -87,7 +101,7 @@ $(function(){
 
 		<div class='container' style="text-align:left; margin-bottom:20px">
 			<img src='/tour/image/mo.png' id="mo"> <span
-				class="tit" name="new" id="new">회원가입</span> <span class="tit_s">회원가입을
+				class="tit" id="new">회원가입</span> <span class="tit_s">회원가입을
 				하시면 더 많은 혜택을 받으실 수 있습니다.</span>
 		</div>
 

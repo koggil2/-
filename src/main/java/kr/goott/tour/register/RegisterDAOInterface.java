@@ -1,10 +1,8 @@
 package kr.goott.tour.register;
 
-import javax.servlet.http.HttpServletRequest;
-
 public interface RegisterDAOInterface {
 
-	public boolean idCheck(String userId); //아이디 중복검사
+	public int idCheck(String userId); //아이디 중복검사
 	
 	public int insertRecord(RegisterVO vo); //회원등록
 	

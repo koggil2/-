@@ -6,7 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -15,18 +16,16 @@ public class RegisterController {
 	SqlSession sqlSession;
 	
 	@RequestMapping("/register/idCheck")
-	public String idCheck(String userid, HttpServletRequest request) {
-		boolean result = false;
-		String userId = request.getParameter("userId");
-				
-		System.out.println("userId="+userId);
+	@ResponseBody
+	public String idCheck(@RequestParam("userId") String userId) {		
+		System.out.println(userId);
 		
 		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
-		result = dao.idCheck(userId);
+		
+		int result = dao.idCheck(userId);
+		System.out.println(result);
 		
 		//뷰에 데이터 보내기 
-		request.setAttribute("result", result);
-		request.setAttribute("userId", userId);
 				
 		return "/register/idCheck";
 	}
