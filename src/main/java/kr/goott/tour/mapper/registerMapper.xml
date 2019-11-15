@@ -3,16 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.register.RegisterDAOInterface">
-	<select id="idCheck" parameterType="string" resultType="int">
+	<select id="idCheck" parameterType="String" resultType="int">
 		select count(userId) from gt_register where userId=#{param1}
 	</select>
 	<insert id="insertRecord" parameterType="kr.goott.tour.register.RegisterVO">
-		insert into gt_register(num, subject, userid, content, hit, regdate, ip)
-		values(board_sq.nextval, #{subject}, #{userid}, #{content}, 0, sysdate, #{ip})
-		
-		insert into gt_register (num, userid, userpwd, username, "
-					+ " tel, zipcode, addr, detailaddr, email, regdate, memtype) "
-					+ " values(gt_memsq.nextVal, ?,?,?,?,?,?,?,?, sysdate, ?)
+		insert into gt_register(num, userId, userPwd, userName, tel, zipCode, addr, detailAddr, email, memtype, regdate)
+		values(gt_member_sq.nextval, #{userId}, #{userPwd}, #{userName}, #{tel}, #{zipCode}, #{addr}, #{detailAddr}, #{email}, #{memType}, sysdate)
 	</insert>
 	<select id="loginOk" resultType="kr.goott.tour.register.RegisterVO">
 		select userid, userpwd, username from gt_register

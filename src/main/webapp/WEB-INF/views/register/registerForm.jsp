@@ -77,10 +77,8 @@ $(function(){
 			url : "/tour/register/idCheck",
 			data : "userId="+userId,
 			success : function(result){
-				console.log(result);
-				
-				if(result!=null){
-					if(confirm("입렵하신 아이디는 "+userId+"입니다.\n이 아이디를 사용하시겠습니까?")){
+				if(result!=""){
+					if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
 						$("#userId").val(userId);
 						$("#idChkResult").val("Y");
 					}else{

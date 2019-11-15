@@ -20,11 +20,11 @@ public class RegisterController {
 	@RequestMapping("/register/idCheck")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String userId) {		
-		//System.out.println(userId);
+//		System.out.println(userId);
 		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
 		
 		int result = dao.idCheck(userId); //아이디 중복검사
-		//System.out.println(result);
+//		System.out.println(result);
 		
 		if(result>0) return null; //아이디가 중복일 경우
 		return userId; //아이디가 중복이 아닐경우
@@ -41,12 +41,27 @@ public class RegisterController {
 	public ModelAndView insertRecord(RegisterVO vo, HttpServletRequest request) {
 		
 		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
-		int cnt = dao.insertRecord(vo);
-		
-		
+		System.out.println(vo.getUserName());
 		ModelAndView mav = new ModelAndView();
-		return mav;
+		try{
+			int cnt = dao.insertRecord(vo);
+			
+			if(cnt>0) {
+				mav.setViewName("register/registerOk"); 
+			}else {
+				mav.setViewName("redirect:registerForm");
+			}
+		}catch(Exception e) {
+			System.out.println("회원가입에러.."+e.getMessage());
+			mav.setViewName("register/registerError");
+		}
+			return mav;
 	}
 	
+	//회원가입 에러
+	@RequestMapping("/register/registerError")
+	public String regErr() {
+		return "register/registerError";
+	}
 	
 }
