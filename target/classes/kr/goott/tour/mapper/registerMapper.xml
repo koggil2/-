@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.register.RegisterDAOInterface">
-	<select id="idCheck" parameterType="kr.goott.tour.register.RegisterVO">
-		select count(userId) from gt_register where userid=#{userId}
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(userId) from gt_register where userId=#{param1}
 	</select>
 	<select id="loginOk" resultType="kr.goott.tour.register.RegisterVO">
 		select userid, userpwd, username from register

@@ -1,7 +1,5 @@
 package kr.goott.tour.register;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,9 +23,10 @@ public class RegisterController {
 		int result = dao.idCheck(userId);
 		System.out.println(result);
 		
-		//뷰에 데이터 보내기 
-				
-		return "/register/idCheck";
+		if(result>0) {
+			return null;
+		}
+		return userId;
 	}
 	
 	@RequestMapping("/register/registerForm")

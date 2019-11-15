@@ -68,7 +68,7 @@ $(function(){
 });
 	
 	
-	$('#idChk').blur(function(){									//html은 px사용안함 javascript임
+	$('#idChk').click(function(){									//html은 px사용안함 javascript임
 		/* window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150'); */
 		var userId = $("#userId").val();
 		console.log(userId);
@@ -77,10 +77,21 @@ $(function(){
 			url : "/tour/register/idCheck",
 			data : "userId="+userId,
 			success : function(result){
-				console.log(result+", "+userId+", "+idChkResult);
+				console.log(result);
+				
+				if(result!=null){
+					alert(userId);
+					$("#userId").val(userId);
+					$("#idChkResult").val("Y");
+				}else{
+					alert("!!");
+					$("#userId").val();
+					$("#idChkResult").val("N");
+				}
+				
 			},
 			error : function(e){
-				
+				alert(e.responseText);
 			}
 			
 		});
