@@ -1,6 +1,7 @@
 package kr.goott.tour.register;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,4 +65,28 @@ public class RegisterController {
 		return "register/registerError";
 	}
 	
+	//로그인 폼
+	@RequestMapping("/register/loginForm")
+	public String loginForm() {
+		return "register/loginForm";
+	}
+	
+	//로그인
+	@RequestMapping("/register/login")
+	public ModelAndView loginOk(RegisterVO vo, HttpServletRequest req) {
+		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
+		RegisterVO vo2 = dao.login(vo);
+		
+		ModelAndView mav = new ModelAndView();
+		if(vo2==null) { //로그인 실패
+			mav.setViewName("redirect:loginForm");
+		}else { //로그인 성공
+			HttpSession session = req.getSession();
+			session.setAttribute("logid", vo2.getUserId());
+			session.setAttribute("logname", vo2.getUserName());
+			
+			mav.setViewName("redirect:/");
+		}
+		return mav;
+	}
 }

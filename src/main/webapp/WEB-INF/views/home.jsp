@@ -76,13 +76,13 @@
 					<ul id="miniMenu" class="navbar-header">
 					<li class="nav-item"><a href="#">고객센터</a></li>
 					<li class="nav-item"><a href="#">여행바구니</a></li>
-					<c:if test="${userName==null }">
+					<c:if test="${logid==null }">
 					<li class="nav-item"><a href="register/registerForm">회원가입</a></li>
-					<li class="nav-item"><a href="#">로그인</a></li>
+					<li class="nav-item"><a href="register/loginForm">로그인</a></li>
 					</c:if>
-					<c:if test="${userName!=null }">
+					<c:if test="${logid!=null }">
 					<li class="nav-item"><a href="#">마이페이지</a></li>
-					<li class="nav-item">${userName }님 <a href="#">로그아웃</a></li>
+					<li class="nav-item">${logname }님 <a href="#">로그아웃</a></li>
 					</c:if>
 					</ul>
 				<!-- 주메뉴 -->

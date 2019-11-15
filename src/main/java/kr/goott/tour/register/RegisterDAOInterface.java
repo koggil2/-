@@ -6,7 +6,7 @@ public interface RegisterDAOInterface {
 	
 	public int insertRecord(RegisterVO vo); //회원등록
 	
-	public void login(RegisterVO vo); //로그인
+	public RegisterVO login(RegisterVO vo); //로그인
 	
 	public int updateRecord(RegisterVO vo); //회원정보수정
 	

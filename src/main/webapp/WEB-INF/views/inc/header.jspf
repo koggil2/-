@@ -11,18 +11,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">	
 <link rel="stylesheet" href="/tour/resources/css/headerFooterStyle.css" type="text/css" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-	crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <style>
@@ -38,13 +32,13 @@
 			<ul id="miniMenu" class="navbar-header">
 				<li class="nav-item"><a href="#">고객센터</a></li>
 				<li class="nav-item"><a href="#">여행바구니</a></li>
-				<c:if test="${userName==null }">
+				<c:if test="${logid==null }">
 				<li class="nav-item"><a href="register/registerForm">회원가입</a></li>
-				<li class="nav-item"><a href="#">로그인</a></li>
+				<li class="nav-item"><a href="register/loginForm">로그인</a></li>
 				</c:if>
-				<c:if test="${userName!=null }">
+				<c:if test="${logid!=null }">
 				<li class="nav-item"><a href="#">마이페이지</a></li>
-				<li class="nav-item">${userName }님 <a href="#">로그아웃</a></li>
+				<li class="nav-item">${logname }님 <a href="#">로그아웃</a></li>
 			</c:if>
 			</ul>
 		<!-- 주메뉴 -->

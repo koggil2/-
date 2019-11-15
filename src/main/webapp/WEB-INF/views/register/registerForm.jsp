@@ -109,7 +109,6 @@ $(function(){
 
 });
 </script>
-	<body>
 	<section>
 		<div class="H_40"></div>
 

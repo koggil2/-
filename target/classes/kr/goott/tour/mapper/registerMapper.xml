@@ -10,9 +10,9 @@
 		insert into gt_register(num, userId, userPwd, userName, tel, zipCode, addr, detailAddr, email, memtype, regdate)
 		values(gt_member_sq.nextval, #{userId}, #{userPwd}, #{userName}, #{tel}, #{zipCode}, #{addr}, #{detailAddr}, #{email}, #{memType}, sysdate)
 	</insert>
-	<select id="loginOk" resultType="kr.goott.tour.register.RegisterVO">
-		select userid, userpwd, username from gt_register
-		where userid=#{userid} and userpwd=#{userpwd}
+	<select id="login" resultType="kr.goott.tour.register.RegisterVO">
+		select userId, userPwd, userName from gt_register
+		where userId=#{userId} and userPwd=#{userPwd}
 	</select>
 
 </mapper>
