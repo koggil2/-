@@ -80,12 +80,17 @@ $(function(){
 				console.log(result);
 				
 				if(result!=null){
-					alert(userId);
-					$("#userId").val(userId);
-					$("#idChkResult").val("Y");
+					if(confirm("입렵하신 아이디는 "+userId+"입니다.\n이 아이디를 사용하시겠습니까?")){
+						$("#userId").val(userId);
+						$("#idChkResult").val("Y");
+					}else{
+						$("#userId").val("");
+						$("#idChkResult").val("N");
+					}
+					
 				}else{
-					alert("!!");
-					$("#userId").val();
+					alert("사용 할 수 없는 아이디입니다.");
+					$("#userId").val("");
 					$("#idChkResult").val("N");
 				}
 				
@@ -118,7 +123,7 @@ $(function(){
 
 		<div class="container">
 			<div id="layerPOP2">
-				<form method="post" name='m' id='regForm' action="/tour/register/registerOk.do">
+				<form method="post" name='m' id='regForm' action="/tour/register/registerOk">
 					<input type='hidden' name='spam_chk_val' value=''>
 					<table class="member">
 						<tr>

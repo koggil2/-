@@ -6,8 +6,17 @@
 	<select id="idCheck" parameterType="string" resultType="int">
 		select count(userId) from gt_register where userId=#{param1}
 	</select>
+	<insert id="insertRecord" parameterType="kr.goott.tour.register.RegisterVO">
+		insert into gt_register(num, subject, userid, content, hit, regdate, ip)
+		values(board_sq.nextval, #{subject}, #{userid}, #{content}, 0, sysdate, #{ip})
+		
+		insert into gt_register (num, userid, userpwd, username, "
+					+ " tel, zipcode, addr, detailaddr, email, regdate, memtype) "
+					+ " values(gt_memsq.nextVal, ?,?,?,?,?,?,?,?, sysdate, ?)
+	</insert>
 	<select id="loginOk" resultType="kr.goott.tour.register.RegisterVO">
-		select userid, userpwd, username from register
+		select userid, userpwd, username from gt_register
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
+
 </mapper>
