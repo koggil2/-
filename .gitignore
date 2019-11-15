@@ -71,8 +71,4 @@ local.properties
 
 .sts4-cache/
 
-### Java ###
-# Compiled class file
-*.class
-
 # End of https://www.gitignore.io/api/eclipse
