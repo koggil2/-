@@ -82,13 +82,13 @@
 					</c:if>
 					<c:if test="${logid!=null }">
 					<li class="nav-item"><a href="#">마이페이지</a></li>
-					<li class="nav-item">${logname }님 <a href="#">로그아웃</a></li>
+					<li class="nav-item">${logname }님 <a href="register/logoutOk">로그아웃</a></li>
 					</c:if>
 					</ul>
 				<!-- 주메뉴 -->
 					<ul class="navbar-header"> 
 						<li class="nav-brand"><a href="/tour/"><img src="/tour/image/Mainlogo.png"id="mainLogo"/></a></li>
-						<li class="nav-item"><a href="#">구트여행</a></li>
+						<li class="nav-item"><a href="/tour/product/product_list">구트여행</a></li>
 						<li class="nav-item"><a href="#">여행만들기</a></li>
 						<li class="nav-item"><a href="#">출발지</a></li>
 						<li class="nav-item"><a href="#">여행후기</a></li>

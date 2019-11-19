@@ -12,7 +12,6 @@ tmp/
 *~.nib
 *.class
 local.properties
-.settings/
 .loadpath
 .recommenders
 

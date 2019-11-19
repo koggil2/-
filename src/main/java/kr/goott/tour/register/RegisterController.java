@@ -89,4 +89,14 @@ public class RegisterController {
 		}
 		return mav;
 	}
+	
+	//·Î±×¾Æ¿ô
+	@RequestMapping("/register/logoutOk")
+	public ModelAndView logoutOk(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("register/logoutOk");
+		return mav;
+	}
 }

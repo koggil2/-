@@ -7,6 +7,11 @@ public class RegisterVO {
 	private String userPwd;
 	private String userName;
 	
+	private String birthYear;
+	private String birthMonth;
+	private String birthDate;
+	private String birthDay;
+	
 	private String t1;
 	private String t2;
 	private String t3;
@@ -47,6 +52,35 @@ public class RegisterVO {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getBirthYear() {
+		return birthYear;
+	}
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
+	public String getBirthMonth() {
+		return birthMonth;
+	}
+	public void setBirthMonth(String birthMonth) {
+		this.birthMonth = birthMonth;
+	}
+	public String getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+	public String getBirthDay() {
+		return birthYear+"-"+birthMonth+"-"+birthDate;
+	}
+	public void setBirthDay(String birthDay) {
+		this.birthDay = birthDay;
+		
+		String birth[] =birthDay.split("-");
+		birthYear = birth[0];
+		birthMonth = birth[1];
+		birthDate = birth[2];
 	}
 	public String getT1() {
 		return t1;

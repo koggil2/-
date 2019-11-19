@@ -150,6 +150,35 @@ $(function(){
 								id='userName'></td>
 						</tr>
 						<tr>
+							<td class="stit">생년월일</td>
+							<td class="frm"><input type="text" class="ipf form-control" 
+								name='birthYear' id='birthYear' style="width:100px;" maxlength="4" placeholder="ex)2019">
+								<select name="birthMonth" id="birthMonth">
+									<%
+										for(int i=1; i<=12 ;i++){
+											%>
+											<option value="<% if(i<10){out.print("0"+i);}else{out.print(i);}%>"><%=i%></option>
+											<%						
+										}
+									%>
+								</select>월
+								<select name="birthDate" id="birthDate">
+									<script>
+										for(d=1;d<=31;d++){
+											var tag = "<option value='";
+											if(d<10){
+												tag+= "0"+d;
+											}else{
+												tag+=d;
+											}
+											tag += "'>"+d+"</option>";
+											document.write(tag);
+										}
+									</script>
+								</select>일
+							</td>
+						</tr>
+						<tr>
 							<td class="stit" rowspan="3">주소</td>
 							<td class="frm">
 								<div id="wrap" style="display:none; border:1px solid; width:500px; height:300px; margin:-10px 0px 5px -10px; position:absolute">
