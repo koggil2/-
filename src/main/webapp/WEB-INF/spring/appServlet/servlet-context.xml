@@ -44,8 +44,6 @@
 	</beans:bean>
 	<!-- Mybatis 객체 생성 -->
 	
-	<context:component-scan base-package="kr.goott.tour" />
-	
-	
+	<context:component-scan base-package="kr.goott.tour" />	
 	
 </beans:beans>

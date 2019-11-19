@@ -67,7 +67,7 @@
 					<input type="password" id="userPwd" name="userPwd" class="form-control" maxlength="15" placeholder="비밀번호를 입력해주세요." required autofocus>				
 				</div>
 				<input class="btn btn-lg btn-secondary btn-block" type="submit" id="log" value="로그인" />
-					<a target="_blank" id="idinquiry" href="registerForm">회원가입</a>
+					<a id="idinquiry" href="registerForm">회원가입</a>
 					<a id="pwinquiry" href="#" onclick="popup();">아이디/비밀번호 찾기</a>
 			</form>
 		</div>

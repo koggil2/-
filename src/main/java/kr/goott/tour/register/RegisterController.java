@@ -85,7 +85,7 @@ public class RegisterController {
 			session.setAttribute("logid", vo2.getUserId());
 			session.setAttribute("logname", vo2.getUserName());
 			
-			mav.setViewName("redirect:/");
+			mav.setViewName("register/loginOk");
 		}
 		return mav;
 	}
