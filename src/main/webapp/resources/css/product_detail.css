@@ -19,7 +19,7 @@ button, button::after {
   -o-transition: all 0.3s;
 	transition: all 0.3s;
 }
-
+ 
 .btn-1, .btn-2 {
   background: none;
   border: 3px solid lightgray;
