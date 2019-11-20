@@ -64,12 +64,15 @@ local.properties
 # Eclipse Core
 
 # JDT-specific (Eclipse Java Development Tools)
-.classpath
+
 
 # Annotation Processing
 .apt_generated
 
 .sts4-cache/
-target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
-target/m2e-wtp/web-resources/META-INF/maven/kr.goott/tour/pom.properties
+
+### Java-Web ###
+## ignoring target file
+target/
+
 # End of https://www.gitignore.io/api/eclipse
