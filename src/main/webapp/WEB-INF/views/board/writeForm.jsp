@@ -31,12 +31,19 @@ function backPage(){
 <section>
 	<%@ include file="../inc/boardSide.jspf" %>
 	<div id="reviewPan">
-		<div id="reviewTab1"><h4><c:if test="${commuPage=='reviewPage'}">여행후기</c:if><c:if test="${commuPage=='InfoCenter'}">공지사항</c:if><c:if test="${commuPage=='travelQ'}">여행문의</c:if></h4><hr class="hrStyle">
+		<div id="reviewTab1">
+		<h4>
+			<c:if test="${commuPage == 'infoCenter'}">공지사항</c:if>
+			<c:if test="${commuPage == 'faq'}">자주묻는 질문</c:if>
+			<c:if test="${commuPage == 'reviewPage'}">여행후기</c:if>
+			<c:if test="${commuPage == 'travelQ'}">여행문의</c:if>
+		</h4>
+		<hr class="hrStyle">
 			<form id="reviewWrite" method="post" action="writeOk.do">
 				<table>
 					<tr>
 						<td>작성자</td>
-						<td><input type="hidden" id="userId" name="userId" value="${userId}"/>${userId}</td>
+						<td><input type="hidden" id="userId" name="userId" value="${logid}"/>${logid}</td>
 					</tr>
 					<tr>
 						<td>제목</td>

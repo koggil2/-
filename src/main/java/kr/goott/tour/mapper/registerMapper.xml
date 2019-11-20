@@ -11,7 +11,7 @@
 		values(gt_member_sq.nextval, #{userId}, #{userPwd}, #{userName}, #{birthDay}, #{tel}, #{zipCode}, #{addr}, #{detailAddr}, #{email}, #{memType}, sysdate)
 	</insert>
 	<select id="login" resultType="kr.goott.tour.register.RegisterVO">
-		select userId, userPwd, userName from gt_register
+		select userId, userPwd, userName, memType from gt_register
 		where userId=#{userId} and userPwd=#{userPwd}
 	</select>
 

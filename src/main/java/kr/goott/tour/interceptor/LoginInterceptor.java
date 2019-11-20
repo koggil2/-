@@ -15,7 +15,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		//로그인 여부 확인 후 true(로그인시), flase(로그인실패시)를 리턴
 		HttpSession session = req.getSession();
 		String logid = (String)session.getAttribute("logid");
-				
+		
 		if(logid==null || logid.equals("")) {
 			res.sendRedirect("/tour/register/loginForm");
 			return false;

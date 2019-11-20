@@ -94,7 +94,9 @@
 				<input type="hidden" name="commuPage" value="${vo.commuPage}"/>
 				<input type="submit" value="검색" onclick="location.href='board/list.do?'"/>
 			</form>
-			<button id="write" onclick="location.href='write'">글쓰기</button>
+			<c:if test="${memType!=null}">
+				<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'">글쓰기</button>
+			</c:if>
 		</div>
 	</div>
 </section>

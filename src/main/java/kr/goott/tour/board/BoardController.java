@@ -70,8 +70,11 @@ public class BoardController {
 	
 	//글쓰기 폼으로 이동
 	@RequestMapping("/board/write")
-	public String board_writeForm() {
-		return "board/writeForm";
+	public ModelAndView board_writeForm(@RequestParam("commuPage") String commuPage) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("commuPage", commuPage);
+		mav.setViewName("board/writeForm");
+		return mav;
 	}
 	
 	//글쓰기 폼으로 이동

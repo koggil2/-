@@ -47,7 +47,7 @@
 			<h4>내 프로필</h4>
 			<hr/>
 			<div><img src="/tour/image/myPageProfile.png"/></div>
-			<h5>${logName}님</h5>
+			<h5>${logname}님</h5>
 			
 			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정"/>
 		</div>

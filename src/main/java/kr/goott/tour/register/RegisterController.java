@@ -85,6 +85,7 @@ public class RegisterController {
 			session.setAttribute("logid", vo2.getUserId());
 			session.setAttribute("logname", vo2.getUserName());
 			session.setAttribute("memType", vo2.getMemType());
+			System.out.println(vo2.getMemType());
 			
 			mav.setViewName("register/loginOk");
 		}

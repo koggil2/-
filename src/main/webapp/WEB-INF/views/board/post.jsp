@@ -32,7 +32,14 @@
 <section>
 	<%@ include file="../inc/boardSide.jspf" %>
 	<div id="reviewPan">
-		<div id="reviewTab1"><h4><c:if test="${vo.commuPage=='reviewPage'}">여행후기</c:if><c:if test="${vo.commuPage=='InfoCenter'}">공지사항</c:if><c:if test="${vo.commuPage=='travelQ'}">여행문의</c:if></h4><hr class="hrStyle">
+		<div id="reviewTab1">
+		<h4>
+			<c:if test="${commuPage == 'infoCenter'}">공지사항</c:if>
+			<c:if test="${commuPage == 'faq'}">자주묻는 질문</c:if>
+			<c:if test="${commuPage == 'reviewPage'}">여행후기</c:if>
+			<c:if test="${commuPage == 'travelQ'}">여행문의</c:if>
+		</h4>
+		<hr class="hrStyle">
 			<div id="posting">
 				<table>
 					<tr>
@@ -61,9 +68,9 @@
 			</div>
 			<hr/>
 			<div id= "button">
-				<c:if test="${userId == vo.userId}">
+				<c:if test="${logid == vo.userId}">
 					<input type="button" class="btn btn-secondary" value="삭제" onclick="delChk()"></input>
-					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='<%=request.getContextPath()%>/project/board/edit.do?pageNum=${vo.pageNum}&num=${vo.num}&commuPage=${vo.commuPage}'"></input>
+					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='edit'"></input>
 				</c:if>
 				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage()"></input>
 			</div>
