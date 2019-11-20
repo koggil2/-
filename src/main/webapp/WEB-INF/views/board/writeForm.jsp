@@ -35,11 +35,11 @@ function backPage(){
 		<h4>
 			<c:if test="${commuPage == 'infoCenter'}">공지사항</c:if>
 			<c:if test="${commuPage == 'faq'}">자주묻는 질문</c:if>
-			<c:if test="${commuPage == 'reviewPage'}">여행후기</c:if>
-			<c:if test="${commuPage == 'travelQ'}">여행문의</c:if>
+			<c:if test="${commuPage == 'review'}">여행후기</c:if>
+			<c:if test="${commuPage == 'trevelQ'}">여행문의</c:if>
 		</h4>
 		<hr class="hrStyle">
-			<form id="reviewWrite" method="post" action="writeOk.do">
+			<form id="reviewWrite" method="post" action="writeOk">
 				<table>
 					<tr>
 						<td>작성자</td>

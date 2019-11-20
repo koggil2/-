@@ -4,10 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.board.BoardDAOInterface">
 	<select id="getAllRecord" resultType="kr.goott.tour.board.BoardVO">
-		select num, rownum no, userid, subject, to_char(regdate,'YYYY-MM-DD') regdate, hit
-		from gt_freeboard where commuPage=#{commuPage}
+		select * from(select num, rownum no, userid, subject, to_char(regdate,'YYYY-MM-DD') regdate, hit
+		from gt_freeboard where commuPage=#{commuPage}) order by no desc
 	</select>
 	<select id="boardTotalRecord" resultType="int">
 		select count(num) totalRecord from gt_freeboard where commuPage=#{commuPage}
+	</select>
+	<insert id="boardInsert">
+		insert into gt_freeboard(num, subject, content, userId, hit, regdate, commuPage) 
+		values(gt_board_sq.nextval, #{subject}, #{content}, #{userId}, 0, sysdate, #{commuPage})
+	</insert>
+	<select id="selectRecord" resultType="kr.goott.tour.board.BoardVO">
+		select num, subject, content, userid, hit, regdate from gt_freeboard
+		where num=#{param1}
 	</select>
 </mapper>

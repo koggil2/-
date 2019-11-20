@@ -33,4 +33,10 @@ public class ProductController {
 	public String product_basket() {
 		return "product/basket";
 	}
+	
+	//상품관리 페이지로 이동
+	@RequestMapping("/product/management")
+	public String product_management() {
+		return "product/management";
+	}
 }

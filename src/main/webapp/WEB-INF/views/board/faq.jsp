@@ -59,7 +59,7 @@
 					<c:forEach var="v" items="${lst}">
 						<tr>
 		  					<td>${v.no}</td>
-		  					<td><a href="post">${v.subject}</a></td>
+		  					<td><a href="post?num=${v.num}">${v.subject}</a></td>
 		  					<td>${v.userId}</td>
 		  					<td>${v.regDate}</td>
 		  					<td>${v.hit}</td>
@@ -96,7 +96,7 @@
 				<input type="submit" value="검색" onclick="location.href='board/list.do?'"/>
 			</form>
 			<c:if test="${memType=='직원'}">
-			<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'">글쓰기</button>
+				<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'">글쓰기</button>
 			</c:if>
 		</div>
 	</div>

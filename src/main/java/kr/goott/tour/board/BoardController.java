@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,8 +64,6 @@ public class BoardController {
 		mav.addObject("lst", lst);
 		mav.setViewName("/board/"+commuPage);
 	
-		if(vo.getCommuPage()=="travelQ"||vo.getCommuPage().equals("travelQ")) {commuPage = "InfoCenter.jsp";}
-		
 		return mav;
 	}
 	
@@ -77,9 +76,35 @@ public class BoardController {
 		return mav;
 	}
 	
-	//글쓰기 폼으로 이동
+	@RequestMapping(value="/board/writeOk", method=RequestMethod.POST)
+	public ModelAndView writeOk(BoardVO vo, HttpServletRequest req) {
+		BoardDAOInterface dao =sqlSession.getMapper(BoardDAOInterface.class);
+	    
+		int cnt = dao.boardInsert(vo);
+	    
+		ModelAndView mav = new ModelAndView();
+		      
+		if(cnt>0) {
+			mav.addObject("commuPage", vo.getCommuPage());
+			mav.setViewName("redirect:list");
+		}else {
+			mav.setViewName("redirect:writeForm");        
+		}
+		return mav;
+	}
+	
+	//글내용으로 이동
 	@RequestMapping("/board/post")
-	public String board_post() {
-		return "board/post";
+	   public ModelAndView view(BoardVO vo) {
+	      
+	      BoardDAOInterface dao = sqlSession.getMapper(BoardDAOInterface.class);
+	      vo = dao.selectRecord(vo.getNum());
+	      
+	      ModelAndView mav = new ModelAndView();
+	      
+	      mav.addObject("vo", vo);
+	      mav.setViewName("post");
+	      
+	return mav;
 	}
 }

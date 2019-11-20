@@ -18,5 +18,5 @@ interface BoardDAOInterface {
 	//총레코드수
 	public int boardTotalRecord(String commuPage);
 	//레코드 선택
-	public void boardSelect(BoardVO vo, boolean a);
+	public BoardVO selectRecord(int num);
 }

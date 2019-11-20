@@ -92,6 +92,9 @@
 						<!-- <li class="nav-item"><a href="#">여행만들기</a></li> -->
 						<li class="nav-item"><a href="/tour/product/product_list">출발지</a></li>
 						<li class="nav-item"><a href="/tour/board/list?commuPage=review">커뮤니티</a></li>
+						<c:if test="${memType=='직원'}">
+							<li class="nav-item"><a href="/tour/product/management">상품관리</a></li>
+						</c:if>
 						<li class="nav-item"><div><input type="text" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="submit"  style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
 					</ul><!--  돋보기 높이 설정 : vertical-align: 2px;  -->
 				</div>
