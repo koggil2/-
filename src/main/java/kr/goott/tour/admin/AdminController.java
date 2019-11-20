@@ -11,7 +11,7 @@ public class AdminController {
 	SqlSession sqlSession;
 	
 	//관리자 로그인 폼
-	@RequestMapping("/admin/admin_login")
+	@RequestMapping("/admin")
 	public String admin_login() {
 		return "admin/admin_login";
 	}

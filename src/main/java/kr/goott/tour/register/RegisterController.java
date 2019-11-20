@@ -84,6 +84,7 @@ public class RegisterController {
 			HttpSession session = req.getSession();
 			session.setAttribute("logid", vo2.getUserId());
 			session.setAttribute("logname", vo2.getUserName());
+			session.setAttribute("memType", vo2.getMemType());
 			
 			mav.setViewName("register/loginOk");
 		}

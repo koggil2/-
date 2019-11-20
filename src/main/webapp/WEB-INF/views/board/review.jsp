@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%
+	pageName = "커뮤니티";
+	pageSideName = "여행 후기";
+	pageImage = "mainimg3.jpg";
+%>
+<script>
+	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+	$("#imgBannerText>h1").text("<%=pageName%>");
+	$("#imgBannerText>h2").text("<%=pageSideName%>");
+</script>
 <style>
 	*{font-family:'Noto Sans KR',sans-serif;}
 	#infoPan{width:100%; height:1000px}

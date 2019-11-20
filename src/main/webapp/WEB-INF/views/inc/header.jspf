@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	String pageName = "";
-	String pageSideName = "";
-	String pageImage = "";
+	String pageName = "공백";
+	String pageSideName = "공백";
+	String pageImage = "main_img_banner_1.jpg";
 %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,7 @@
 				</c:if>
 				<c:if test="${logid!=null }">
 				<li class="nav-item"><a href="/tour/register/mypage">마이페이지</a></li>
-				<li class="nav-item">${logname }님 <a href="/tour/register/logoutOk">로그아웃</a></li>
+				<li class="nav-item">${logname}님 <a href="/tour/register/logoutOk">로그아웃</a></li>
 			</c:if>
 			</ul>
 		<!-- 주메뉴 -->

@@ -17,7 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		String logid = (String)session.getAttribute("logid");
 				
 		if(logid==null || logid.equals("")) {
-			res.sendRedirect("/myapp/member/loginForm");
+			res.sendRedirect("/tour/register/loginForm");
 			return false;
 		}
 		

@@ -3,9 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link rel="stylesheet" href="/tour/resources/css/loginForm.css" type="text/css" />
-
-
+<%
+	pageName = "구트투어";
+	pageSideName = "로그인";
+	pageImage = "mainimg4.jpg";
+%>
 <script>
+	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+	$("#imgBannerText>h1").text("<%=pageName%>");
+	$("#imgBannerText>h2").text("<%=pageSideName%>");
+
 	function chk(){
 		var id = document.getElementById("userId").value;
 		if(id==""){//아이디를 입력 안했을 경우

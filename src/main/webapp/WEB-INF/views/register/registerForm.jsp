@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	pageName = "회원가입";
-	pageSideName = "구트투어 회원가입";
-	pageImage = "main_img_banner_6.jpg";
-%>
 
 <link rel="stylesheet" href="/tour/resources/css/registerForm.css" type="text/css" />
+<%
+	pageName = "구트투어";
+	pageSideName = "회원가입";
+	pageImage = "main_img_banner_4.jpg";
+%>
+	
 <script>
-
+	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+	$("#imgBannerText>h1").text("<%=pageName%>");
+	$("#imgBannerText>h2").text("<%=pageSideName%>");
 $(function(){
 	$("#regForm").submit(function(){
 		

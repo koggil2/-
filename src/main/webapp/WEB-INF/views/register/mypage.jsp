@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%
+	pageName = "구트투어";
+	pageSideName = "마이 페이지";
+	pageImage = "main_img_banner_7.jpg";
+%>
 <script>
+	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+	$("#imgBannerText>h1").text("<%=pageName%>");
+	$("#imgBannerText>h2").text("<%=pageSideName%>");
 
 	$(function(){
 		$("#edit-btn").click(function(){
@@ -39,8 +46,8 @@
 		<div id="profileDiv">
 			<h4>내 프로필</h4>
 			<hr/>
-			<div><img src="<%=request.getContextPath()%>/image/myPageProfile.png"/></div>
-			<h5>${vo.userName }님</h5>
+			<div><img src="/tour/image/myPageProfile.png"/></div>
+			<h5>${logName}님</h5>
 			
 			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정"/>
 		</div>
@@ -49,14 +56,14 @@
 			<hr/>
 			<div>
 				<h5>나의 등급</h5>
-				<h3 style="font-weight:bold"><a href="<%=request.getContextPath()%>/project/membership.jsp">${vo.memType }</a></h3>
+				<h3 style="font-weight:bold"><a href="/tour/image/membership.jsp">${memType}</a></h3>
 			</div>
 			<select><option>사용가능한 쿠폰</option></select>
 			<h6>쿠폰내역</h6>
 		</div>
 	</div>
 	<div id="myReservation">
-	<div><h3>■ 예약정보</h3><h5><a href="<%=request.getContextPath()%>/project/reservationchk.jsp">더보기</a></h5></div>
+	<div><h3>■ 예약정보</h3><h5><a href="/tour/image/reservationchk.jsp">더보기</a></h5></div>
 		<table id="revData" class="table table-bordered">
 		  <tr>
 			<td>예약날짜</td> 
