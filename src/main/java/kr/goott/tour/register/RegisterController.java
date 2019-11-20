@@ -99,4 +99,10 @@ public class RegisterController {
 		mav.setViewName("register/logoutOk");
 		return mav;
 	}
+	
+	//마이페이지 이동
+	@RequestMapping("/register/mypage")
+	public String mypage() {
+		return "register/mypage";
+	}
 }

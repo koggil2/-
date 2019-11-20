@@ -23,7 +23,7 @@
 			var url = ['project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp',
 						'project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp']
 			for(i=1; i<=9; i++){
-				imglist += '<div><a href="#"><img src="/tour/image/main_img_banner_';
+				imglist += '<div><a href="product/product_view"><img src="/tour/image/main_img_banner_';
 				
 				if(i<=9)
 				imglist += i;
@@ -75,22 +75,22 @@
 					<!-- 작은메뉴 -->
 					<ul id="miniMenu" class="navbar-header">
 					<li class="nav-item"><a href="/tour/board/list?commuPage=infoCenter">고객센터</a></li>
-					<li class="nav-item"><a href="#">여행바구니</a></li>
+					<li class="nav-item"><a href="/tour/product/basket">여행바구니</a></li>
 					<c:if test="${logid==null }">
 					<li class="nav-item"><a href="/tour/register/registerForm">회원가입</a></li>
 					<li class="nav-item"><a href="/tour/register/loginForm">로그인</a></li>
 					</c:if>
 					<c:if test="${logid!=null }">
-					<li class="nav-item"><a href="#">마이페이지</a></li>
-					<li class="nav-item">${logname }님 <a href="register/logoutOk">로그아웃</a></li>
+					<li class="nav-item"><a href="/tour/register/mypage">마이페이지</a></li>
+					<li class="nav-item">${logname }님 <a href="/tour/register/logoutOk">로그아웃</a></li>
 					</c:if>
 					</ul>
 				<!-- 주메뉴 -->
 					<ul class="navbar-header"> 
 						<li class="nav-brand"><a href="/tour/"><img src="/tour/image/Mainlogo.png"id="mainLogo"/></a></li>
-						<li class="nav-item"><a href="product/product_list">구트여행</a></li>
-						<li class="nav-item"><a href="#">여행만들기</a></li>
-						<li class="nav-item"><a href="#">출발지</a></li>
+						<li class="nav-item"><a href="/tour/product/product_list">여행상품</a></li>
+						<!-- <li class="nav-item"><a href="#">여행만들기</a></li> -->
+						<li class="nav-item"><a href="/tour/product/product_list">출발지</a></li>
 						<li class="nav-item"><a href="/tour/board/list?commuPage=review">커뮤니티</a></li>
 						<li class="nav-item"><div><input type="text" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="submit"  style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
 					</ul><!--  돋보기 높이 설정 : vertical-align: 2px;  -->

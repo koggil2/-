@@ -24,6 +24,7 @@
 </style>
 
 <section>
+
 	<div id="sidebar-wrapper">
 		<div id="sidebar-top" class="sidebar-heading">고객센터</div>
 		<div id="sidebar-content" class="list-group list-group-flush">
@@ -49,7 +50,7 @@
 					<c:forEach var="v" items="${lst}">
 						<tr>
 		  					<td>${v.no}</td>
-		  					<td><a href="board/post.do?num=${v.num}&pageNum=${vo.pageNum}&commuPage=${vo.commuPage}&no=${v.no}">${v.subject}</a></td>
+		  					<td><a href="post">${v.subject}</a></td>
 		  					<td>${v.userId}</td>
 		  					<td>${v.regDate}</td>
 		  					<td>${v.hit}</td>
@@ -85,7 +86,7 @@
 				<input type="hidden" name="commuPage" value="${vo.commuPage}"/>
 				<input type="submit" value="검색" onclick="location.href='board/list.do?'"/>
 			</form>
-			<button id="write" onclick="location.href='board/write.do?commuPage=${vo.commuPage}'">글쓰기</button>
+			<button id="write" onclick="location.href='write'">글쓰기</button>
 		</div>
 	</div>
 </section>

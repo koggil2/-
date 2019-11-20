@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -65,5 +66,17 @@ public class BoardController {
 		if(vo.getCommuPage()=="travelQ"||vo.getCommuPage().equals("travelQ")) {commuPage = "InfoCenter.jsp";}
 		
 		return mav;
+	}
+	
+	//글쓰기 폼으로 이동
+	@RequestMapping("/board/write")
+	public String board_writeForm() {
+		return "board/writeForm";
+	}
+	
+	//글쓰기 폼으로 이동
+	@RequestMapping("/board/post")
+	public String board_post() {
+		return "board/post";
 	}
 }

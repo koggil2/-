@@ -105,10 +105,11 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 1번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <!-- 여행분류과 상품코드 필요함. product_view?goodcode=?&treveltype=? -->
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">1111</a>
+               <a href="product_view">1111</a>
              </h4>
              <h5>30,000원</h5>
              <p class="card-text">남한산성과 수원화성 - 성남시, 수원시</p>
@@ -121,10 +122,10 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 2번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">22222</a>
+               <a href="product_view">22222</a>
              </h4>
              <h5>-</h5>
              <p class="card-text">없음</p>
@@ -137,10 +138,10 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 3번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">33333</a>
+               <a href="product_view">33333</a>
              </h4>
              <h5>-</h5>
              <p class="card-text">없음</p>
@@ -153,10 +154,10 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 4번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">Item Four</a>
+               <a href="product_view">Item Four</a>
              </h4>
              <h5>-</h5>
              <p class="card-text">없음</p>
@@ -169,10 +170,10 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 5번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">Item Five</a>
+               <a href="product_view">Item Five</a>
              </h4>
              <h5>$-</h5>
              <p class="card-text">없음</p>
@@ -185,10 +186,10 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 6번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">Item Six</a>
+               <a href="product_view">Item Six</a>
              </h4>
              <h5>$-</h5>
              <p class="card-text">없음</p>
@@ -242,7 +243,7 @@ section{width:1400px; margin: 0; padding:0;}
 <!-- 1번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
                <a href="#">하나하나하나</a>
@@ -251,17 +252,17 @@ section{width:1400px; margin: 0; padding:0;}
              <p class="card-text">남한산성과 수원화성 - 성남시, 수원시</p>
            </div>
            <div class="card-footer">
-            <a href="#"><small class="text-muted">&#9825;</small></a> 
+            <a href="product_view"><small class="text-muted">&#9825;</small></a> 
            </div>
          </div>
        </div>
 <!-- 2번째 소메뉴  -->
        <div class="col-lg-4 col-md-6 mb-4">
          <div class="card h-100">
-           <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+           <a href="product_view"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
            <div class="card-body">
              <h4 class="card-title">
-               <a href="#">둘둘둘둘</a>
+               <a href="product_view">둘둘둘둘</a>
              </h4>
              <h5>-</h5>
              <p class="card-text">없음</p>
