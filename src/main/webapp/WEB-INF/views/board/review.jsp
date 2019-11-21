@@ -29,13 +29,13 @@
 <link href="/tour/resources/css/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/tour/resources/css/sb-admin.css" rel="stylesheet">
 <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css'>
 
 <script>
 	$(document).ready(function() {
 	  $('#dataTable').DataTable({
-	    'fixedHeader': true
+	    'fixedHeader': true,
+	    "order": [[ 0, "desc" ]]
 	  });
 	});
 	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
@@ -75,11 +75,11 @@
 			<a href="list?commuPage=trevelQ" class="list-group-item list-group-item-action">여행문의</a>
 		</div>
 	</div>
-	<h4>여행문의</h4><hr/>
+	<h4>여행후기</h4><hr/>
 	<div class="card mb-3">
           <div class="card-header" style="text-align: left;">
             <i class="fas fa-table"></i>
-            여행문의</div>
+            여행후기</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

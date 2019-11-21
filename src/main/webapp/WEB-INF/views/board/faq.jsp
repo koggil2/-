@@ -29,13 +29,13 @@
 <link href="/tour/resources/css/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/tour/resources/css/sb-admin.css" rel="stylesheet">
 <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css'>
 
 <script>
 	$(document).ready(function() {
 	  $('#dataTable').DataTable({
-	    'fixedHeader': true
+	    'fixedHeader': true,
+	    "order": [[ 0, "desc" ]]
 	  });
 	});
 	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
@@ -69,10 +69,10 @@
 
 <section style="padding-top:100px;">
 	<div id="sidebar-wrapper">
-		<div id="sidebar-top" class="sidebar-heading">커뮤니티</div>
+		<div id="sidebar-top" class="sidebar-heading">고객센터</div>
 		<div id="sidebar-content" class="list-group list-group-flush">
-			<a href="list?commuPage=review" class="list-group-item list-group-item-action">여행후기</a>
-			<a href="list?commuPage=trevelQ" class="list-group-item list-group-item-action">여행문의</a>
+			<a href="list?commuPage=infoCenter" class="list-group-item list-group-item-action">공지사항</a>
+			<a href="list?commuPage=faq" class="list-group-item list-group-item-action">자주묻는 질문</a>
 		</div>
 	</div>
 	<h4>여행문의</h4><hr/>

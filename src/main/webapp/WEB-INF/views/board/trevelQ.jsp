@@ -29,13 +29,13 @@
 <link href="/tour/resources/css/dataTables.bootstrap4.css" rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/tour/resources/css/sb-admin.css" rel="stylesheet">
 <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css'>
 
 <script>
 	$(document).ready(function() {
 	  $('#dataTable').DataTable({
-	    'fixedHeader': true
+	    'fixedHeader': true,
+	    "order": [[ 0, "desc" ]]
 	  });
 	});
 	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
