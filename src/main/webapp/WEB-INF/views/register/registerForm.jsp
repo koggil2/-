@@ -139,9 +139,8 @@
 						$("#userId").val("");
 						$("#idChkResult").val("N");
 						
-					}else {
-						
 					}
+				
 				
 			},
 			error : function(e){
