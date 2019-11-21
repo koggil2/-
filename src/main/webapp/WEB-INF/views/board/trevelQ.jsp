@@ -5,6 +5,16 @@
 	pageSideName = "여행 문의";
 	pageImage = "mainimg3.jpg";
 %>
+<!-- Custom fonts for this template-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+<!-- Page level plugin CSS-->
+<link href="/tour/resources/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="/tour/resources/css/sb-admin.css" rel="stylesheet">
+<link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css'>
 <script>
 	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
 	$("#imgBannerText>h1").text("<%=pageName%>");
@@ -13,7 +23,7 @@
 <style>
 	*{font-family:'Noto Sans KR',sans-serif;}
 	#infoPan{width:100%; height:1000px}
-	#infoPan h4{text-align:left; margin-left:30px; margin-top:20px}
+	h4{text-align:left; margin-left:30px; margin-top:20px}
 	#infoPage{width:100%;}
 	#infoTable{border:1px solid #bbb; width:90%;margin:0px auto;margin-bottom:20px; table-layout: fixed;}
 	thead{border-bottom:3px double gray}
@@ -30,9 +40,12 @@
 	#sidebar-wrapper{width:200px; position:absolute; left:168px; top:633px;}
 	#sidebar-top{text-align: left;  height: 50px;  line-height: 40px; font-size: 30px;}
 	#sidebar-content a{text-align: left;}
+	
+	.dataTables_length{text-align:left;}
+	.dataTables_info{text-align:left;}
 </style>
 
-<section>
+<section style="padding-top:100px;">
 	<div id="sidebar-wrapper">
 		<div id="sidebar-top" class="sidebar-heading">커뮤니티</div>
 		<div id="sidebar-content" class="list-group list-group-flush">
@@ -40,8 +53,8 @@
 			<a href="list?commuPage=trevelQ" class="list-group-item list-group-item-action">여행문의</a>
 		</div>
 	</div>
-	
-	<div id="infoPan">
+	<h4>여행문의</h4><hr/>
+	<%-- <div id="infoPan">
 		<div id="infoTab1"><h4>여행문의</h4><hr/>
 			<div id="infoTab">
 				<table id="infoTable" class="table table-striped">
@@ -98,5 +111,73 @@
 				<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'">글쓰기</button>
 			</c:if>
 		</div>
-	</div>
+	</div> --%>
+	<div class="card mb-3">
+          <div class="card-header" style="text-align: left;">
+            <i class="fas fa-table"></i>
+            여행문의</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                  	<th>번호</th>
+			  		<th>제목</th>
+			  		<th>글쓴이</th>
+			  		<th>날짜</th>
+			  		<th>조회수</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="v" items="${lst }">
+                    	<tr>
+                    		<td>${v.no}</td>
+		  					<td><a href="board/post.do?num=${v.num}&pageNum=${vo.pageNum}&commuPage=${vo.commuPage}&no=${v.no}">${v.subject}</a></td>
+		  					<td>${v.userId}</td>
+		  					<td>${v.regDate}</td>
+		  					<td>${v.hit}</td>
+                    	</tr>
+                    </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer small text-muted" style="text-align:left;">
+          	Updated yesterday at 11:59 PM
+          	<c:if test="${memType!=null}">
+          		<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;width:80px;text-align:center;">글쓰기</button>
+          	</c:if>
+          </div>
+        </div>
+        
+        <c:if test="${memType!=null}">
+			<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;">글쓰기</button>
+		</c:if>
+        
+        <a class="scroll-to-top rounded" href="#page-top">
+	      <i class="fas fa-angle-up"></i>
+	    </a>
+	    
+	    <!-- Bootstrap core JavaScript-->
+	    <script src="/tour/resources/js/bootstrap.bundle.min.js"></script>
+	
+	    <!-- Core plugin JavaScript-->
+	    <script src="/tour/resources/js/jquery.easing.min.js"></script>
+	
+	    <!-- Page level plugin JavaScript-->
+	    <script src="/tour/resources/js/jquery.dataTables.js"></script>
+	    <script src="/tour/resources/js/dataTables.bootstrap4.js"></script>
+	
+	    <!-- Custom scripts for all pages-->
+	    <script src="/tour/resources/js/sb-admin.min.js"></script>
+	
+	    <!-- Demo scripts for this page-->
+	    <script src='https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js'></script>
+	    <script>
+	     $(document).ready(function() {
+		    $('#dataTable').DataTable({
+				    'fixedHeader': true
+		    });
+		  });
+	  	</script>
 </section>
