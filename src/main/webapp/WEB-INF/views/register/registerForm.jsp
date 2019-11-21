@@ -123,25 +123,23 @@
 			url : "/tour/register/idCheck",
 			data : "userId="+userId,
 			success : function(result){
-				
 				if(result!=""){
-					if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
+					if(!reg.test($("#userId").val())){
+						alert("아이디는 첫번째문자가 영문자이고 7~15글자 사이여야 합니다!");
+					}else if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
 						$("#userId").val(userId);
 						$("#idChkResult").val("Y");
 						
-					}else {
+					}else{
 						$("#userId").val("");
 						$("#idChkResult").val("N");
 						
 					}
 					}else{
-						alert("사용 할 수 없는 아이디입니다.");
+						alert("아이디를 입력해주세요.");
 						$("#userId").val("");
-						$("#idChkResult").val("N");
-						
-					}
-				
-				
+						$("#idChkResult").val("N");		
+					}	
 			},
 			error : function(e){
 				alert(e.responseText);
@@ -154,10 +152,7 @@
 		$("#userId").keyup(function(){
 			$("#idChkResult").val("N");
 		});
-		//주소검색
-		$("#zipSearch").click(function(){
-			window.open("/tour/register/zipSearch.do","z","width=530, height=700");
-		});
+
 
 	});
 </script>
