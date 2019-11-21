@@ -90,12 +90,12 @@
 <style>
 	section{padding-top:0;}
 </style>
-<section>
+<section style="text-align:left">
 	<%@ include file="../inc/sidebar.jspf" %>
 <div>
  <header id="site-header">
-    <div class="container" style="font-size:35px;> 	 
-         <h1"><h1 class="uk-margin-small-right" uk-icon="icon:cart; ratio: 3"></h1>쇼핑카트</h1>
+    <div class="container" style="font-size:35px;"> 	 
+		<li class="uk-margin-small-right" uk-icon="icon:cart; ratio: 3" id="cartTitle"></li><h1 style="text-align:left;font-weight:bold;">여행 장바구니</h1>
     </div>
 </header>
     <div class="container">

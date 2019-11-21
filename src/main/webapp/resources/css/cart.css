@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 body {
     background: #fff;
     margin: 0;
@@ -7,7 +9,10 @@ body {
     overflow-x: hidden;
 
 }
-
+ol, ul{
+	padding-left:0;
+	
+}
 .clearfix {
   content: "";
   display: table;
@@ -29,6 +34,7 @@ body {
     padding: 40px 0;
     position: relative;
     margin: 0;
+   
 }
 
 a {
@@ -77,6 +83,7 @@ a:hover {
     font-family: 'Open Sans', sans-serif;
     margin: 0 auto;
     width: 980px;
+    text-align:left;
 }
 
 
@@ -88,6 +95,7 @@ a:hover {
 
 #cart h1 {
     font-weight: 300;
+    text-align: left;
 }
 
 #cart a {
@@ -175,6 +183,12 @@ a:hover {
     -o-transition: bottom .2s linear;
     transition: bottom .2s linear;
 }
+#cartTitle{
+	line-height:100px;
+	
+}
+
+
 
 .remove {
     cursor: pointer;
@@ -186,6 +200,7 @@ a:hover {
     height: 140px;
     padding: 0 20px;
     width: 75%;
+    text-align:left;
 }
 
 .product h1 {
