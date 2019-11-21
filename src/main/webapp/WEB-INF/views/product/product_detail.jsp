@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/tour/resources/css/product_detail.css" type="text/css"/>
 <script src="https://kit.fontawesome.com/6a894ec103.js" crossorigin="anonymous"></script>
@@ -81,7 +82,7 @@ function getCommentList(){
                 
                 for(i=0; i<data.length; i++){
                     html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+                    html += "<div><table class='table'><h6><strong>"+data[i].userId+"</strong></h6>";
                     html += data[i].comment + "<tr><td></td></tr>";
                     html += "</table></div>";
                     html += "</div>";
@@ -114,15 +115,15 @@ function getCommentList(){
 <div class="container">
 	<div id="detail-content"> 	
 			<div class="page_location">
-				<a href="<%=request.getContextPath()%>/index.jsp">홈></a><a href="#">1박2일</a>
+				<a href="/tour/">홈></a><a href="#">1박2일</a>
 			</div>
 			<div class="sec_div">
 				<div class="gall_big">
 					<div class="w3-content w3-section" style="max-width:500px">
-					  <img class="mySlides w3-animate-fading" src="<%=request.getContextPath()%>/image/mainimg1.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="<%=request.getContextPath()%>/image/mainimg2.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="<%=request.getContextPath()%>/image/mainimg3.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="<%=request.getContextPath()%>/image/mainimg4.jpg" style="width:100%">
+					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg1.jpg" style="width:100%">
+					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg2.jpg" style="width:100%">
+					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg3.jpg" style="width:100%">
+					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg4.jpg" style="width:100%">
 					</div>
 				</div>
 				<div class="title_text" style="text-align: left">
@@ -310,8 +311,9 @@ function getCommentList(){
 		                </table>
 		            </div>
 		        </div>
-	        <input type="hidden" id="b_code" name="b_code" value="${result.code }" />        
+	        <input type="hidden" id="goodcode" name="goodcode" value="${result.code }" />        
 	    	</form>
+	    	
 		<div class="container">
 		    <form id="commentListForm" name="commentListForm" method="post">
 		        <div id="commentList">
@@ -320,6 +322,7 @@ function getCommentList(){
 		</div>	
 		<!-- 상품문의 끝  -->
 </div>
+
 	<script>
 	$(document).ready(function(){
 	  $(".nav-tabs a").click(function(){
