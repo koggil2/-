@@ -18,6 +18,12 @@ public class ProductController {
 		return "product/product_list";
 	}
 	
+	//추천상품 페이지로 이동
+	@RequestMapping("/product/product_recommendList")
+	public String product_recommendList() {
+		return "product/product_recommendList";
+	}
+	
 	//여행페이지로 이동
 	@RequestMapping("/product/product_view")
 	public String product_view() {
