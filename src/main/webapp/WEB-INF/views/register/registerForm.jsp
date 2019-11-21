@@ -116,26 +116,32 @@
 		$('#idChk').click(function(){									//html은 px사용안함 javascript임
 		/* window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150'); */
 		var userId = $("#userId").val();
+		var reg = /^[a-zA-Z]{1}[a-zA-Z0-9]{6,14}$/;
 		console.log(userId);
 		$.ajax({
 			type : "GET",
 			url : "/tour/register/idCheck",
 			data : "userId="+userId,
 			success : function(result){
+				
 				if(result!=""){
 					if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
 						$("#userId").val(userId);
 						$("#idChkResult").val("Y");
-					}else{
+						
+					}else {
 						$("#userId").val("");
 						$("#idChkResult").val("N");
+						
 					}
-					
-				}else{
-					alert("사용 할 수 없는 아이디입니다.");
-					$("#userId").val("");
-					$("#idChkResult").val("N");
-				}
+					}else{
+						alert("사용 할 수 없는 아이디입니다.");
+						$("#userId").val("");
+						$("#idChkResult").val("N");
+						
+					}else {
+						
+					}
 				
 			},
 			error : function(e){
@@ -151,7 +157,7 @@
 		});
 		//주소검색
 		$("#zipSearch").click(function(){
-			window.open("<%=request.getContextPath()%>/register/zipSearch.do","z","width=530, height=700");
+			window.open("/tour/register/zipSearch.do","z","width=530, height=700");
 		});
 
 	});
@@ -160,14 +166,14 @@
 	<section>
 		<div class="H_40"></div>
 		<div class='container' style="text-align: left; margin-bottom: 20px">
-			<img src='<%=request.getContextPath()%>/image/mo.png' id="mo">
+			<img src='/tour/image/mo.png' id="mo">
 			<span class="tit" name="new" id="new">회원가입</span> <span class="tit_s">회원가입을
 				하시면 더 많은 혜택을 받으실 수 있습니다.</span>
 		</div>
 		<div class="container">
 			<div class="container mt-2" id="layerPOP2">
 				<form method="post" name='m' id='regForm'
-					action="<%=request.getContextPath()%>/project/register/registerOk.do">
+					action="/tour/register/registerOk">
 					<input type='hidden' name='spam_chk_val' value=''>
 					<table class="member">
 						<tr>
