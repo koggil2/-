@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.goott.tour.admin.AdminDAOInterface">
+	<select id="login" resultType="kr.goott.tour.admin.AdminVO">
+		select userId, userPwd, userName, memType from gt_register
+		where userId=#{userId} and userPwd=#{userPwd}
+	</select>
+	<select id="memCount" resultType="kr.goott.tour.admin.AdminVO">
+		select memType, count(memType) as memCnt from gt_register group by memType
+	</select>
+	<select id="selectMem" resultType="kr.goott.tour.admin.AdminVO">
+		select userName, to_char(regDate, 'yyyy-mm-dd') as regDate, 
+		TRUNC(MONTHS_BETWEEN(TRUNC(SYSDATE), BIRTHDAY) / 12 )+1 as age, memType, 
+		userId, tel, addr, email, num from gt_register order by userId
+	</select>
+	<insert id="memUpdate">
+		update gt_register set memType=#{memType} where num=#{num}
+	</insert>
+</mapper>
