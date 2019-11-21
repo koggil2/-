@@ -4,14 +4,14 @@
 <style>
 	*{font-family:'Noto Sans KR',sans-serif;}
 	section{margin-bottom:50px}
-	#reviewPan{width:100%;}
-	#reviewPan h4{text-align:left; margin-left:30px; margin-top:20px}
-	#reviewWrite{width:80%; margin:0px auto; margin-bottom:20px; border-top: 1px solid #ddd; border-bottom:1px solid #ddd}
-	#reviewWrite table tr{height:60px}
-	#reviewWrite table tr td:first-child{width:100px; background:#00a7f0; color:white;; border-bottom:1px solid white}
-	#reviewWrite table tr td:last-child{width:90%; padding:20px; border-bottom:1px solid #ddd; text-align:left;}
-	#reviewWrite table tr:last-child td:first-child{border-bottom:0px}
-	#reviewWrite table tr:last-child td:last-child{border-bottom:0px}
+	#writePan{width:100%;}
+	#writePan h4{text-align:left; margin-left:30px; margin-top:20px}
+	#write{width:80%; margin:0px auto; margin-bottom:20px; border-top: 1px solid #ddd; border-bottom:1px solid #ddd}
+	#write table tr{height:60px}
+	#write table tr td:first-child{width:100px; background:#00a7f0; color:white;; border-bottom:1px solid white}
+	#write table tr td:last-child{width:90%; padding:20px; border-bottom:1px solid #ddd; text-align:left;}
+	#write table tr:last-child td:first-child{border-bottom:0px}
+	#write table tr:last-child td:last-child{border-bottom:0px}
 	#button{width:98%}
 	#button input:nth-child(1){margin-top:20px; float:left}
 	#button input:nth-child(2){margin-top:20px; float:right}
@@ -30,16 +30,16 @@ function backPage(){
 
 <section>
 	<%@ include file="../inc/boardSide.jspf" %>
-	<div id="reviewPan">
-		<div id="reviewTab1">
+	<div id="writePan">
+		<div id="writeTab1">
 		<h4>
 			<c:if test="${commuPage == 'infoCenter'}">공지사항</c:if>
 			<c:if test="${commuPage == 'faq'}">자주묻는 질문</c:if>
-			<c:if test="${commuPage == 'review'}">여행후기</c:if>
+			<c:if test="${commuPage == 'write'}">여행후기</c:if>
 			<c:if test="${commuPage == 'trevelQ'}">여행문의</c:if>
 		</h4>
 		<hr class="hrStyle">
-			<form id="reviewWrite" method="post" action="writeOk">
+			<form id="write" method="post" action="writeOk">
 				<table>
 					<tr>
 						<td>작성자</td>

@@ -70,7 +70,7 @@
 			<div id= "button">
 				<c:if test="${logid == vo.userId}">
 					<input type="button" class="btn btn-secondary" value="삭제" onclick="delChk()"></input>
-					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='edit'"></input>
+					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='edit?num=${vo.num}'"></input>
 				</c:if>
 				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage()"></input>
 			</div>

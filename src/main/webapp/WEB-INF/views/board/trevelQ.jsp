@@ -5,6 +5,22 @@
 	pageSideName = "여행 문의";
 	pageImage = "mainimg3.jpg";
 %>
+<!-- Bootstrap core JavaScript-->
+<script src="/tour/resources/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/tour/resources/js/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="/tour/resources/js/jquery.dataTables.js"></script>
+<script src="/tour/resources/js/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/tour/resources/js/sb-admin.min.js"></script>
+
+<!-- Demo scripts for this page-->
+<script src='https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js'></script>
+
 <!-- Custom fonts for this template-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -15,7 +31,13 @@
 <!-- Custom styles for this template-->
 <link href="/tour/resources/css/sb-admin.css" rel="stylesheet">
 <link rel='stylesheet' href='https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css'>
+
 <script>
+	$(document).ready(function() {
+	  $('#dataTable').DataTable({
+	    'fixedHeader': true
+	  });
+	});
 	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
 	$("#imgBannerText>h1").text("<%=pageName%>");
 	$("#imgBannerText>h2").text("<%=pageSideName%>");
@@ -54,64 +76,6 @@
 		</div>
 	</div>
 	<h4>여행문의</h4><hr/>
-	<%-- <div id="infoPan">
-		<div id="infoTab1"><h4>여행문의</h4><hr/>
-			<div id="infoTab">
-				<table id="infoTable" class="table table-striped">
-					<thead class="table table-secondary">
-						<tr>
-			  				<th>번호</th>
-			  				<th>제목</th>
-			  				<th>글쓴이</th>
-			  				<th>날짜</th>
-			  				<th>조회수</th>
-		  				</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="v" items="${lst}">
-						<tr>
-		  					<td>${v.no}</td>
-		  					<td><a href="board/post.do?num=${v.num}&pageNum=${vo.pageNum}&commuPage=${vo.commuPage}&no=${v.no}">${v.subject}</a></td>
-		  					<td>${v.userId}</td>
-		  					<td>${v.regDate}</td>
-		  					<td>${v.hit}</td>
-		  				</tr>
-		  			</c:forEach>
-					</tbody>
-				</table>
-			</div>
-			<div>
-				<ul id="infoPage" class="pagination pagination-sm justify-content-center">
-					<li class="page-item <c:if test="${vo.pageNum<=1}">disabled</c:if>">
-						<a href="board/list.do?commuPage=${vo.commuPage}&pageNum=${vo.pageNum-1}" class="page-link">◀</a>
-					</li>
-					<c:forEach var="i" begin="${vo.startPage}" end="${vo.startPage+vo.onePageMax-1}">
-						<c:if test="${i<=vo.totalPage}">
-							<c:if test="${i==vo.pageNum}"><li class="page-item active"><a href="board/list.do?commuPage=${vo.commuPage}&pageNum=${i}" class="page-link">${i}</a></li></c:if>
-							<c:if test="${i!=vo.pageNum}"><li class="page-link"><a href="board/list.do?commuPage=${vo.commuPage}&pageNum=${i}" >${i}</a></li></c:if>
-						</c:if>
-					</c:forEach>
-					<li class="page-item <c:if test="${vo.pageNum==vo.totalPage}">disabled</c:if>">
-					<a href="board/list.do?commuPage=${vo.commuPage}&pageNum=${vo.pageNum+1}" class="page-link">▶</a></li>
-				</ul>
-			</div>
-		</div>
-		<div id="searchNwrite">
-			<form id="infoSearch">
-				<select name ="searchKey">
-					<option value="userId">작성자</option>
-					<option value="subject">제목</option>
-					<option value="content">글내용</option>
-				</select>
-				<input type="text" name="searchWord"/>
-				<input type="hidden" name="commuPage" value="${vo.commuPage}"/>
-				<input type="submit" value="검색" onclick="location.href='board/list.do?'"/>
-			</form>
-			<c:if test="${memType!=null}">
-				<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'">글쓰기</button>
-			</c:if>
-		</div>
-	</div> --%>
 	<div class="card mb-3">
           <div class="card-header" style="text-align: left;">
             <i class="fas fa-table"></i>
@@ -132,7 +96,7 @@
                     <c:forEach var="v" items="${lst }">
                     	<tr>
                     		<td>${v.no}</td>
-		  					<td><a href="board/post.do?num=${v.num}&pageNum=${vo.pageNum}&commuPage=${vo.commuPage}&no=${v.no}">${v.subject}</a></td>
+		  					<td><a href="post?num=${v.num}">${v.subject}</a></td>
 		  					<td>${v.userId}</td>
 		  					<td>${v.regDate}</td>
 		  					<td>${v.hit}</td>
@@ -141,43 +105,18 @@
                 </tbody>
               </table>
             </div>
-          </div>
-          <div class="card-footer small text-muted" style="text-align:left;">
-          	Updated yesterday at 11:59 PM
-          	<c:if test="${memType!=null}">
+             <c:if test="${memType!=null}">
           		<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;width:80px;text-align:center;">글쓰기</button>
           	</c:if>
           </div>
+          <div class="card-footer small text-muted" style="text-align:left;">
+          	
+          </div>
         </div>
-        
-        <c:if test="${memType!=null}">
-			<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;">글쓰기</button>
-		</c:if>
+     
         
         <a class="scroll-to-top rounded" href="#page-top">
 	      <i class="fas fa-angle-up"></i>
 	    </a>
 	    
-	    <!-- Bootstrap core JavaScript-->
-	    <script src="/tour/resources/js/bootstrap.bundle.min.js"></script>
-	
-	    <!-- Core plugin JavaScript-->
-	    <script src="/tour/resources/js/jquery.easing.min.js"></script>
-	
-	    <!-- Page level plugin JavaScript-->
-	    <script src="/tour/resources/js/jquery.dataTables.js"></script>
-	    <script src="/tour/resources/js/dataTables.bootstrap4.js"></script>
-	
-	    <!-- Custom scripts for all pages-->
-	    <script src="/tour/resources/js/sb-admin.min.js"></script>
-	
-	    <!-- Demo scripts for this page-->
-	    <script src='https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js'></script>
-	    <script>
-	     $(document).ready(function() {
-		    $('#dataTable').DataTable({
-				    'fixedHeader': true
-		    });
-		  });
-	  	</script>
 </section>

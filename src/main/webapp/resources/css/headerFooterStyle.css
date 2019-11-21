@@ -6,7 +6,7 @@ footer {height:200px; margin:0px 15%; margin-top:100px}
 ul,li{float:left; list-style-type:none;}
 *:focus { outline: none; }
 /*섹션 기본으로 아래 설정은 적용 해주세요. {헤더에 의한 잘림방지; 가로사이즈; 가로정렬} 입니다.*/
-section{padding-top:200px; width:1100px; margin:0px auto;}
+section{padding-top:20px; width:1100px; margin:0px auto;}
 
 .navbar{margin:0px; padding:0px 15%; width:100%;}
 #mainLogo, #footLogo{width:250px;position:relative;}

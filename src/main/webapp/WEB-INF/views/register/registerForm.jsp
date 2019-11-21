@@ -113,18 +113,38 @@
 			}
 		});
 		//중복검사
-		$("#idChk").click(function(){
-			reg = /^[a-zA-Z]{1}[a-zA-Z0-9]{6,14}$/;
-			if($("#userId").val()==''){
-				alert("아이디를 입력해주세요.");
-				return false;	
-			}else if(!reg.test($("#userId").val())){
-					alert("아이디는 첫번째문자가 영문자이고 7~15글자 사이여야 합니다!");
-					return false;
-			}else{
-				window.open("<%=request.getContextPath()%>/project/register/idCheck.do?userId="+$("#userId").val(),"idChk","width=500, height=200");			
+		$('#idChk').click(function(){									//html은 px사용안함 javascript임
+		/* window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150'); */
+		var userId = $("#userId").val();
+		console.log(userId);
+		$.ajax({
+			type : "GET",
+			url : "/tour/register/idCheck",
+			data : "userId="+userId,
+			success : function(result){
+				if(result!=""){
+					if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
+						$("#userId").val(userId);
+						$("#idChkResult").val("Y");
+					}else{
+						$("#userId").val("");
+						$("#idChkResult").val("N");
+					}
+					
+				}else{
+					alert("사용 할 수 없는 아이디입니다.");
+					$("#userId").val("");
+					$("#idChkResult").val("N");
+				}
+				
+			},
+			error : function(e){
+				alert(e.responseText);
 			}
+			
 		});
+		
+	});
 		//중복해제
 		$("#userId").keyup(function(){
 			$("#idChkResult").val("N");

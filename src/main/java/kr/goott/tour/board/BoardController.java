@@ -98,13 +98,42 @@ public class BoardController {
 	   public ModelAndView view(BoardVO vo) {
 	      
 	      BoardDAOInterface dao = sqlSession.getMapper(BoardDAOInterface.class);
-	      vo = dao.selectRecord(vo.getNum());
+	      BoardVO vo2 = dao.selectRecord(vo.getNum());
 	      
 	      ModelAndView mav = new ModelAndView();
 	      
-	      mav.addObject("vo", vo);
-	      mav.setViewName("post");
+	      mav.addObject("vo", vo2);
+	      mav.setViewName("board/post");
 	      
-	return mav;
+	      return mav;
 	}
+	
+	//글수정 폼으로 이동
+	@RequestMapping("/board/edit")
+	public ModelAndView board_eidtForm(@RequestParam("num") int num) {
+		BoardDAOInterface dao= sqlSession.getMapper(BoardDAOInterface.class);
+		   
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("vo", dao.selectRecord(num));
+		mav.setViewName("board/editForm");
+	   
+	   return mav;
+	}
+	
+   //글수정
+   @RequestMapping(value="/board/editOk", method=RequestMethod.POST)
+   public ModelAndView boardEditOk(BoardVO vo) {
+	  BoardDAOInterface dao = sqlSession.getMapper(BoardDAOInterface.class);
+	  int cnt = dao.boardUpdate(vo);
+	  ModelAndView mav = new ModelAndView();
+	  mav.addObject("num", vo.getNum());
+	  
+	  if(cnt>0) { //업데이트시 글내용보기
+		  mav.addObject("vo", vo);
+		  mav.setViewName("redirect:post");
+	  }else { //업데이트 실패시 글수정
+		  mav.setViewName("redirect:edit");
+	  }
+	  return mav;
+   }
 }
