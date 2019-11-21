@@ -29,16 +29,29 @@ public class ProductController {
 		return mav;
 	}
 	
+	
+	
 	//추천상품 페이지로 이동
 	@RequestMapping("/product/product_recommendList")
 	public String product_recommendList() {
 		return "product/product_recommendList";
 	}
 	
-	//여행페이지로 이동
+	//여행 일정 페이지로 이동
 	@RequestMapping("/product/product_view")
-	public String product_view() {
-		return "product/product_view";
+	public ModelAndView product_view(ProductVO vo) {  
+      ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+      vo = dao.selectRecord(vo.getGoodCode());
+      
+      List<ScheduleVO> list = dao.selectSchedule(vo.getGoodCode());
+      
+      ModelAndView mav = new ModelAndView();
+   
+      mav.addObject("list", list);
+      mav.addObject("vo", vo);
+      mav.setViewName("product/product_view");
+      
+      return mav;
 	}
 	
 	//여행상품 상세페이지로 이동

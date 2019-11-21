@@ -138,15 +138,24 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 <section>
 	<%@ include file="../inc/sidebar.jspf"%>
 	<div id = "main"> <!-- 윗칸 을 담고 있는 div -->
-		<div id = "a1"><!-- 상품제목 -->♥협곡열차①♥ [무궁화호] 3도 (강원+경북+충북) 명소</div>
+		<div id = "a1"><!-- 상품제목 -->${vo.goodName}</div>
 		<hr/>
 		<div id = "main2">
 			<div id = "imgslide"><!-- 상품 img 슬라이드 div -->
 				<div id="img1"><img src="../image/main_img_banner_1.jpg"/></div>
 				<ul style="margin-top:20px;">
-					<li><span style="font-weight:bold;margin-right:10px;color:red;">장소</span><span>강원+경북+충북</span></li>
-					<li><span style="font-weight:bold;margin-right:10px;color:red;">설명</span><span>1박 2일</span></li>
+					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">상품코드</span><span>${vo.goodCode}</span></li>
+					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">출발지</span><span>${vo.startArea}</span></li>
+					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">여행지</span><span>${vo.destination}</span></li>
+					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">기간</span><span>${vo.travelTerm}</span></li>
+					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">가격</span><span>${vo.price}</span></li>			
 				</ul>
+				<!-- 일정목록 -->
+		    	<ul>
+		    		<c:forEach var="s" items="${list}">
+		    			<li>${s.num}, ${s.goodCode}, ${s.startDate}, ${s.backDate}</li>
+		    		</c:forEach>
+		    	</ul>
 			</div>
 			<!-- 달력 -->
 			<div id = "select">

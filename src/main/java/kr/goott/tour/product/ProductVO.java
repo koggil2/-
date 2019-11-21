@@ -17,6 +17,7 @@ public class ProductVO {
 	private String assure1;
 	private String assure2;
 	private String assure3;
+	
 	public int getNum() {
 		return num;
 	}
