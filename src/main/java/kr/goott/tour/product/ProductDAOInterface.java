@@ -3,16 +3,15 @@ package kr.goott.tour.product;
 import java.util.List;
 
 public interface ProductDAOInterface {
-
-	// 댓글 목록
-    public List<ProductVO> productlist(String goodCode);
-    // 댓글 입력
+	// 여행상품 전체목록
+	public List<ProductVO> getAllRecord(ProductVO vo);	
+    // 여행상품 입력
     public void create(ProductVO vo);
-    // 댓글 수정
+    // 여행상품 수정
     public void update(ProductVO vo);
-    // 댓글 삭제
+    // 여행상품  삭제
     public void delete(Integer rno);
+    // 여행상품 선택
+    public ProductVO selectRecord(String goodcode);
 
-	
-	
 }

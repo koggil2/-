@@ -12,7 +12,7 @@ public class ProductVO {
 	private String travelTerm;
 	private String goodData;
 	private int price;
-	private int reser_Min;
+	private int reserMin;
 	private int reserNum;
 	private String assure1;
 	private String assure2;
@@ -77,11 +77,11 @@ public class ProductVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getReser_Min() {
-		return reser_Min;
+	public int getReserMin() {
+		return reserMin;
 	}
-	public void setReser_Min(int reser_Min) {
-		this.reser_Min = reser_Min;
+	public void setReserMin(int reserMin) {
+		this.reserMin = reserMin;
 	}
 	public int getReserNum() {
 		return reserNum;

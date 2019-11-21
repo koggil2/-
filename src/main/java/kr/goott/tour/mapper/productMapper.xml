@@ -3,5 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.product.ProductDAOInterface">
-
+	<select id="getAllRecord" resultType="kr.goott.tour.product.ProductVO">
+		select num, goodCode, travelType, goodName, startArea, destination, travelTerm, goodData, price, reserMin, reserNum, assure1, assure2, assure3, regDate 
+		from gt_product
+	</select>
 </mapper>
