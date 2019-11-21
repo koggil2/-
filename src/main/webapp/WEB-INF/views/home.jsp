@@ -11,7 +11,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/tour/resources/css/headerFooterStyle.css" type="text/css"/>
-<link rel="stylesheet" href="/tour/resources/css/Main.css" type="text/css"/>
+<link rel="stylesheet" href="/tour/resources/css/home.css" type="text/css"/>
 <%
 
 %>

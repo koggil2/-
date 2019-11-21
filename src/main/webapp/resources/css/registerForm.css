@@ -58,20 +58,23 @@
 	border-radius: 5px;
 }
 
-.member .ipf {
+.member .ipf{
 	height: 35px;
 	font-size: 14px;
 	padding: 0 10px;
 	margin: 0 5px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
+	width:20%;
+	float:left;
 }
-
+#userId, #userPwd, #chkPwd{width:25%;float:left;}
 .tit {
 	font-weight: bold;
 	font-size: 1.5em
 }
-
+select{border-radius:10px;}
+#birthDate{margin-top:4px;}
 .tit_s {
 	color: deeppink;
 }

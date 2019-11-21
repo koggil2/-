@@ -1,216 +1,262 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<link rel="stylesheet" href="/tour/resources/css/registerForm.css" type="text/css" />
 <%
-	pageName = "구트투어";
-	pageSideName = "회원가입";
-	pageImage = "main_img_banner_4.jpg";
+	pageName = "회원가입";
+	pageSideName = "구트투어 회원가입";
+	pageImage = "main_img_banner_6.jpg";
 %>
-	
-<script>
-	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
-	$("#imgBannerText>h1").text("<%=pageName%>");
-	$("#imgBannerText>h2").text("<%=pageSideName%>");
-$(function(){
-	$("#regForm").submit(function(){
-		
-	if($("#userId").val()==""){
-		alert("아이디를 입력하세요...");
-		return false;
-	}
-	
-	if($("#userId").val().length<=7){
-		alert("아이디는 8~15글자 사이어야 합니다.");
-		return false; 
-	}
-	if($("#idChkResult").val()=="N"){
-		alert("아이디 중복검사를 하세요..");
-		return false;
-	}
-	if($("#userPwd").val() ==""){
-		alert("비밀번호를 입력하세요..");
-		return false;
-	}
-	if($("#userPwd").val().length<=7){
-		alert("비밀번호는 8~15글자 사이어야 합니다.");
-		return false;
-	}
-	if($("#chkPwd").val() != ($("#userPwd").val())){ 
-		alert("비밀번호가 같지 않습니다.");
-		return false; 
-	}
-	//이름
-	if($("#userName").val() ==""){
-		alert("이름을 입력하세요..");
-		return false;
-	}
-	 
-	//연락처
-	if( $('#t1').val()=="" || ($('#t2').val())=="" || ($('#t3').val())==""){
-		alert("연락처를 입력하세요.");
-		return false;
-	} 
-	//주소
-	if( $("#zipCode").val()=="" || $("#addr").val()== "" || $("#detailAddr").val()==""){
-		alert("우편주소 및 상세주소를 모두 입력해야합니다.");
-		return false;
-		
-	}
-	//이메일
-	if( $("#emailId").val()=="" || ($("#emailDomain").val())==""){
-		alert("이메일 및 도메인을 모두 입력해야합니다.");
-		return false;
-	}
-	
-	//약관 동의
-	if($("#muni12").prop("checked") || $("#muni22").prop("checked")){
-		alert("약관에 동의해주셔야합니다.");
-		return false;
-	}
-});
-	
-	
-	$('#idChk').click(function(){									//html은 px사용안함 javascript임
-		/* window.open('/tour/register/idCheck?userId='+$('#userId').val(), 'idChk', 'width=400, height=150'); */
-		var userId = $("#userId").val();
-		console.log(userId);
-		$.ajax({
-			type : "GET",
-			url : "/tour/register/idCheck",
-			data : "userId="+userId,
-			success : function(result){
-				if(result!=""){
-					if(confirm("입렵하신 아이디는 "+userId+"는 사용가능합니다.\n이 아이디를 사용하시겠습니까?")){
-						$("#userId").val(userId);
-						$("#idChkResult").val("Y");
-					}else{
-						$("#userId").val("");
-						$("#idChkResult").val("N");
-					}
-					
-				}else{
-					alert("사용 할 수 없는 아이디입니다.");
-					$("#userId").val("");
-					$("#idChkResult").val("N");
-				}
-				
-			},
-			error : function(e){
-				alert(e.responseText);
-			}
-			
-		});
-		
-	});
-	//중복검사해제 키보드누르면 바로 Y에서 N로바뀜
-	$("#userId").keyup(function(){
-		$("#idChkResult").val("N");
-		
-	});
-	
 
-});
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" />
+<link rel="stylesheet" href="/tour/resources/css/registerForm.css" type="text/css" />
+<link rel="stylesheet" href="/tour/resources/css/main.css" type="text/css" />
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
+
+<style>
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
+<script>
+	$(function(){
+		$("#regForm").submit(function(){
+			if($("#userId").val()==''){
+				alert("아이디를 입력해주세요!")
+				return false;
+			}
+			//아이디 8~12까지 허용 반드시 첫번째 영문자
+			var reg = /^[a-zA-Z]{1}[a-zA-Z0-9]{6,14}$/;
+			
+			if(!reg.test($("#userId").val())){
+				alert("아이디는 첫번째문자가 영문자이고 7~15글자 사이여야 합니다!");
+				return false;
+			}
+			if($("#idCheckResult").val()=="N"){
+				alert("아이디를 중복확인하세요!");
+				return false;
+			} 
+			if($("#userPwd").val()==''){
+				alert("비밀번호를 입력해주세요!");
+				return false;
+			}
+			//비밀번호 8~14까지 첫번째영문자 특수문자포함 \w:영대소문자, _ 문자
+			//  ?= : 전방탐색, .:모든 문자와 일치합니다.,
+			//  *  : 앞에 존재하는 문자가 0번 혹은 그 이상 반복되는 문자를 찾을 때 사용합니다.
+			//  g  : 문자열내의 모든 패턴 찾기
+			//  i  : 문자열의 대소문자를 구별하지 않는다.
+			reg = /^[a-zA-Z]{1}(?=.*[a-zA-Z0-9])(?=.*[!@#$%^*+=-]).{7,13}/;
+			if(!reg.test($("#userPwd").val())){
+				alert("비밀번호는 특수문자를 1문자이상포함한 8~14글자여야 합니다!");
+				return false;
+			} 
+			
+			if(!reg.test($("#userPwd").val())){
+				alert("비밀번호를 잘못입력하였습니다!");
+				return false;
+			} 
+			
+			if($("#userPwd").val() != $("#chkPwd").val()){
+				alert("비밀번호가 다릅니다!");
+				return false;
+			}			
+			
+			reg = /^[가-힣]{2,6}$/;
+			if(!reg.test($("#userName").val())){
+				alert("이름을 입력하세요!");
+				return false;
+			}
+			//생년월일
+			reg = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+			var birth = $("#birthYear").val()+"-"+$("#birthMonth").val()+"-"+$("#birthDate").val();
+			if(!reg.test(birth)){
+				alert("생년월일 잘못입력하였습니다!");
+				return false;
+			}
+			///////////////////////////
+			if($("#zipcode").val()=="" || $("#addr").val()==""){
+				alert("주소를 입력하세요!");
+				return false;
+			}
+			if($("#detailAddr").val()==''){
+				alert("상세주소를 입력하세요!");
+				return false;
+			}
+			//이메일
+			if($("#emailId").val()==''){
+				alert("이메일을 입력해주세요!");
+				return false;
+			}
+			reg = /\w{4,12}[@][a-z]{2,10}[.][a-z]{2,3}[.]?[a-z]{0,2}/
+			var email = $("#emailId").val() +"@"+ $("#emailDomain").val();
+			if(!reg.test(email)){
+				alert("이메일을 잘못입력하였습니다!");
+				return false;
+			}
+			//연락처
+			if($("#t3").val()==''){
+				alert("연락처를 입력해주세요!");
+				return false;
+			}
+			reg = /(010|02|031|32)[-][0-9]{3,4}[-][0-9]{4}/;
+			var tel = $("#t1").val()+"-"+$("#t2").val()+"-"+$("#t3").val();
+			if(!reg.test(tel)){
+				alert("연락처를 잘못입력하였습니다!");
+				return false;
+			}
+			//약관 동의
+			if($("#muni12").prop("checked") || $("#muni22").prop("checked")){
+				alert("약관에 동의해주셔야합니다!");
+				return false;
+			}
+		});
+		//중복검사
+		$("#idChk").click(function(){
+			reg = /^[a-zA-Z]{1}[a-zA-Z0-9]{6,14}$/;
+			if($("#userId").val()==''){
+				alert("아이디를 입력해주세요.");
+				return false;	
+			}else if(!reg.test($("#userId").val())){
+					alert("아이디는 첫번째문자가 영문자이고 7~15글자 사이여야 합니다!");
+					return false;
+			}else{
+				window.open("<%=request.getContextPath()%>/project/register/idCheck.do?userId="+$("#userId").val(),"idChk","width=500, height=200");			
+			}
+		});
+		//중복해제
+		$("#userId").keyup(function(){
+			$("#idChkResult").val("N");
+		});
+		//주소검색
+		$("#zipSearch").click(function(){
+			window.open("<%=request.getContextPath()%>/register/zipSearch.do","z","width=530, height=700");
+		});
+
+	});
 </script>
+
 	<section>
 		<div class="H_40"></div>
-
-		<div class='container' style="text-align:left; margin-bottom:20px">
-			<img src='/tour/image/mo.png' id="mo"> <span
-				class="tit" id="new">회원가입</span> <span class="tit_s">회원가입을
+		<div class='container' style="text-align: left; margin-bottom: 20px">
+			<img src='<%=request.getContextPath()%>/image/mo.png' id="mo">
+			<span class="tit" name="new" id="new">회원가입</span> <span class="tit_s">회원가입을
 				하시면 더 많은 혜택을 받으실 수 있습니다.</span>
 		</div>
-
 		<div class="container">
-			<div id="layerPOP2">
-				<form method="post" name='m' id='regForm' action="/tour/register/registerOk">
+			<div class="container mt-2" id="layerPOP2">
+				<form method="post" name='m' id='regForm'
+					action="<%=request.getContextPath()%>/project/register/registerOk.do">
 					<input type='hidden' name='spam_chk_val' value=''>
 					<table class="member">
 						<tr>
 							<td class="stit">아이디</td>
-							<td class="frm"><input type="text" class="ipf" name='userId' id='userId' maxlength='15'>
-							<input type="button"  id="idChk" class="btn btn-secondary" value="중복체크"/> [영문/숫자의 조합으로 8~15자리]
-							<input type="hidden" name="idChkResult" id="idChkResult" value="N"/>
+							<td class="frm" style="position: relative;" class="form-group">
+								<input type="text" class="ipf form-control" name='userId' id='userId' maxlength='15'
+									 placeholder="* 7~15 문자, 숫자">
+								<input type="button" id="idChk" class="btn btn-secondary" value="중복체크" />
+								<input type="hidden" name="idChkResult"	id="idChkResult" value="N" />
 							</td>
-							
 						</tr>
 						<tr>
 							<td class="stit">비밀번호</td>
-							<td class="frm"><input type="password" class="ipf"
-								name='userPwd' id='userPwd' maxlength="15">
-								<span id='check_pw22'></span> [영문/숫자의 조합으로 8~15자리]<input
+							<td class="frm"><input type="password"
+								class="ipf form-control" style="position: relative;"
+								name='userPwd' id='userPwd' maxlength="15"
+								placeholder="* 8~14 자리 문자,숫자,특수문자"> <span id='check_pw22'></span><input
 								type="hidden" name="counter2" id="counter2"></td>
 						</tr>
 						<tr>
 							<td class="stit">비밀번호 확인</td>
-							<td class="frm"><input type="password" class="ipf"
-								name='pwd2' id='chkPwd'><span
-								id='check_pw2'></span></td>
+							<td class="frm"><input type="password"
+								class="ipf form-control" name='chkPwd' id='chkPwd'
+								placeholder="* 비밀번호 재확인"><span id='check_pw2'></span></td>
 						</tr>
 						<tr>
 							<td class="stit">성명(실명)</td>
-							<td class="frm"><input type="text" class="ipf" name='userName'
-								id='userName'></td>
+							<td class="frm"><input type="text" class="ipf form-control"
+								name='userName' id='userName'></td>
 						</tr>
 						<tr>
 							<td class="stit">생년월일</td>
-							<td class="frm"><input type="text" class="ipf form-control" 
-								name='birthYear' id='birthYear' style="width:100px;" maxlength="4" placeholder="ex)2019">
-								<select name="birthMonth" id="birthMonth">
+							<td class="frm"><input type="text" class="ipf form-control"
+								name='birthYear' id='birthYear' style="width: 100px;"
+								maxlength="4" placeholder="ex)2019"> <select
+								name="birthMonth" id="birthMonth">
 									<%
-										for(int i=1; i<=12 ;i++){
-											%>
-											<option value="<% if(i<10){out.print("0"+i);}else{out.print(i);}%>"><%=i%></option>
-											<%						
+										for (int i = 1; i <= 12; i++) {
+									%>
+									<option
+										value="<%if (i < 10) {
+					out.print("0" + i);
+				} else {
+					out.print(i);
+				}%>"><%=i%></option>
+									<%
 										}
 									%>
-								</select>월
-								<select name="birthDate" id="birthDate">
+							</select>월 <select name="birthDate" id="birthDate">
 									<script>
-										for(d=1;d<=31;d++){
+										for (d = 1; d <= 31; d++) {
 											var tag = "<option value='";
-											if(d<10){
-												tag+= "0"+d;
-											}else{
-												tag+=d;
+											if (d < 10) {
+												tag += "0" + d;
+											} else {
+												tag += d;
 											}
-											tag += "'>"+d+"</option>";
+											tag += "'>" + d + "</option>";
 											document.write(tag);
 										}
 									</script>
-								</select>일
-							</td>
+							</select>일</td>
 						</tr>
+
 						<tr>
-							<td class="stit" rowspan="3">주소</td>
+							<td class="stit" rowspan="3" style="text-align: center;">주소</td>
+
 							<td class="frm">
-								<div id="wrap" style="display:none; border:1px solid; width:500px; height:300px; margin:-10px 0px 5px -10px; position:absolute">
-									<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px; z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-								</div>
-								<input type="text" class="ipf" name='zipCode' id='zipCode'><input type="button" class="btn btn-secondary" onclick="sample3_execDaumPostcode()" value="검색"/>
+								<div id="wrap"
+									style="display: none; border: 1px solid; width: 500px; height: 300px; margin: -10px 0px 5px -10px; position: absolute">
+									<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
+										id="btnFoldWrap"
+										style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+										onclick="foldDaumPostcode()" alt="접기 버튼">
+								</div> <input type="text" class="ipf" name='zipCode' id='zipCode'
+								placeholder="* 검색 버튼을 누르세요."><input type="button"
+								class="btn btn-secondary" onclick="sample3_execDaumPostcode()"
+								value="검색" />
 							</td>
 						</tr>
 						<tr>
-							<td class="frm"><input type="text" class="ipf" name='addr'id='addr'></td>
+							<td class="frm"><input type="text" class="ipf" name='addr'
+								id='addr'></td>
 						</tr>
 						<tr>
-							<td class="frm"><input type="text" class="ipf" name='detailAddr' id='detailAddr'></td>
+							<td class="frm"><input type="text" class="ipf"
+								name='detailAddr' id='detailAddr' placeholder="* 상세주소 입력(필수)"
+								style="float: left;"></td>
 						</tr>
 						<tr>
 							<td class="stit">이메일</td>
-							<td class="frm"><input type="text" class="ipf" name='emailId'
-								id='emailId'>@<input type="text" class="ipf" id="emailDomain"
-								name='emailDomain'> 입력하신 메일주소로 견적서 및 계약서가 발송됩니다.</td>
+							<td class="frm"><input type="text" class="ipf"
+								name='emailId' id='emailId' placeholder="ex) abcdef">
+								<li style="margin-top: 5px;">@</li> <input type="text"
+								class="ipf" id="emailDomain" name='emailDomain'
+								placeholder="ex) naver.com"> 입력하신 메일주소로 견적서 및 계약서가
+								발송됩니다.</td>
 						</tr>
 						<tr>
 							<td class="stit">연락처</td>
 							<td class="frm"><input type="text" class="ipf2" name='t1'
-								id='t1' maxlength="3">-<input type="text" class="ipf2" id="t2"
-								name='t2' maxlength="4">-<input type="text" class="ipf2" id="t3"
-								name='t3' maxlength="4">&nbsp;&nbsp;연락가능한 휴대폰번호를 입력하세요</td>
+								id='t1' maxlength="3">-<input type="text" class="ipf2"
+								id="t2" name='t2' maxlength="4">-<input type="text"
+								class="ipf2" id="t3" name='t3' maxlength="4">&nbsp;&nbsp;연락가능한
+								휴대폰번호를 입력하세요</td>
 						</tr>
 						<tr>
-							<td><input type="hidden" id="memType" name="memType" value="일반"></td>
+							<td><input type="hidden" id="memType" name="memType"
+								value="일반"></td>
 						</tr>
 
 						<tr>
@@ -387,9 +433,10 @@ $(function(){
 									약관에 명시되지 않은 사항은 전자거래기본법, 전자서명법,전자상거래등에서의 소비자보호에 관한 법률 기타 관련법령의
 									규정 및 국내외 여행표준약관등에 의합니다.<br /> <br /> ● 부 칙<br /> 본 약관은 2008년
 									6월 1일 부터 시행됩니다<br />
-								</div> <br> <input type="radio" name="muni" id="muni11"> <span>이용약관에
-									동의합니다.</span><input type="radio" name="muni" id="muni12" checked> <span>이용약관에
-									동의하지 않습니다.</span><br> <br>
+								</div> <br> <input type="radio" name="muni" id="muni11">
+								<span>이용약관에 동의합니다.</span><input type="radio" name="muni"
+								id="muni12" checked> <span>이용약관에 동의하지 않습니다.</span><br>
+								<br>
 							</td>
 						</tr>
 						<tr>
@@ -400,75 +447,82 @@ $(function(){
 								<div id="txt2">
 
 									[ 개인정보 수집, 이용에 관한사항 ]<br /> <br /> 회사는 회원제 서비스 제공을 위해 귀하의
-									개인정보를 아래와 같이 수집하고자 합니다.<br><br /> 
-									1.수집하는개인정보항목 : 이름,아이디,비밀번호,생년월일,휴대폰번호,이메일
-									<br><br /> 
-									2.수집및이용목적 : 회원제 가입 서비스제공,
-									계약이행을 위한 연락, 민원 및 고충처리<br><br />
-									3. 보유및 이용기간
-									: 회원탈퇴 후 5일까지<br><br /> ※서비스 제공을 위해
-									필요한 최소한의 개인정보이므로 동의를 해 주셔야 서비스를 이용하실 수 있습니다.<br><br /> 개인정보의 수집,이용에 관한 사항에
+									개인정보를 아래와 같이 수집하고자 합니다.<br> <br /> 1.수집하는개인정보항목 :
+									이름,아이디,비밀번호,생년월일,휴대폰번호,이메일 <br> <br /> 2.수집및이용목적 : 회원제 가입
+									서비스제공, 계약이행을 위한 연락, 민원 및 고충처리<br> <br /> 3. 보유및 이용기간 :
+									회원탈퇴 후 5일까지<br> <br /> ※서비스 제공을 위해 필요한 최소한의 개인정보이므로 동의를 해
+									주셔야 서비스를 이용하실 수 있습니다.<br> <br /> 개인정보의 수집,이용에 관한 사항에
 									동의하십니까?
-								</div> <br> <input type="radio" name="muni2" id="muni21"> <span>개인정보
-									수집에 동의합니다.</span><input type="radio" name="muni2" id="muni22" checked> <span>개인정보
-									수집에 동의하지 않습니다</span><br> <br>
+								</div> <br> <input type="radio" name="muni2" id="muni21">
+								<span>개인정보 수집에 동의합니다.</span><input type="radio" name="muni2"
+								id="muni22" checked> <span>개인정보 수집에 동의하지 않습니다</span><br>
+								<br>
 							</td>
 						</tr>
 					</table>
-					<button class="btn btn-lg btn-secondary" type="submit" id="btn">가입하기</button>
+					<input type="submit" class="btn btn-lg btn-secondary" id="btn"
+						value="가입하기" />
 				</form>
 			</div>
+			<script src="/tour/resources/js/bootstrap-validate.js"></script>
+			<script>
+				bootstrapValidate('#userId', 'min:7:')
+				bootstrapValidate('#userPwd', 'min:8:')
+				bootstrapValidate('#chkPwd', 'min:8:')
+			</script>
 		</div>
 		<script>
-		   	 // 우편번호 찾기 찾기 화면을 넣을 element
-		       var element_wrap = document.getElementById('wrap');
-		
-		       function foldDaumPostcode() {
-		           // iframe을 넣은 element를 안보이게 한다.
-		           element_wrap.style.display = 'none';
-		       }
-		
-		       function sample3_execDaumPostcode() {
-		           // 현재 scroll 위치를 저장해놓는다.
-		           var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
-		           new daum.Postcode({
-		               oncomplete: function(data) {
-		                   // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-		
-		                   // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-		                   // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-		                   var addr = ''; // 주소 변수
-		                   var extraAddr = ''; // 참고항목 변수
-		
-		                   //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-		                   if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-		                       addr = data.roadAddress;
-		                   } else { // 사용자가 지번 주소를 선택했을 경우(J)
-		                       addr = data.jibunAddress;
-		                   }
-		                   // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		                   document.getElementById('zipCode').value = data.zonecode;
-		                   document.getElementById("addr").value = addr;
-		                   // 커서를 상세주소 필드로 이동한다.
-		                   document.getElementById("detailAddr").focus();
-		
-		                   // iframe을 넣은 element를 안보이게 한다.
-		                   // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
-		                   element_wrap.style.display = 'none';
-		
-		                   // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
-		                   document.body.scrollTop = currentScroll;
-		               },
-		               // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
-		               onresize : function(size) {
-		                   element_wrap.style.height = size.height+'px';
-		               },
-		               width : '100%',
-		               height : '100%'
-		           }).embed(element_wrap);
-		
-		           // iframe을 넣은 element를 보이게 한다.
-		           element_wrap.style.display = 'block';
-		       }
+			// 우편번호 찾기 찾기 화면을 넣을 element
+			var element_wrap = document.getElementById('wrap');
+
+			function foldDaumPostcode() {
+				// iframe을 넣은 element를 안보이게 한다.
+				element_wrap.style.display = 'none';
+			}
+
+			function sample3_execDaumPostcode() {
+				// 현재 scroll 위치를 저장해놓는다.
+				var currentScroll = Math.max(document.body.scrollTop,
+						document.documentElement.scrollTop);
+				new daum.Postcode(
+						{
+							oncomplete : function(data) {
+								// 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+								// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+								// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+								var addr = ''; // 주소 변수
+								var extraAddr = ''; // 참고항목 변수
+
+								//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+								if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+									addr = data.roadAddress;
+								} else { // 사용자가 지번 주소를 선택했을 경우(J)
+									addr = data.jibunAddress;
+								}
+								// 우편번호와 주소 정보를 해당 필드에 넣는다.
+								document.getElementById('zipCode').value = data.zonecode;
+								document.getElementById("addr").value = addr;
+								// 커서를 상세주소 필드로 이동한다.
+								document.getElementById("detailAddr").focus();
+
+								// iframe을 넣은 element를 안보이게 한다.
+								// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+								element_wrap.style.display = 'none';
+
+								// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+								document.body.scrollTop = currentScroll;
+							},
+							// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+							onresize : function(size) {
+								element_wrap.style.height = size.height + 'px';
+							},
+							width : '100%',
+							height : '100%'
+						}).embed(element_wrap);
+
+				// iframe을 넣은 element를 보이게 한다.
+				element_wrap.style.display = 'block';
+			}
 		</script>
 	</section>
