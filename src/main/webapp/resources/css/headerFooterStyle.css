@@ -2,7 +2,7 @@
 *{margin:0px; padding:0px; text-align:center; font-family:'Noto Sans KR',sans-serif;}
 body::-webkit-scrollbar {display: none;}
 header{z-index:10000; }
-footer {height:200px; margin:0px 15%; margin-top:100px}
+footer {height:200px; margin: 50px 15% 0; margin-top:100px}
 ul,li{float:left; list-style-type:none;}
 *:focus { outline: none; }
 /*섹션 기본으로 아래 설정은 적용 해주세요. {헤더에 의한 잘림방지; 가로사이즈; 가로정렬} 입니다.*/
@@ -43,7 +43,7 @@ header>div{width:100%}
 #footImgList img{width:80%}
 #footImgList li:last-child{margin-right:0px}
 
-#sideBar{position:absolute; top:620px; left:85%; width:120px; z-index: 1000;}
+#sideBar{position:absolute; margin-left:1200px; width:120px; z-index: 1000;}
 #sideBar button{width:100%; height:30px; margin-bottom:5px; background:gray; color:white; border:none}
 #sideBar ul, #sidebar li{float:bottom; margin:0px}
 #sideBar>div:first-child>ul>li:nth-child(2){height:80px}
