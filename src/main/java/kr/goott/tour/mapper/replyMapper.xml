@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.goott.tour.reply.ReplyDAO">
+    <insert id="insertReply">
+        INSERT INTO gt_feedback (num, goodCode, userId, content, jumsu, regdate)
+        VALUES (gt_reply_sq.NEXTVAL, #{goodCode}, #{userId}, #{content}, #{jumsu}, sysdate)
+    </insert>
+    <select id="listReply" resultType="kr.goott.tour.reply.ReplyVO">
+        SELECT num, goodcode, userid, content, jumsu, r.regdate, r.updatedate
+        FROM gt_feedback r, gt_product m
+        WHERE m.goodCode=#{goodCode}
+        ORDER BY num desc
+    </select>
+</mapper>

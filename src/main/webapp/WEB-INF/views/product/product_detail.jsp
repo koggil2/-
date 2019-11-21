@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/tour/resources/css/product_detail.css" type="text/css"/>
@@ -29,86 +29,90 @@
 			});
 	});
 </script>
+
+
+<!-- 댓글등록..  -->
+
 <script>
-/*
- * 댓글 등록하기(Ajax)
- */
-function fn_comment(code){
-    
-    $.ajax({
-        type:'POST',
-        url : "<c:url value='/board/addComment.do'/>",
-        data:$("#commentForm").serialize(),
-        success : function(data){
-            if(data=="success")
-            {
-                getCommentList();
-                $("#comment").val("");
-            }
-        },
-        error:function(request,status,error){
-            //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-       }
+
+    $(function(){
         
-    });
-}
- 
-/**
- * 초기 페이지 로딩시 댓글 불러오기
- */
-$(function(){
-    
-    getCommentList();
-    
-});
- 
-/**
- * 댓글 불러오기(Ajax)
- */
-function getCommentList(){
-    
-    $.ajax({
-        type:'GET',
-        url : "<c:url value='/board/commentList.do'/>",
-        dataType : "json",
-        data:$("#commentForm").serialize(),
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-        success : function(data){
-            
-            var html = "";
-            var cCnt = data.length;
-            
-            if(data.length > 0){
-                
-                for(i=0; i<data.length; i++){
-                    html += "<div>";
-                    html += "<div><table class='table'><h6><strong>"+data[i].userId+"</strong></h6>";
-                    html += data[i].comment + "<tr><td></td></tr>";
-                    html += "</table></div>";
-                    html += "</div>";
+        //listReply(); // **댓글 목록 불러오기
+        listReply2(); // ** json 리턴방식
+        
+        // ** 댓글 쓰기 버튼 클릭 이벤트 (ajax로 처리)
+        $("#btnReply").click(function(){
+            var replytext=$("#replytext").val();
+            var bno="${dto.bno}"
+            var param="replytext="+replytext+"&bno="+bno;
+            $.ajax({                
+                type: "post",
+                url: "${path}/reply/insert.do",
+                data: param,
+                success: function(){
+                    alert("댓글이 등록되었습니다.");
+                    listReply2();
                 }
-                
-            } else {
-                
-                html += "<div>";
-                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-                html += "</table></div>";
-                html += "</div>";
-                
-            }
-            
-            $("#cCnt").html(cCnt);
-            $("#commentList").html(html);
-            
-        },
-        error:function(request,status,error){
-            
-       }
+            });
+        });
         
+
+     
     });
-}
- 
+    
+    // Controller방식
+    // **댓글 목록1
+    function listReply(){
+        $.ajax({
+            type: "get",
+            url: "${path}/reply/list.do?goodCode=${vo.goodCode}",
+            success: function(result){
+            // responseText가 result에 저장됨.
+                $("#listReply").html(result);
+            }
+        });
+    }
+    // RestController방식 (Json)
+    
+    // **댓글 목록2 (json)
+    function listReply2(){
+        $.ajax({
+            type: "get",
+            //contentType: "application/json", ==> 생략가능(RestController이기때문에 가능)
+            url: "${path}/reply/listJson.do?bno=${dto.bno}",
+            success: function(result){
+                console.log(result);
+                var output = "<table>";
+                for(var i in result){
+                    output += "<tr>";
+                    output += "<td>"+result[i].userName;
+                    output += "("+changeDate(result[i].regdate)+")<br>";
+                    output += result[i].replytext+"</td>";
+                    output += "<tr>";
+                }
+                output += "</table>";
+                $("#listReply").html(output);
+            }
+        });
+    }
+    // **날짜 변환 함수 작성
+    function changeDate(date){
+        date = new Date(parseInt(date));
+        year = date.getFullYear();
+        month = date.getMonth();
+        day = date.getDate();
+        hour = date.getHours();
+        minute = date.getMinutes();
+        second = date.getSeconds();
+        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+        return strDate;
+    }
+    
 </script>
+
+<!-- 댓글등록..  -->
+
+
 
 
 
@@ -286,43 +290,49 @@ function getCommentList(){
 	
 		
 		<!-- 상품문의  -->
-			
-		<div class="que_div" style="border: 4px solid gray;">
-			<h3>상품문의</h3>
-		</div>
-		
-			<form id="commentForm" name="commentForm" method="post">
-		    <br><br>
-		        <div>
-		            <div style="text-align: left;">
-		                <span><strong>Comments</strong></span> <span id="cCnt"></span>
-		            </div>
-		            <div>
-		                <table class="table">                    
-		                    <tr>
-		                        <td style="text-align: left;">
-		                            <textarea style="width: 1400px; text-align: left;" rows="3" cols="30" id="comment" name="comment" placeholder="댓글을 입력하세요" ></textarea>
-		                            <br>
-		                            <div style="text-align:right";>
-		                                <a href='#' onClick="fn_comment('${result.code }')" class="btn pull-right btn-success">등록</a>
-		                            </div>
-		                        </td>
-		                    </tr>
-		                </table>
-		            </div>
-		        </div>
-	        <input type="hidden" id="goodcode" name="goodcode" value="${result.code }" />        
-	    	</form>
-	    	
-		<div class="container">
-		    <form id="commentListForm" name="commentListForm" method="post">
-		        <div id="commentList">
-		        </div>
-		    </form>
-		</div>	
+		<h2>게시글 보기</h2>
+		<form name="form1" method="post">
+		    <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
+		        작성일자 : <fmt:formatDate value="${vo.regDate}" pattern="YYYY-MM-dd a HH:mm:ss"/>
+		                <!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
+		    </div>
+		    <div>
+		        아이디
+		        <%-- <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요"> --%>
+		        ${vo.userId}
+		    </div>
+		    <div>
+		        내용
+		        <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요">${vo.content}</textarea>
+		    </div>
+		    <div style="width:650px; text-align: center;">
+		        <!-- 게시물번호를 hidden으로 처리 -->
+		        <input type="hidden" name="bno" value="${vo.goodCode}">
+		    <!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
+		    <c:if test="${sessionScope.userId == vo.userId}">
+		        <button type="button" id="btnUpdete">수정</button>
+		        <button type="button" id="btnDelete">삭제</button>
+		    </c:if>
+		        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
+		        <button type="button" id="btnList">목록</button>
+		    </div>
+		</form>
+    <div style="width:650px; text-align: center;">
+        <br>
+        
+        <!-- **로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
+        <c:if test="${sessionScope.userId != null}">    
+        <textarea rows="5" cols="80" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
+        <br>
+        <button type="button" id="btnReply">댓글 작성</button>
+        </c:if>
+    </div>
+    <!-- **댓글 목록 출력할 위치 -->
+    <div id="listReply"></div>		
+	
+	
 		<!-- 상품문의 끝  -->
 </div>
-
 	<script>
 	$(document).ready(function(){
 	  $(".nav-tabs a").click(function(){
