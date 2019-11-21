@@ -26,7 +26,6 @@
 
 (function( factory ) {
 	"use strict";
-
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
 		define( ['jquery'], function ( $ ) {
