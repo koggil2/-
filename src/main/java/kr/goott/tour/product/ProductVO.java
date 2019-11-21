@@ -1,14 +1,22 @@
 package kr.goott.tour.product;
 
 public class ProductVO {
-	
-	//만족도 //
+	//상품  ( *규칙* 합성어 시작은 대문자)
 	private int num;
 	private String goodCode;
-	private String userId;
-	private int jumsu;
-	private String content;
-	private String reg_datetime;
+	private String travelType;
+	private String goodName;
+	private String startArea;
+	private String destination;
+	private String regDate;
+	private String travelTerm;
+	private String goodData;
+	private int price;
+	private int reser_Min;
+	private int reserNum;
+	private String assure1;
+	private String assure2;
+	private String assure3;
 	public int getNum() {
 		return num;
 	}
@@ -21,33 +29,90 @@ public class ProductVO {
 	public void setGoodCode(String goodCode) {
 		this.goodCode = goodCode;
 	}
-	public String getUserId() {
-		return userId;
+	public String getTravelType() {
+		return travelType;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setTravelType(String travelType) {
+		this.travelType = travelType;
 	}
-	public int getJumsu() {
-		return jumsu;
+	public String getGoodName() {
+		return goodName;
 	}
-	public void setJumsu(int jumsu) {
-		this.jumsu = jumsu;
+	public void setGoodName(String goodName) {
+		this.goodName = goodName;
 	}
-	public String getContent() {
-		return content;
+	public String getStartArea() {
+		return startArea;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setStartArea(String startArea) {
+		this.startArea = startArea;
 	}
-	public String getReg_datetime() {
-		return reg_datetime;
+	public String getDestination() {
+		return destination;
 	}
-	public void setReg_datetime(String reg_datetime) {
-		this.reg_datetime = reg_datetime;
+	public void setDestination(String destination) {
+		this.destination = destination;
 	}
-	// 만족도 //
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public String getTravelTerm() {
+		return travelTerm;
+	}
+	public void setTravelTerm(String travelTerm) {
+		this.travelTerm = travelTerm;
+	}
+	public String getGoodData() {
+		return goodData;
+	}
+	public void setGoodData(String goodData) {
+		this.goodData = goodData;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getReser_Min() {
+		return reser_Min;
+	}
+	public void setReser_Min(int reser_Min) {
+		this.reser_Min = reser_Min;
+	}
+	public int getReserNum() {
+		return reserNum;
+	}
+	public void setReserNum(int reserNum) {
+		this.reserNum = reserNum;
+	}
+	public String getAssure1() {
+		return assure1;
+	}
+	public void setAssure1(String assure1) {
+		this.assure1 = assure1;
+	}
+	public String getAssure2() {
+		return assure2;
+	}
+	public void setAssure2(String assure2) {
+		this.assure2 = assure2;
+	}
+	public String getAssure3() {
+		return assure3;
+	}
+	public void setAssure3(String assure3) {
+		this.assure3 = assure3;
+	}
 	
 	
 	
+	
+	
+	
+		
 	
 }
