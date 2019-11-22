@@ -15,5 +15,7 @@ public interface RegisterDAOInterface {
 	public void findId(RegisterVO vo); //아이디 찾기
 	
 	public void findPwd(RegisterVO vo); //비밀번호 찾기
+
+	public RegisterVO selectRecord(String userId);//회원가입수정 폼
 	
 }

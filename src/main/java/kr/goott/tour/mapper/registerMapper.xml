@@ -14,5 +14,13 @@
 		select userId, userPwd, userName, memType from gt_register
 		where userId=#{userId} and userPwd=#{userPwd}
 	</select>
-
+	<select id="selectRecord" resultType="kr.goott.tour.register.RegisterVO">
+		select num, userId, userPwd, userName, to_char(birthDay, 'YYYY-MM-DD') birthDay, tel, zipCode, addr, detailAddr, email, memtype, regdate
+		from gt_register
+		where userId=#{userId}
+	</select>
+	<update id="updateRecord" parameterType="kr.goott.tour.register.RegisterVO">
+		update gt_register set tel=#{tel}, zipCode=#{zipCode}, addr=#{addr}, detailAddr=#{detailAddr}, email=#{email}
+		where userId=#{userId} and userPwd=#{userPwd}
+	</update>
 </mapper>

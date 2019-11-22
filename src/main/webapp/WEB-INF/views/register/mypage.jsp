@@ -10,12 +10,7 @@
 	$("#imgBannerText>h1").text("<%=pageName%>");
 	$("#imgBannerText>h2").text("<%=pageSideName%>");
 
-	$(function(){
-		$("#edit-btn").click(function(){
-			location.href= "/Hye/project/register/registerEdit.do";
-		})
-	})
-	
+
 
 </script>
 <style>
@@ -49,7 +44,7 @@
 			<div><img src="/tour/image/myPageProfile.png"/></div>
 			<h5>${logname}님</h5>
 			
-			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정"/>
+			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정" onclick="location.href='editForm?userId=${logid}'"/>
 		</div>
 		<div id="membershipDiv">
 			<h4>회원등급</h4>

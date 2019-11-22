@@ -200,9 +200,8 @@
 						</tr>
 						<tr>
 							<td class="stit">생년월일</td>
-							<td class="frm"><input type="text" class="ipf form-control"
-								name='birthYear' id='birthYear' style="width: 100px;"
-								maxlength="4" placeholder="ex)2019"> <select
+							<td class="frm"><input type="text" class="ipf form-control" name='birthYear' id='birthYear' style="width: 100px;" maxlength="4" placeholder="ex)2019">
+							<select
 								name="birthMonth" id="birthMonth">
 									<%
 										for (int i = 1; i <= 12; i++) {

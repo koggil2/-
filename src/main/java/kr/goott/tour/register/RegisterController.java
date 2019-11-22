@@ -58,6 +58,35 @@ public class RegisterController {
 		}
 			return mav;
 	}
+	//회원가입정보 수정폼
+	@RequestMapping("/register/editForm")
+	public ModelAndView register_EditForm(@RequestParam("userId") String userId) {
+		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
+		
+		RegisterVO vo = dao.selectRecord(userId);
+		ModelAndView mav = new ModelAndView();
+		/* System.out.println(vo.getUserId()); */
+		mav.addObject("vo", vo);
+		mav.setViewName("register/registerEditForm");
+		
+		return mav;
+	}
+	//회원가입정보 수정
+	@RequestMapping(value="/register/registerEditOk", method=RequestMethod.POST)
+	public ModelAndView RegisterEditOk(RegisterVO vo) {
+		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
+		int cnt = dao.updateRecord(vo);
+		System.out.println(cnt);
+		ModelAndView mav = new ModelAndView();
+	
+		mav.addObject("vo", vo);
+		mav.addObject("cnt", cnt);
+		
+		mav.setViewName("register/registerEditOk");
+		
+		return mav;
+		
+	}
 	
 	//회원가입 에러
 	@RequestMapping("/register/registerError")
