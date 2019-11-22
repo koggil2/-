@@ -150,12 +150,6 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">기간</span><span>${vo.travelTerm}</span></li>
 					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">가격</span><span>${vo.price}</span></li>			
 				</ul>
-				<!-- 일정목록 -->
-		    	<ul>
-		    		<c:forEach var="s" items="${list}">
-		    			<li>${s.num}, ${s.goodCode}, ${s.startDate}, ${s.backDate}</li>
-		    		</c:forEach>
-		    	</ul>
 			</div>
 			<!-- 달력 -->
 			<div id = "select">
@@ -349,7 +343,6 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 				<thead>
 					<tr>
 						<th scope="col" class="col1">출/도착정보</th>
-						<th scope="col" class="col2">항공</th>
 						<th scope="col" class="col3">여행기간</th>
 						<th scope="col" class="col4">상품명</th>
 						<th scope="col" class="col5">상품가격</th>
@@ -357,40 +350,20 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 						<th scope="col" class="col7">장바구니</th>
 					</tr>
 				</thead>
+				<!-- 일정목록 -->
 				<tbody>
-					<tr>
-						<td><span style="color:blue;">11월21일(목) 09:30</span><br>11월24일(일) 19:35</td>
-						<td>가자에어</td>
-						<td>1박2일</td>
-						<td><a href="product_detail" data-idx="0" data-pnum="58740423" target="_blank"> [프리한패키지][호핑+마사지] 보라카이 / 라까멜라 신관 4일</a></td>
-						<td>450,000</td>
-						<td>예약대기</td>
-						<td><input type="checkbox" id="cart1" style="display:none;"/>
-							<label for="cart1"></label>
-						</td>
-					</tr>
-					<tr>
-						<td><span style="color:blue;">11월21일(목) 10:10</span><br>11월24일(일) 15:35</td>
-						<td>대한항공</td>
-						<td>1박2일</td>
-						<td><a href="product_detail" data-idx="0" data-pnum="58740423" target="_blank"> [프리한패키지][호핑+마사지] 보라카이 / 라까멜라 신관 4일</a></td>
-						<td>630,000</td>
-						<td>예약대기</td>
-						<td><input type="checkbox" id="cart2"style="display:none;"/>
-							<label for="cart2"></label>
-						</td>
-					</tr>
-					<tr>
-						<td><span style="color:blue;">11월21일(금) 14:30</span><br>12월01일(일) 14:10</td>
-						<td>티웨이항공</td>
-						<td>1박2일</td>
-						<td><a href="product_detail" data-idx="0" data-pnum="58740423" target="_blank"> [프리한패키지][호핑+마사지] 보라카이 / 라까멜라 신관 4일</a></td>
-						<td>810,000</td>
-						<td>예약대기</td>
-						<td><input type="checkbox" id="cart2"style="display:none;"/>
-							<label for="cart2"></label>
-						</td>
-					</tr>
+		    		<c:forEach var="s" items="${list}">
+						<tr>
+							<td><span style="color:blue;">${s.startDate}</span><br>${s.backDate}</td>
+							<td>${vo.travelTerm}</td>
+							<td><a href="product_detail?goodCode=?${vo.goodCode}&num=${s.num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
+							<td>${vo.price}</td>
+							<td>예약대기</td>
+							<td><input type="checkbox" id="cart1" style="display:none;"/>
+								<label for="cart1"></label>
+							</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>					

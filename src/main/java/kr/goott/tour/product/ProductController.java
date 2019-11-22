@@ -57,6 +57,10 @@ public class ProductController {
 	//여행상품 상세페이지로 이동
 	@RequestMapping("/product/product_detail")
 	public String product_detail() {
+		//상품코드로 상품정보
+		
+		//일련번호로 일정정보
+		
 		return "product/product_detail";
 	}
 	
