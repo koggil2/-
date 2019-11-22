@@ -82,28 +82,28 @@
 		
 		window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
 		$(".btn").click(function(){
-		  check = true;
-		  $(".remove").click();
+			location.href="reservation";
+			
+		  /* check = true;
+		  $(".remove").click(); */
 		});
 	});
 </script>
-<style>
-	section{padding-top:0;}
-</style>
+
 <section style="text-align:left">
 	<%@ include file="../inc/sidebar.jspf" %>
 <div>
- <div id="site-header">
+ <header id="site-header">
     <div class="container" style="font-size:35px;"> 	 
 		<li class="uk-margin-small-right" uk-icon="icon:cart; ratio: 3" id="cartTitle"></li><h1 style="text-align:left;font-weight:bold;">여행 장바구니</h1>
     </div>
-</div>
+</header>
     <div class="container">
-        <div id="cart"> 
+        <section id="cart"> 
          <article class="product">
-                <div>
+                <header>
                     <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
-                </div>>
+                </header>
                 <div class="content" style="height:195px;">
                     <a href="" style="color:black;"><h1>제주도</h1>
 					외돌개, 비자림, 다희연, 산굼부리, 협재해변, 올레7코스로 이어지는 3일 알찬코스! <br/>연인, 가족과 행복한 제주도 여행!</a>
@@ -112,7 +112,7 @@
                     <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
                     <div style="top: 136px" class="type small">2019-11-26</div>
                 </div>
-                <div class="content" style="width:948px;">
+                <footer class="content" style="width:948px;">
                 	<span class="qt-people">인원 : </span>
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
@@ -121,12 +121,12 @@
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
-                </div>
+                </footer>
             </article>
             <article class="product">
-                <div>
+                <header>
                     <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
-                </div>
+                </header>
                 <div class="content" style="height:195px;">
                     <a href="" style="color:black;"><h1>제주도</h1>
 					외돌개, 비자림, 다희연, 산굼부리, 협재해변, 올레7코스로 이어지는 3일 알찬코스! <br/>연인, 가족과 행복한 제주도 여행!</a>
@@ -135,7 +135,7 @@
                     <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
                     <div style="top: 136px" class="type small">2019-11-26</div>
                 </div>
-                <div class="content" style="width:948px;">
+                <footer class="content" style="width:948px;">
                 	<span class="qt-people">인원 : </span>
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
@@ -144,12 +144,12 @@
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
-                </div>
+                </footer>
             </article>
             <article class="product">
-                <div>
+                <header>
                     <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
-                </div>
+                </header>
                 <div class="content" style="height:195px;">
                     <a href="" style="color:black;"><h1>제주도</h1>
 					외돌개, 비자림, 다희연, 산굼부리, 협재해변, 올레7코스로 이어지는 3일 알찬코스! <br/>연인, 가족과 행복한 제주도 여행!</a>
@@ -158,7 +158,7 @@
                     <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
                     <div style="top: 136px" class="type small">2019-11-26</div>
                 </div>
-                <div class="content" style="width:948px;">
+                <footer class="content" style="width:948px;">
                 	<span class="qt-people">인원 : </span>
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
@@ -167,9 +167,9 @@
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
-                </div>
+                </footer>
             </article>               
-        </div>       
+        </section>       
     </div>
 </div>
 </section>

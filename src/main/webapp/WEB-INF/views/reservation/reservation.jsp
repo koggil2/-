@@ -12,49 +12,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
-	<style>
-			*{font-family:'Noto Sans KR',sans-serif;}
-			#tbid{width:100%; margin-top:10px; }
-			#trid th{font-size:25px; font-weight:bold; }
-			h1{text-align:left; margin-top:10px;}
-			a:link, a:visited{color:red; text-decoration:none;}
-			a:hover{color:blue; text-decoration:underline;}
-			#join form, #join p{text-align:left; font-weight:bold; font-size: 20px;}
-			ol,ul{padding-left:0;}
-			#telid{width:20px;}  
-			#btn-rev{text-align:center; marign:50px auto; }
-			#btn-rev button{margin:50px auto;width:100%; height:50px; background:#00a7f0; color:white}
-			#rev-tel, #trv-tel, #rev-email, #rev-tel1, #rev-email1, #rev-txt{height:40px; text-align:center; } 
-			#email-bar, #email-bar2, #email-bar3, #email-bar4{width:181px; height:34px;text-align:left;}
-			#rev-name1, #rev-name, #trv-name{text-align:left;margin-top:10px;}
-			#rev-txt{text-align:left;}
-	
-		
-     	</style>
-    	<script type="text/javascript">
-    	$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
-    	$("#imgBannerText>h1").text("<%=pageName%>");
-    	$("#imgBannerText>h2").text("<%=pageSideName%>");
+<style>
+	*{font-family:'Noto Sans KR',sans-serif;}
+	#tbid{width:100%; margin-top:10px; }
+	#trid th{font-size:25px; font-weight:bold; }
+	h1{text-align:left; margin-top:10px;}
+	a:link, a:visited{color:red; text-decoration:none;}
+	a:hover{color:blue; text-decoration:underline;}
+	#join form, #join p{text-align:left; font-weight:bold; font-size: 20px;}
+	ol,ul{padding-left:0;}
+	#telid{width:20px;}  
+	#btn-rev{text-align:center; marign:50px auto; }
+	#btn-rev button{margin:50px auto;width:100%; height:50px; background:#00a7f0; color:white}
+	#rev-tel, #trv-tel, #rev-email, #rev-tel1, #rev-email1, #rev-txt{height:40px; text-align:center; } 
+	#email-bar, #email-bar2, #email-bar3, #email-bar4{width:181px; height:34px;text-align:left;}
+	#rev-name1, #rev-name, #trv-name{text-align:left;margin-top:10px;}
+	#txt{text-align:left;}	
+</style>
+<script type="text/javascript">
+$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+$("#imgBannerText>h1").text("<%=pageName%>");
+$("#imgBannerText>h2").text("<%=pageSideName%>");
     	
     	$(function(){
-/*     		var same = $(this).checked;
-    		$('#samecheck').click(function(){
-    			var temp = document.getElementById('rev-name').value
-    			var temp2 = document.getElementById('rev-tel').value
-    			var temp3 = document.getElementById('rev-tel2').value
-    			document.getElementById('trv-name').value=temp;
-    			document.getElementById('trv-tel').value=temp2;
-    			document.getElementById('trv-tel2').value=document.getElementById('rev-tel2').value;
-    			document.getElementById('trv-tel3').value=document.getElementById('rev-tel3').value;
-    			if(same===true){
-    				$('#samecontent input').filter('input:text')
-    				.attr('disabled','disabled')
-    				.css('opactiy', 0.5);
-    			}else	
-	    			$('#samecontent input').filter('input:text').attr('readonly',false)
-	    			.css('opacity', 1);
-    		}); */
-    		
 			$('#btn1').on('click',function(){
 				$(this).css('background-color','orange').css('color','#fff');
 				alert('예약이완료됨.');
@@ -62,9 +42,12 @@
 				
 			$("#samecheck").change(function(){
 				if(this.checked){
-					for(i=1; i<=6; i++){
-						$("#sameFrm input:nth-of-type("+i+")").val($("#reserFrm input:nth-of-type("+i+")").val());
-					}
+					$("#reservationUser input").val($("#rev-User input").val());
+					$("#reservationTel input:nth-of-type(1)").val($("#rev-phone input:nth-of-type(1)").val());
+					$("#reservationTel input:nth-of-type(2)").val($("#rev-phone input:nth-of-type(2)").val());
+					$("#reservationTel input:nth-of-type(3)").val($("#rev-phone input:nth-of-type(3)").val());
+					$("#reservationEmail input:nth-of-type(1)").val($("#rev-mail input:nth-of-type(1)").val());
+					$("#reservationEmail input:nth-of-type(2)").val($("#rev-mail input:nth-of-type(2)").val());
 					$("#sameFrm input").prop("readonly",true);
 				}else{
 					$("#sameFrm input").val("");
@@ -72,9 +55,7 @@
 				}
 			});
     	}); 
-     	</script>
-
-
+</script>
 
 <section style="text-align:left">
 	<%@ include file="../inc/sidebar.jspf" %>
@@ -121,7 +102,7 @@
 	    </div>
 		연락처
 		<div class="uk-margin" id='rev-tel' style="max-width:;">
-	        <div class="uk-inline" id="" style="float:left;">
+	        <div class="uk-inline" id="rev-phone" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
 	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3"name='rev-tel1' id='rev-tel1'> -
 	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4"name='rev-tel2' id='rev-tel2'> -
@@ -130,7 +111,7 @@
 	    </div>
 		이메일
 		<div class="uk-margin" id='rev-email' style="max-width:;">
-	        <div class="uk-inline" id="" style="float:left;">
+	        <div class="uk-inline" id="rev-mail" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: mail"></span>
 	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15"> @
 	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15"> 
@@ -173,7 +154,7 @@
 		문의사항
 		<div class="uk-margin" id='rev-txt'>
 			<div class="uk-inline" id="reservationCommenting" style="float:left;">
-		        <textarea class="uk-textarea" rows="5" style="font-size:20px;width:450px;"></textarea>
+		        <textarea class="uk-textarea" id="txt" rows="5" style="font-size:20px;width:450px;"></textarea>
 	        </div>
 	    </div>
 		<div id='btn-rev'>
