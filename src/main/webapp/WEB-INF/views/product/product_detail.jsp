@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%
+	pageName = "상품";
+	pageSideName = "상품 상세페이지";
+	pageImage = "mainimg4.jpg";
+%>
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="/tour/resources/css/product_detail.css" type="text/css"/>
@@ -10,6 +15,11 @@
 
 <c:set var="day" value="${2}"/>
 <script>
+
+$("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
+$("#imgBannerText>h1").text("<%=pageName%>");
+$("#imgBannerText>h2").text("<%=pageSideName%>");
+
 	$(function(){
 		var clickYN = true;
 			$("#gg").click(function(){
@@ -135,14 +145,14 @@
 					<input type="checkbox" id="cart1" style="display:none;"/>
 									<label for="cart1"><i class="fas fa-heart"></i></label>
 					</div>
-					<div class="title_name"><h1 style="text-align: left; padding-right: 40px; font-size:30px; font-weight: 600;">남쪽 나라의 명소! 남해+여수+순천 (1박2일)</h1></div>
+					<div class="title_name"><h1 style="text-align: left; padding-right: 40px; font-size:30px; font-weight: 600;">${vo.goodName}(${vo.travelTerm})</h1></div>
 					<div class='code' style="text-align: left"> ( 상품코드: ${vo.goodCode} )</div>
 					<div class="product_list">
 						<ul class="product_menu">
-							<li><span>출발일자</span>2019.11.29일</li>
-							<li><span>상품가격</span>200,000,000원</li>
-							<li><span>여행지역</span>경주</li>
-							<li><span>여행기간</span>2019.11.29~2019.11.30</li>
+							<li><span>출발일자</span>${sc.startDate }</li>
+							<li><span>상품가격</span>${vo.price }원</li>
+							<li><span>여행지역</span>${vo.destination }</li>
+							<li><span>여행기간</span>${sc.startDate }일 ~ ${sc.backDate }일</li>
 						</ul>
 					</div>
 					<div class="btn_menu">
@@ -157,21 +167,21 @@
 		<table class="table_01">
 		    <tr>
 		        <th class="tb1" scope="row">일정</th>
-		        <td><span>1박 2일 </span> <span><button class="btn-3">다른 출발일 보기</button></span>
+		        <td><span>${vo.travelTerm } </span> <span><button class="btn-3">다른 출발일 보기</button></span>
 		        <br>
 		        <ul>
-		        	<li>11월 19일 (화) 00:00 남쪽나라 출발 - 11월 19일 (화) 00:00 도착</li>
-		        	<li>11월 20일 (수) 00:00 KTX 출발 - 11월 20일 (수) 00:00 도착</li>
+		        	<li>${sc.startDate}일 00:00출발  - ${sc.startDate}일 00:00 도착</li>
+		        	<li>${sc.backDate}일 00:00출발 - ${sc.backDate}일 00:00 도착</li>
 		        </ul>
 		        </td>
 		    </tr>
 		    <tr>
 		        <th class="tb2" scope="row">방문도시</th>
-		        <td>포항, 울산, 경주</td>
+		        <td>${vo.destination }</td>
 		    </tr>
 		    <tr>
 		        <th class="tb3" scope="row">예약인원</th>
-		        <td>현재 8명 (여유 좌석 0 / 최소 출발 인원 4명)</td>
+		        <td>현재 0명 (최소 출발 인원: ${vo.reserMin }명 / 정원:${vo.reserNum })</td>
 		    </tr>
 		</table>
 	</div>
@@ -183,9 +193,9 @@
 		       	 	<th scope="row">(아이콘)<br>보험</th>
 		        	<td class="row1">
 		        	<ul>
-		        		<li>[여행자보험] 미가입</li>
-		        		<li>[영업보증보험] 가입</li>
-		        		<li>[기획여행 보증보험] 가입</li>
+		        		<li>[여행자보험] ${vo.assure1 }</li>
+		        		<li>[영업보증보험] ${vo.assure2 }</li>
+		        		<li>[기획여행 보증보험]${vo.assure3 }</li>
 		        	</ul>
 			    </td>
 			    </tr>
