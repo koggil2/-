@@ -88,8 +88,29 @@ public class ProductController {
 	
 	//상품관리 페이지로 이동
 	@RequestMapping("/product/management")
-	public String product_management() {
-		return "product/management";
+	public ModelAndView product_management(ProductVO vo) {
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		List<ProductVO> list = dao.getAllRecord(vo);
+		
+		ProductVO vo2 = list.get(0);
+		
+		System.out.println(vo2.getGoodCode()+","+vo2.getTravelType());
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("product/management");
+		
+		return mav;
 	}
-
+	
+	//상품작성페이지 이동
+	@RequestMapping("/product/product_writer")
+	public ModelAndView product_write() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("product/product_writer");
+		
+		return mav;
+	}
 }
