@@ -17,5 +17,6 @@ public interface ProductDAOInterface {
     public List<ScheduleVO> selectAllSchedule(String goodcode);
     // 상세 상품 선택
     public ScheduleVO selectShcedule(int num);
-    
+    // 여행분류별 상품 리스트선택
+    public List<ProductVO> travelTypeList(String travelType);
 }

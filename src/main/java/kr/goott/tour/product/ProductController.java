@@ -39,8 +39,22 @@ public class ProductController {
 	
 	//추천상품 페이지로 이동
 	@RequestMapping("/product/product_recommendList")
-	public String product_recommendList() {
-		return "product/product_recommendList";
+	public ModelAndView product_recommendList(ProductVO vo) {
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		List<ProductVO> list1 = dao.travelTypeList("가족여행");
+		List<ProductVO> list2 = dao.travelTypeList("수학여행");
+		List<ProductVO> list3 = dao.travelTypeList("현장학습");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("list1", list1);
+		mav.addObject("list2", list2);
+		mav.addObject("list3", list3);
+		
+		mav.setViewName("product/product_recommendList");
+		
+		return mav;
 	}
 	
 	//여행 일정 페이지로 이동

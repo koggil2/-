@@ -22,4 +22,9 @@
 		from gt_schedule
 		where num=#{num}
 	</select>
+	<select id="travelTypeList" resultType="kr.goott.tour.product.ProductVO">
+		select num, goodCode, goodName, price, travelType, travelTerm, startarea, destination, resermin, resernum, assure1, assure2, assure3, gooddata
+		from gt_product
+		where travelType=#{travelType}
+	</select>
 </mapper>
