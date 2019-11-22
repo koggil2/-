@@ -9,8 +9,8 @@
 	.gall_big{width:500px; float:left;}
 	.title_text{float: left; width: 580px; position: relative; height: 350px; padding-top:6px; padding-left:40px;}
 	.sec_div{width:100%; height: 352px; border: 1px solid lightgray;}
-	.product_menu>li{width:860px; height: 40px; font-size: 17px; text-align: left; }
-	.code{font-size: 12px; width:280px; height: 30px; margin:10px 0; padding-left:30px;}
+	.product_menu>li{width:860px; height: 37px; font-size: 17px; text-align: left; }
+	.code{font-size: 12px; width:280px; height: 26px; margin:10px 0; padding-left:30px;}
 	.spanMr {margin-right: 60px;}
 	.title_name{height:40px;}
 	.title_name input{width:550px; line-height:30px;}
@@ -34,6 +34,8 @@
 	.row1 ul li{float:none;}
 	.row1 ul li input{margin-left:20px}
 	
+	.dateListLi{float:none; line-height:30px;}
+	#datePan>li{float:none; list-style-type:none;}
 	.rev_div p, .rev_div h3{text-align: left;}
 	.rev_div{background: #efefef; padding: 40px 40px;}
 	.rev_div h3{font-weight: 500;}
@@ -100,7 +102,32 @@
                 ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
             });
 		//날짜선택
-		$("#depDate").datepicker();
+		$("#startDate").datepicker();
+		
+		//도착일 자동선택
+		$("#startDate").change(function(){
+			var day = $("#periodSel option").index($("#periodSel option:selected"));
+			if(day>0){
+				
+				var dayPlus = (day-1)*86400000;
+				var today = new Date();
+				var backDate = Date.parse($("#startDate").val())+dayPlus;
+				
+				today.setTime(backDate);
+				
+				var backYear = today.getFullYear();
+				var backMonth = today.getMonth()+1;
+				var backDate = today.getDate();
+				
+				var setDate = backYear+"-"+backMonth+"-"+backDate;
+	
+				$("#backDate").val(setDate);
+			
+			}else{
+				alert("여행기간을 선택해주세요.");
+				$("#startDate").val("");
+			}
+		});
 		
 		var clickYN = true;
 		$("#gg").click(function(){
@@ -120,7 +147,14 @@
 			}
 		});
 	});
-	
+	function insertDate(){
+		if($("#startDate").val()!=""&&$("#backDate").val()!=""){
+			var dateTxt = "<li class='dateListLi'>"+$("#startDate").val()+" ~ "+$("#backDate").val()+"</li>"
+			$("#dateList").append(dateTxt);
+			$("#startDate").val("");
+			$("#backDate").val("");
+		}
+	}
 	function revDetailInsert()	{
 		//이벤트가 발생한 버튼
 		var targetButton = $(event.target);
@@ -214,12 +248,17 @@
 					<div class='code'> ( 상품코드 : <input type="text" placeholder="상품코드"/> )</div>
 					<div class="product_list">
 						<ul class="product_menu">
-							<li><span class="spanMr">출발일자</span><input type="text" id="depDate"/></li>
 							<li><span class="spanMr">상품가격</span><input type="text" placeholder="가격"/>원</li>
-							<li><span class="spanMr">출발지역</span><select><option value="0">=출발지역=</option><option value="1">서울</option><option value="2">인천</option><option value="3">부산</option></select></li>
+							<li><span class="spanMr">출발지역</span>
+								<select>
+									<option value="0">=출발지역=</option>
+									<option value="1">서울</option>
+									<option value="2">인천</option>
+									<option value="3">부산</option>
+								</select>
+							</li>
 							<li><span class="spanMr">여행지역</span><input type="text" placeholder="지역"/></li>
 							<li><span class="spanMr">여행분류</span><input type="text" placeholder="분류"/></li> 
-							<li><span class="spanMr">여행기간</span><select id="periodSel" name="period" onchange="periodChange()"><option value="0">=여행기간=</option><option value="1">당일치기</option><option value="2">1박2일</option><option value="3">2박3일</option></select></li>
 						</ul>
 					</div>
 				</div>
@@ -231,6 +270,24 @@
 		    <tr>
 		        <th scope="row">예약인원</th>
 		        <td>최소 출발 인원 <input type="text" placeholder="최소" style="width:50px"/>명 / 정원 <input type="text" placeholder="정원" style="width:50px"/>명</td>
+		    </tr>
+		    <tr>
+		        <th scope="row">여행일자</th>
+		        <td>
+		        	<ul id="datePan">
+		        		<li><span class="spanMr">여행기간</span>
+		        			<select id="periodSel" name="period" onchange="periodChange()">
+		        				<option value="0">=여행기간=</option><option value="1">당일치기</option>
+		        				<option value="2">1박2일</option>
+		        				<option value="3">2박3일</option>
+		        			</select>
+		        		</li>
+			        	<li><span class="spanMr">출발일자</span><input type="text" id="startDate"/></li>
+						<li><span class="spanMr">도착일자</span><input type="text" id="backDate" disabled/><button onclick="insertDate()">추가</button></li>
+		        	</ul>
+		        	<ul id="dateList">
+					</ul>
+		        </td>
 		    </tr>
 		    <tr>
 		        <th scope="row">보험</th>
