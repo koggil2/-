@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -39,11 +40,12 @@ public class ProductController {
 	
 	//여행 일정 페이지로 이동
 	@RequestMapping("/product/product_view")
-	public ModelAndView product_view(ProductVO vo) {  
+	public ModelAndView product_view(@RequestParam("goodCode") String goodCode) {  
       ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
-      vo = dao.selectRecord(vo.getGoodCode());
+      ProductVO vo = new ProductVO();
+      vo = dao.selectRecord(goodCode);
       
-      List<ScheduleVO> list = dao.selectSchedule(vo.getGoodCode());
+      List<ScheduleVO> list = dao.selectAllSchedule(vo.getGoodCode());
       
       ModelAndView mav = new ModelAndView();
    
@@ -56,7 +58,8 @@ public class ProductController {
 	
 	//여행상품 상세페이지로 이동
 	@RequestMapping("/product/product_detail")
-	public String product_detail() {
+	public String product_detail(@RequestParam("goodCode") String goodCode,
+								 @RequestParam("num") int num) {
 		//상품코드로 상품정보
 		
 		//일련번호로 일정정보

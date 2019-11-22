@@ -13,7 +13,8 @@ public interface ProductDAOInterface {
     public void delete(Integer rno);
     // 여행상품 선택
     public ProductVO selectRecord(String goodcode);
-    // 상품 일정 선택
-    public List<ScheduleVO> selectSchedule(String goodcode);
+    // 상품 일정 전체 목록 선택
+    public List<ScheduleVO> selectAllSchedule(String goodcode);
+    // 상품 일정선택
 
 }

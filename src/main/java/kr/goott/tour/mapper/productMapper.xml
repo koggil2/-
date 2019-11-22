@@ -12,7 +12,7 @@
 		from gt_product
 		where goodCode=#{goodCode}
 	</select>
-	<select id="selectSchedule" resultType="kr.goott.tour.product.ScheduleVO">
+	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
 		select num, goodCode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate  
 		from gt_schedule
 		where goodCode=#{goodCode}
