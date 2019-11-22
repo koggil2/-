@@ -67,12 +67,6 @@ public class ProductController {
 		return "product/product_detail";
 	}
 	
-	//여행바구니 페이지로 이동
-	@RequestMapping("/product/basket")
-	public String product_basket() {
-		return "product/basket";
-	}
-	
 	//상품관리 페이지로 이동
 	@RequestMapping("/product/management")
 	public String product_management() {
