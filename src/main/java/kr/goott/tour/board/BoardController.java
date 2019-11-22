@@ -147,7 +147,7 @@ public class BoardController {
 	   int cnt = dao.boardDelete(vo.getNum());
 		
 	   ModelAndView mav = new ModelAndView();
-	   mav.addObject("vo", vo.getNum());
+	   mav.addObject("vo", vo);
 	   mav.addObject("cnt", cnt);
 	   mav.setViewName("board/delOk");
 	   return mav;

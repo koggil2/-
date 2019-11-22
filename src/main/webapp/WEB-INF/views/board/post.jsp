@@ -25,8 +25,8 @@
 			};
 		}
 		
-		function backPage(txt){
-			location.href="list?commuPage="+txt;
+		function backPage(){
+			location.href="list?commuPage=${vo.commuPage}";
 		}
 	</script>
 <section>
@@ -62,7 +62,7 @@
 				</table>
 				<table>
 					<tr>
-						<td colspan="4" id="postContent">${vo.content}</td> 
+						<td colspan="4" id="postContent">${vo.content},${vo.commuPage}</td> 
 					</tr>
 				</table>
 			</div>
@@ -72,7 +72,7 @@
 					<input type="button" class="btn btn-secondary" value="삭제" onclick="delChk()"></input>
 					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='edit?num=${vo.num}'"></input>
 				</c:if>
-				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage(${commuPage})"></input>
+				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage()"></input>
 			</div>
 		</div>
 	</div>

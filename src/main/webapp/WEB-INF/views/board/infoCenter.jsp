@@ -121,7 +121,7 @@
                     <c:forEach var="v" items="${lst }">
                     	<tr>
                     		<td>${v.no}</td>
-		  					<td><a href="post?num=${v.num}">${v.subject}</a></td>
+		  					<td><a href="post?num=${v.num}&commuPage=${vo.commuPage}">${v.subject}</a></td>
 		  					<td>${v.userId}</td>
 		  					<td>${v.regDate}</td>
 		  					<td>${v.hit}</td>

@@ -15,11 +15,14 @@
 		values(gt_board_sq.nextval, #{subject}, #{content}, #{userId}, 0, sysdate, #{commuPage})
 	</insert>
 	<select id="selectRecord" resultType="kr.goott.tour.board.BoardVO">
-		select num, subject, content, userId, hit, regDate from gt_freeboard
+		select commuPage, num, subject, content, userId, hit, regDate from gt_freeboard
 		where num=#{num}
 	</select>
 	<update id="boardUpdate" parameterType="kr.goott.tour.board.BoardVO">
 		update gt_freeboard set subject=#{subject}, content=#{content} 
 		where num=#{num}
 	</update>
+	<delete id="boardDelete">
+		delete from gt_freeboard where num=#{num}
+	</delete>
 </mapper>
