@@ -11,5 +11,5 @@ public interface ReplyDAO {
     // ´ñ±Û ¼öÁ¤
     public void update(ReplyVO vo);
     // ´ñ±Û »èÁ¦
-    public void delete(Integer rno);
+    public void delete(int num);
 }

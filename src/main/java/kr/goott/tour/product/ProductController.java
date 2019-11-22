@@ -23,6 +23,11 @@ public class ProductController {
 		
 		List<ProductVO> list = dao.getAllRecord(vo);
 		
+		ProductVO vo2 = list.get(0);
+		
+		System.out.println(vo2.getGoodCode()+","+vo2.getTravelType());
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.setViewName("product/product_list");
@@ -56,15 +61,29 @@ public class ProductController {
       return mav;
 	}
 	
+	
 	//여행상품 상세페이지로 이동
 	@RequestMapping("/product/product_detail")
-	public String product_detail(@RequestParam("goodCode") String goodCode,
+	public ModelAndView product_detail(@RequestParam("goodCode") String goodCode,
 								 @RequestParam("num") int num) {
 		//상품코드로 상품정보
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		ProductVO vo =  new ProductVO();
+		vo = dao.selectRecord(goodCode);
 		
+		System.out.println(vo.getGoodCode()+","+vo.getTravelType()+","+num);
+		
+		ScheduleVO svo = new ScheduleVO();
+		svo = dao.selectShcedule(num);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("sc", svo);
+		mav.addObject("vo", vo);
+		mav.setViewName("product/product_detail");
+
 		//일련번호로 일정정보
-		
-		return "product/product_detail";
+
+		return mav;
 	}
 	
 	//상품관리 페이지로 이동

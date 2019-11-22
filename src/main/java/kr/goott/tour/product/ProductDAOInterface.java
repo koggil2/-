@@ -10,11 +10,12 @@ public interface ProductDAOInterface {
     // 여행상품 수정
     public void update(ProductVO vo);
     // 여행상품  삭제
-    public void delete(Integer rno);
+    public void delete(String goodCode);
     // 여행상품 선택
     public ProductVO selectRecord(String goodcode);
     // 상품 일정 전체 목록 선택
     public List<ScheduleVO> selectAllSchedule(String goodcode);
-    // 상품 일정선택
-
+    // 상세 상품 선택
+    public ScheduleVO selectShcedule(int num);
+    
 }

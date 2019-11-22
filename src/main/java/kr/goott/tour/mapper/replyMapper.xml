@@ -11,6 +11,6 @@
         SELECT num, goodcode, userId, content, jumsu, regdate
         FROM gt_feedback
         WHERE goodCode=#{goodCode}
-        ORDER BY num desc
+        ORDER BY num
     </select>
 </mapper>

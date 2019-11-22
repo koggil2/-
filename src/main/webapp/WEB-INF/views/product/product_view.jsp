@@ -356,7 +356,7 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 						<tr>
 							<td><span style="color:blue;">${s.startDate}</span><br>${s.backDate}</td>
 							<td>${vo.travelTerm}</td>
-							<td><a href="product_detail?goodCode=?${vo.goodCode}&num=${s.num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
+							<td><a href="product_detail?goodCode=${vo.goodCode}&num=${s.num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
 							<td>${vo.price}</td>
 							<td>예약대기</td>
 							<td><input type="checkbox" id="cart1" style="display:none;"/>

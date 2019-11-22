@@ -8,7 +8,7 @@
 		from gt_product
 	</select>
 	<select id="selectRecord" resultType="kr.goott.tour.product.ProductVO">
-		select num, goodCode, travelType, goodName, startArea, destination, travelTerm, price  
+		select num, goodName, goodCode, price, travelType, travelTerm, startarea, destination, resermin, resernum, assure1, assure2, assure3, gooddata
 		from gt_product
 		where goodCode=#{goodCode}
 	</select>
@@ -16,5 +16,10 @@
 		select num, goodCode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate  
 		from gt_schedule
 		where goodCode=#{goodCode}
+	</select>
+	<select id="selectShcedule" resultType="kr.goott.tour.product.ScheduleVO">
+		select to_char(startDate, 'YYYY-MM-DD')startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+		from gt_schedule
+		where num=#{num}
 	</select>
 </mapper>

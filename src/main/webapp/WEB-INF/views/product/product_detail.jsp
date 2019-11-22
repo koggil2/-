@@ -119,7 +119,7 @@
 <div class="container">
 	<div id="detail-content"> 	
 			<div class="page_location">
-				<a href="/tour/">홈></a><a href="#">1박2일</a>
+				<a href="/tour/">홈></a><a href="#">${vo.travelType}</a>
 			</div>
 			<div class="sec_div">
 				<div class="gall_big">
@@ -136,7 +136,7 @@
 									<label for="cart1"><i class="fas fa-heart"></i></label>
 					</div>
 					<div class="title_name"><h1 style="text-align: left; padding-right: 40px; font-size:30px; font-weight: 600;">남쪽 나라의 명소! 남해+여수+순천 (1박2일)</h1></div>
-					<div class='code' style="text-align: left"> ( 상품코드: AAPP33 )</div>
+					<div class='code' style="text-align: left"> ( 상품코드: ${vo.goodCode} )</div>
 					<div class="product_list">
 						<ul class="product_menu">
 							<li><span>출발일자</span>2019.11.29일</li>
@@ -289,7 +289,7 @@
 	
 	
 		
-		<!-- 상품문의  -->
+<%-- 		<!-- 상품문의  -->
 		<h2>게시글 보기</h2>
 		<form name="form1" method="post">
 		    <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
@@ -298,7 +298,7 @@
 		    </div>
 		    <div>
 		        아이디
-		        <%-- <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요"> --%>
+		        <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요">
 		        ${vo.userId}
 		    </div>
 		    <div>
@@ -328,7 +328,7 @@
         </c:if>
     </div>
     <!-- **댓글 목록 출력할 위치 -->
-    <div id="listReply"></div>		
+    <div id="listReply"></div>	 --%>	
 	
 	
 		<!-- 상품문의 끝  -->

@@ -29,7 +29,7 @@ public class ReplyDAOImpl implements ReplyDAO {
     }
     // ¥Ò±€ ªË¡¶
     @Override
-    public void delete(Integer rno) {
+    public void delete(int num) {
         // TODO Auto-generated method stub
  
     }
