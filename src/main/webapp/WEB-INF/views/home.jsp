@@ -17,7 +17,7 @@
 %>
 </head>
 	<script>
-		function setImage(){
+	/* 	function setImage(){
 			
 			var imglist = '';
 			var url = ['project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp',
@@ -31,7 +31,7 @@
 		
 			}
 			document.getElementById('cjimg').innerHTML=imglist;
-		}
+		} */
 	</script>
 	<script>
 		var imgNum = 1;
@@ -90,7 +90,7 @@
 						<li class="nav-brand"><a href="/tour/"><img src="/tour/image/Mainlogo.png"id="mainLogo"/></a></li>
 						<li class="nav-item"><a href="/tour/product/product_list">여행상품</a></li>
 						<!-- <li class="nav-item"><a href="#">여행만들기</a></li> -->
-						<li class="nav-item"><a href="/tour/product/product_recommand_list">추천상품</a></li>
+						<li class="nav-item"><a href="/tour/product/product_recommendList">추천상품</a></li>
 						<li class="nav-item"><a href="/tour/board/list?commuPage=review">커뮤니티</a></li>
 						<c:if test="${memType=='직원'}">
 							<li class="nav-item"><a href="/tour/product/management">상품관리</a></li>
@@ -159,7 +159,17 @@
 			 <div style="margin-top:50px">
 				<h1 style="font-family: fantasy; font-size: 50px;"> <span style='color:red; font-family: fantasy;'>HOT</span> Recommend</h1><br>
 			 	<h5> 추천여행지로 원하시는 여행을 즐겨보세요. </h5>
-			 	<div id='cjimg' style='margin-top:50px;'></div>
+			 	<div id='cjimg' style='margin-top:50px;'>
+			 		<c:forEach var="p_list" items="${list}">
+				 		<div>
+					 		<a href="product/product_view?goodCode=${p_list.goodCode}">
+					 			<img src="/tour/image/main_img_banner_1.jpg"/>
+					 		</a>
+					 		${p_list.goodName}<br/>
+					 		${p_list.price} 원
+				 		</div>
+			 		</c:forEach>
+			 	</div>
 			 </div>
 
 	</section>
