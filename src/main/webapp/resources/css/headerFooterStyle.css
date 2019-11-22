@@ -43,9 +43,9 @@ header>div{width:100%}
 #footImgList img{width:80%}
 #footImgList li:last-child{margin-right:0px}
 
-#sideBar{position:absolute; margin-left:1200px; width:120px; z-index: 1000;}
+#sideBar{position:absolute; margin-left:1300px; width:120px; z-index: 1000;}
 #sideBar button{width:100%; height:30px; margin-bottom:5px; background:gray; color:white; border:none}
-#sideBar ul, #sidebar li{float:bottom; margin:0px}
+#sideBar ul, #sidebar li{float:bottom; margin:0px; padding:0px}
 #sideBar>div:first-child>ul>li:nth-child(2){height:80px}
 #sideBar>div:first-child li{width:100%;}
 #sideBar h6{font-weight:bold}
