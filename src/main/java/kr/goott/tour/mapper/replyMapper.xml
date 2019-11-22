@@ -8,9 +8,9 @@
         VALUES (gt_reply_sq.NEXTVAL, #{goodCode}, #{userId}, #{content}, #{jumsu}, sysdate)
     </insert>
     <select id="listReply" resultType="kr.goott.tour.reply.ReplyVO">
-        SELECT num, goodcode, userid, content, jumsu, r.regdate, r.updatedate
-        FROM gt_feedback r, gt_product m
-        WHERE m.goodCode=#{goodCode}
+        SELECT num, goodcode, userId, content, jumsu, regdate
+        FROM gt_feedback
+        WHERE goodCode=#{goodCode}
         ORDER BY num desc
     </select>
 </mapper>
