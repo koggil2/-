@@ -75,6 +75,12 @@
 	    	<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
 	    	<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
 		</jsp-property-group>
+		<jsp-property-group>
+	    	<url-pattern>/WEB-INF/views/reservation/*</url-pattern>
+	    	<!-- <include-prelude>/WEB-INF/views/common/variables.jspf</include-prelude> -->
+	    	<include-prelude>/WEB-INF/views/inc/header.jspf</include-prelude>
+	    	<include-coda>/WEB-INF/views/inc/footer.jspf</include-coda>
+		</jsp-property-group>
 	</jsp-config>
 
 </web-app>
