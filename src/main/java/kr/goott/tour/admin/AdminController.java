@@ -74,6 +74,22 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping("/admin/typeChange")
+	public ModelAndView typeChange(HttpServletRequest req) {
+		AdminDAOInterface dao = sqlSession.getMapper(AdminDAOInterface.class);
+		AdminVO vo = new AdminVO();
+		
+		vo.setNum(Integer.parseInt(req.getParameter("num")));
+		vo.setMemType(req.getParameter("memType"));
+		dao.memUpdate(vo);
+		
+		//List<AdminVO> list = dao.selectMem();
+		ModelAndView mav = new ModelAndView();
+		//mav.addObject("list", list);
+		mav.setViewName("admin/tablesUpdate");
+		return mav;
+	}
+	
 	@RequestMapping("/admin/logout")
 	public String logout(HttpServletRequest req) {
 		HttpSession session = req.getSession();

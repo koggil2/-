@@ -65,6 +65,31 @@
 	
 	.dataTables_length{text-align:left;}
 	.dataTables_info{text-align:left;}
+	
+	.scroll-to-top {
+	  position: fixed;
+	  right: 15px;
+	  bottom: 15px;
+	  display: none;
+	  width: 50px;
+	  height: 50px;
+	  text-align: center;
+	  color: #fff;
+	  background: rgba(52, 58, 64, 0.5);
+	  line-height: 46px;
+	}
+	
+	.scroll-to-top:focus, .scroll-to-top:hover {
+	  color: white;
+	}
+	
+	.scroll-to-top:hover {
+	  background: #343a40;
+	}
+	
+	.scroll-to-top i {
+	  font-weight: 800;
+	}
 </style>
 
 <section style="padding-top:100px;">
@@ -108,9 +133,6 @@
              <c:if test="${memType!=null}">
           		<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;width:80px;text-align:center;">글쓰기</button>
           	</c:if>
-          </div>
-          <div class="card-footer small text-muted" style="text-align:left;">
-          	
           </div>
         </div>
      

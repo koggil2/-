@@ -21,12 +21,12 @@
 	<script>
 		function delChk(){
 			if(confirm("삭제하시겠습니까?")){
-				location.href="<%=request.getContextPath()%>/project/board/delOk.do?pageNum=${vo.pageNum}&num=${vo.num}&commuPage=${vo.commuPage}";
+				location.href="delOk?pageNum=${vo.pageNum}&num=${vo.num}&commuPage=${vo.commuPage}";
 			};
 		}
 		
-		function backPage(){
-			history.back();
+		function backPage(txt){
+			location.href="list?commuPage="+txt;
 		}
 	</script>
 <section>
@@ -49,7 +49,7 @@
 					</tr>
 					<tr>
 						<td>번  호</td>
-						<td>${vo.no}</td>
+						<td>${vo.num}</td>
 						<td>글쓴이</td>
 						<td>${vo.userId}</td>
 					</tr>
@@ -72,7 +72,7 @@
 					<input type="button" class="btn btn-secondary" value="삭제" onclick="delChk()"></input>
 					<input type="button" class="btn btn-secondary" value="수정" onclick="location.href='edit?num=${vo.num}'"></input>
 				</c:if>
-				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage()"></input>
+				<input type="button" class="btn btn-secondary" value="목록보기" onclick="backPage(${commuPage})"></input>
 			</div>
 		</div>
 	</div>

@@ -136,4 +136,20 @@ public class BoardController {
 	  }
 	  return mav;
    }
+   
+   @RequestMapping("/board/delOk")
+   public ModelAndView boardDelOk(HttpServletRequest request) {
+	   BoardDAOInterface dao = sqlSession.getMapper(BoardDAOInterface.class);
+	   BoardVO vo = new BoardVO();
+	   vo.setNum(Integer.parseInt(request.getParameter("num")));
+	   vo.setPageNum(Integer.parseInt(request.getParameter("pageNum")));
+	   vo.setCommuPage(request.getParameter("commuPage"));
+	   int cnt = dao.boardDelete(vo.getNum());
+		
+	   ModelAndView mav = new ModelAndView();
+	   mav.addObject("vo", vo.getNum());
+	   mav.addObject("cnt", cnt);
+	   mav.setViewName("board/delOk");
+	   return mav;
+   }
 }

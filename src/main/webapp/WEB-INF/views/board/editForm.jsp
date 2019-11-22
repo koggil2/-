@@ -12,9 +12,8 @@
 	#edit table tr td:last-child{width:90%; padding:20px; border-bottom:1px solid #ddd; text-align:left;}
 	#edit table tr:last-child td:first-child{border-bottom:0px}
 	#edit table tr:last-child td:last-child{border-bottom:0px}
-	#button{width:98%}
-	#button input:nth-child(1){margin-top:20px; float:left}
-	#button input:nth-child(2){margin-top:20px; float:right}
+	#button{width:98%;margin:0px auto; padding:0px 110px;}
+	#button input{float:right; margin-right:10px;margin-top:10px;}
 	
 	#subject{width:400px; text-align:left; border:1px solid #ddd; border-radius:3px;}
 </style>
@@ -55,10 +54,10 @@ function backPage(){
 					</tr>
 				</table>
 				<input type="hidden" id="commuPage" name="commuPage" value="${vo.commuPage}">
+				<input type="hidden" name="num" value="${vo.num}">
 				<div id="button">
-					<input type="hidden" name="num" value="${vo.num}">
-					<input type="button" value="돌아가기" onclick="backPage()"></input>
-					<input type="submit" value="수정"></input>
+					<input type="button" value="돌아가기" class="btn btn-secondary" onclick="backPage()"></input>
+					<input type="submit" value="수정" class="btn btn-secondary"></input>
 				</div>
 			</form>
 		</div>

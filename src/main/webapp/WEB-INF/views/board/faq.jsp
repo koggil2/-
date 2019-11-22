@@ -65,6 +65,31 @@
 	
 	.dataTables_length{text-align:left;}
 	.dataTables_info{text-align:left;}
+	
+	.scroll-to-top {
+	  position: fixed;
+	  right: 15px;
+	  bottom: 15px;
+	  display: none;
+	  width: 50px;
+	  height: 50px;
+	  text-align: center;
+	  color: #fff;
+	  background: rgba(52, 58, 64, 0.5);
+	  line-height: 46px;
+	}
+	
+	.scroll-to-top:focus, .scroll-to-top:hover {
+	  color: white;
+	}
+	
+	.scroll-to-top:hover {
+	  background: #343a40;
+	}
+	
+	.scroll-to-top i {
+	  font-weight: 800;
+	}
 </style>
 
 <section style="padding-top:100px;">
@@ -75,11 +100,11 @@
 			<a href="list?commuPage=faq" class="list-group-item list-group-item-action">자주묻는 질문</a>
 		</div>
 	</div>
-	<h4>여행문의</h4><hr/>
+	<h4>자주묻는 질문</h4><hr/>
 	<div class="card mb-3">
           <div class="card-header" style="text-align: left;">
             <i class="fas fa-table"></i>
-            여행문의</div>
+            자주묻는 질문</div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -105,12 +130,9 @@
                 </tbody>
               </table>
             </div>
-             <c:if test="${memType!=null}">
+             <c:if test="${memType=='관리자'}">
           		<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;width:80px;text-align:center;">글쓰기</button>
           	</c:if>
-          </div>
-          <div class="card-footer small text-muted" style="text-align:left;">
-          	
           </div>
         </div>
      
