@@ -29,7 +29,7 @@
 	function changeType(num, txt) {
 		if(confirm("변경하시겠습니까?")) {
 			$.ajax({
-				url : "/Hye/project/manage/typeChange.do",
+				url : "typeChange",
 				data : "num=" + num + "&memType=" + txt,
 				success : function(result) {
 					$("#memList").html(result);

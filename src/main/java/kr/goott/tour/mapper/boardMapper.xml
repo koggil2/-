@@ -5,7 +5,7 @@
 <mapper namespace="kr.goott.tour.board.BoardDAOInterface">
 	<select id="getAllRecord" resultType="kr.goott.tour.board.BoardVO">
 		select num, rownum no, userid, subject, to_char(regdate,'YYYY-MM-DD') regdate, hit
-		from gt_freeboard where commuPage=#{commuPage}
+		from gt_freeboard where commuPage=#{commuPage} order by num
 	</select>
 	<select id="boardTotalRecord" resultType="int">
 		select count(num) totalRecord from gt_freeboard where commuPage=#{commuPage}
