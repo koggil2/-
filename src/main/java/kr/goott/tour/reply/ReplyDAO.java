@@ -7,9 +7,9 @@ public interface ReplyDAO {
     // ´ñ±Û ¸ñ·Ï
     public List<ReplyVO> list(String goodCode);
     // ´ñ±Û ÀÔ·Â
-    public void create(ReplyVO vo);
+    public void create(ReplyVO rvo);
     // ´ñ±Û ¼öÁ¤
-    public void update(ReplyVO vo);
+    public void update(ReplyVO rvo);
     // ´ñ±Û »èÁ¦
     public void delete(int num);
 }
