@@ -306,10 +306,12 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 	        <!-- **로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
 	        <textarea rows="5" cols="80" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
 	        <br>
-	        <button type="button" id="btnReply">댓글 작성</button>
+	        <div style="text-align: right;">
+	        <button type="button" id="btnReply">상품 문의</button>
+	        </div>
     	</div>
     <!-- **댓글 목록 출력할 위치 --> 
-    <div id="listReply"></div>
+    <div id="listReply">댓글이 나오는 곳ㄱㄱㄱㄱ</div>
 	
 	
 		<!-- 상품문의 끝  -->

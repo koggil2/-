@@ -173,4 +173,6 @@ button::before, button::after {
 }
 
 .que_div h3{text-align: left; font-weight: 600;}
-#replytext {width: 100%;}
+#replytext {width: 100%; text-align: left;}
+#btnReply{text-align: right; }
+#listReply {text-align: left;}
