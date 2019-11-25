@@ -62,7 +62,7 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo", vo);
 		mav.addObject("lst", lst);
-		mav.setViewName("/board/"+commuPage);
+		mav.setViewName("board/"+commuPage);
 	
 		return mav;
 	}

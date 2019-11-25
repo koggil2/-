@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.goott.tour.product.ProductVO;
 
@@ -28,4 +29,17 @@ public class HomeController {
 		return "home";
 	}
 	
+	//회사소개
+	@RequestMapping("/companyInfo/companyInfo")
+	public String companyInfo() {
+		
+		return "companyInfo/companyInfo";
+	}
+	
+	//표준약관 ｜취급방침 ｜이용약관
+	@RequestMapping("/companyInfo/clauseInfo")
+	public String clauseInfo(@RequestParam("cip") int cip) {
+		System.out.println(cip);
+		return "companyInfo/clauseInfo";
+	}
 }

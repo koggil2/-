@@ -17,15 +17,15 @@
 <div id="footdiv">
 	<!-- 회사정보 -->
 			<div id="top-image">
-				<a href="<%=request.getContextPath()%>/index.do"><img src="<%=request.getContextPath()%>/image/Mainlogo.png" id="footLogo"/></a>
+				<a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/image/Mainlogo.png" id="footLogo"/></a>
 			</div>
 				<div id="content">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/project/companyInfo.jsp">회사소개  ｜</a></li>
-						<li><a href="<%=request.getContextPath()%>/project/clauseInfo.jsp?cip=1">표준약관  ｜</a></li><!-- 나중에 do로 고쳐야 함. -->
-						<li><a href="<%=request.getContextPath()%>/project/clauseInfo.jsp?cip=2">취급방침  ｜</a></li>
-						<li><a href="<%=request.getContextPath()%>/project/clauseInfo.jsp?cip=3">이용약관  ｜</a></li>
-						<li><a href="<%=request.getContextPath()%>/project/board/list.do?commuPage=InfoCenter">고객센터</a></li>
+						<li><a href="<%=request.getContextPath()%>/companyInfo/companyInfo">회사소개  ｜</a></li>
+						<li><a href="<%=request.getContextPath()%>/companyInfo/clauseInfo?cip=1">표준약관  ｜</a></li><!-- 나중에 do로 고쳐야 함. -->
+						<li><a href="<%=request.getContextPath()%>/companyInfo/clauseInfo?cip=2">취급방침  ｜</a></li>
+						<li><a href="<%=request.getContextPath()%>/companyInfo/clauseInfo?cip=3">이용약관  ｜</a></li>
+						<li><a href="<%=request.getContextPath()%>/board/list?commuPage=infoCenter">고객센터</a></li>
 						
 					</ul>
 				</div>
