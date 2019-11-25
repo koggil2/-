@@ -65,7 +65,7 @@
 <body>
 <section>
 		<div>
-			<form method="post" onsubmit="return chk()" id="form-signin" class="was-validated" action="login">
+			<form method="post" onsubmit="return chk()" id="form-signin" class="was-validated" action="/tour/admin/login">
 				<div class="text-center">
 					<img src="/tour/image/key.png">
 					<h1 class="h3 mb-3 font-weight-bold">로그인</h1>
