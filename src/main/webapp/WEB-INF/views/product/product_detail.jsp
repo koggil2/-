@@ -190,7 +190,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<h3 style="text-align:left; font-weight: 600;">상품 체크 포인트</h3> 
 			<table class="table_02">
 		    	<tr>
-		       	 	<th scope="row">(아이콘)<br>보험</th>
+		       	 	<th scope="row"><span class="img_icon1"></span>보험</th>
 		        	<td class="row1">
 		        	<ul>
 		        		<li>[여행자보험] ${vo.assure1 }</li>
@@ -200,11 +200,11 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 			    </td>
 			    </tr>
 			    <tr>
-			        <th scope="row">(아이콘)<br>인솔자</th>
+			        <th scope="row"><span class="img_icon"></span>인솔자</th>
 			        <td class="row2">[인솔자] 0명이 넘으면 인솔자가 배정될 예정입니다.</td>
 			    </tr>
 			    <tr>
-			        <th scope="row">(아이콘)<br>투어마일리지</th>
+			        <th scope="row"><span class="img_icon2"></span>투어마일리지</th>
 			        <td class="row3">
 						<ul>
 							<li>여행자 성인1인 기준 2,570 마일 적립 예정<br>
@@ -220,7 +220,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 	
 	<div class="rev_div"> 
 	
-		<h3>(아이콘) 예약시 유의사항</h3>
+		<h3 style="font-weight: 600px;">예약시 유의사항</h3>
 		<P>
 			- 해당 상품은 같은 일정의 상품들과 항공좌석을 공유하므로 타코드 선모객시 조기마감될 수 있습니다.<br>
 			- 여권 상의 영문과 예약 시의 영문이 다를 경우 항공 좌석이 취소될 수 있으며 이에 따른 취소료 또는 추가 차액이 발생할 수 있으니 반드시 예약처에 재확인 하시기 바랍니다.<br>
@@ -297,48 +297,19 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 	
 	<!-- 탭누르면 나오는 div menu1, menu2, menu3 끝 -->
 	
-	
+	 
 		
-<%-- 		<!-- 상품문의  -->
-		<h2>게시글 보기</h2>
-		<form name="form1" method="post">
-		    <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-		        작성일자 : <fmt:formatDate value="${vo.regDate}" pattern="YYYY-MM-dd a HH:mm:ss"/>
-		                <!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
-		    </div>
-		    <div>
-		        아이디
-		        <input name="writer" id="writer" value="${dto.writer}" placeholder="이름을 입력해주세요">
-		        ${vo.userId}
-		    </div>
-		    <div>
-		        내용
-		        <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요">${vo.content}</textarea>
-		    </div>
-		    <div style="width:650px; text-align: center;">
-		        <!-- 게시물번호를 hidden으로 처리 -->
-		        <input type="hidden" name="bno" value="${vo.goodCode}">
-		    <!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
-		    <c:if test="${sessionScope.userId == vo.userId}">
-		        <button type="button" id="btnUpdete">수정</button>
-		        <button type="button" id="btnDelete">삭제</button>
-		    </c:if>
-		        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-		        <button type="button" id="btnList">목록</button>
-		    </div>
-		</form>
-    <div style="width:650px; text-align: center;">
-        <br>
-        
-        <!-- **로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
-        <c:if test="${sessionScope.userId != null}">    
-        <textarea rows="5" cols="80" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
-        <br>
-        <button type="button" id="btnReply">댓글 작성</button>
-        </c:if>
-    </div>
-    <!-- **댓글 목록 출력할 위치 -->
-    <div id="listReply"></div>	 --%>	
+		<!-- 상품문의  -->
+ 	   <div style="width:100%; text-align: center; ">
+	        <br>
+	        
+	        <!-- **로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
+	        <textarea rows="5" cols="80" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
+	        <br>
+	        <button type="button" id="btnReply">댓글 작성</button>
+    	</div>
+    <!-- **댓글 목록 출력할 위치 --> 
+    <div id="listReply"></div>
 	
 	
 		<!-- 상품문의 끝  -->

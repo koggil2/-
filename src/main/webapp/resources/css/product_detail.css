@@ -8,7 +8,16 @@
 .w3-section, .w3-code{ margin-top: 0 !important; margin-bottom: 0 !important; }
 .product_menu>li{width:860px; height: 35px; font-size: 17px; text-align: left; }
 .code{font-size: 12px; width:150px; height: 20px; margin:10px 0;}
-span {margin-right: 60px;} 
+span{margin-right: 60px;}
+.img_icon{width:25px; height: 28px; overflow: hidden; display:block; margin:0 auto 5px; 
+	vertical-align:middle; background: url("../../image/sp_ico1.png") no-repeat -242px -26px;} 
+.img_icon1{width:20px; height: 28px; overflow: hidden; display:block; margin:0 auto 5px; 
+	vertical-align:middle; background: url("../../image/sp_ico1.png") no-repeat -212px -26px;} 
+.img_icon2{width:26px; height: 18px; overflow: hidden; display:block; margin:0 auto 5px; 
+vertical-align:middle; background: url("../../image/sp_ico1.png") no-repeat -278px -26px;} 
+.img_icon3{width:16px; height: 16px; overflow: hidden; display:block; margin:0 auto 5px; 
+vertical-align:middle; background: url("../../image/sp_ico1.png") no-repeat -147px 0; position: relative; left:24px;} 
+
 .title_name{width: 760px;}
 .product_list{width:760px; height:150px;}
 
@@ -164,3 +173,4 @@ button::before, button::after {
 }
 
 .que_div h3{text-align: left; font-weight: 600;}
+#replytext {width: 100%;}
