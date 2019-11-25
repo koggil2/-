@@ -29,10 +29,10 @@ public class ReplyController  {
     
     // 댓글 입력 
     @RequestMapping("insert.do")
-    public void insert(@ModelAttribute ReplyVO vo, HttpSession session){
-        String userId = (String) session.getAttribute("userId");
-        vo.setUserId(userId);
-        replyService.create(vo);
+    public void insert(@ModelAttribute ReplyVO rvo, HttpSession session){
+        String userId = (String)session.getAttribute("userId");
+        rvo.setUserId(userId);
+        replyService.create(rvo);
     }
     
     // 댓글 목록(@Controller방식 : veiw(화면)를 리턴)

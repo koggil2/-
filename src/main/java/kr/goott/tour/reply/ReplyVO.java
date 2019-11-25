@@ -8,7 +8,7 @@ public class ReplyVO {
 		private String userId;
 		private int jumsu;
 		private String content;
-		private String regdate;
+		private String regDate;
 		
 		public int getNum() {
 			return num;
@@ -41,10 +41,10 @@ public class ReplyVO {
 			this.content = content;
 		}
 		public String getReg_datetime() {
-			return regdate;
+			return regDate;
 		}
 		public void setReg_datetime(String reg_datetime) {
-			this.regdate = reg_datetime;
+			this.regDate = reg_datetime;
 		}
 		// ¸¸Á·µµ //
 		
@@ -52,7 +52,7 @@ public class ReplyVO {
 	    @Override
 	    public String toString() {
 	        return "ReplyVO [num=" + num + ", goodCode=" + goodCode + ", userId=" + userId + ", jumsu=" + jumsu
-	                + ", content=" + content + ", regdate=" + regdate +"]";
+	                + ", content=" + content + ", regdate=" + regDate +"]";
 	    }
 	    
 	
