@@ -277,9 +277,8 @@
 							<td><input type="hidden" id="memType" name="memType"
 								value="일반"></td>
 						</tr>
-
 						<tr>
-							<td class="stit" colspan="2"><b>서비스 이용약관</b></td>
+							<td class="stit" colspan="2" style="border-top:0px"><b>서비스 이용약관</b></td>
 						</tr>
 						<tr>
 							<td class="frm2" colspan="2">

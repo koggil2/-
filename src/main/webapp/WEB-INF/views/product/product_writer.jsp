@@ -35,7 +35,8 @@
 	.row1 ul li input{margin-left:20px}
 	
 	.dateListLi{float:none; line-height:30px;}
-	#datePan>li{float:none; list-style-type:none;}
+	#datePan>li{float:none; text-align:left; list-style-type:none; margin-bottom:10px;}
+	#datePan>li:last-child{margin-bottom:0;}
 	.rev_div p, .rev_div h3{text-align: left;}
 	.rev_div{background: #efefef; padding: 40px 40px;}
 	.rev_div h3{font-weight: 500;}
@@ -71,7 +72,7 @@
 	#revDetailTable table tr{line-height:30px}
 	.dayTable td{width:100px; padding:20px; border:1px solid #ccc;}
 	.dayTable td:last-child{width:1200px; padding:0px 20px;}
-	#revDetailTable button:focus { outline:none;}
+	section button:focus { outline:none;}
 	.btStyle {margin-left: 20px; width:15px; height:15px; font-size:15px; border: 0; background:none;}
 	.btStylePlus {margin-left: 20px; width:25px; height:25px; font-size:25px; border: 0; background:none;}
 	
@@ -80,7 +81,6 @@
 	.w3-content div {width:240px; height:165px; float:left; margin-right:6px; margin-bottom:6px; border:1px solid #ddd;}
 	.w3-content div:nth-child(2n) {margin-right:0px;}
 	.w3-content div:nth-child(3),.w3-content div:nth-child(4){margin-bottom:0px;}
-
 </style>
 <script>
 	$(function(){
@@ -117,7 +117,10 @@
 				
 				var backYear = today.getFullYear();
 				var backMonth = today.getMonth()+1;
+				if(backMonth<10)backMonth = "0" + backMonth ;
 				var backDate = today.getDate();
+				if(backDate<10)backDate = "0" + backDate ;
+				
 				
 				var setDate = backYear+"-"+backMonth+"-"+backDate;
 	
@@ -149,11 +152,14 @@
 	});
 	function insertDate(){
 		if($("#startDate").val()!=""&&$("#backDate").val()!=""){
-			var dateTxt = "<li class='dateListLi'>"+$("#startDate").val()+" ~ "+$("#backDate").val()+"</li>"
+			var dateTxt = "<li class='dateListLi'>"+$("#startDate").val()+" ~ "+$("#backDate").val()+"<button class='btStyle btnClose' onclick='deleteDate()'>x</button></li>"
 			$("#dateList").append(dateTxt);
 			$("#startDate").val("");
 			$("#backDate").val("");
 		}
+	}
+	function deleteDate(){
+		var targetDiv = event.target.parentElement.remove();
 	}
 	function revDetailInsert()	{
 		//이벤트가 발생한 버튼
@@ -249,8 +255,7 @@
 					<div class="product_list">
 						<ul class="product_menu">
 							<li><span class="spanMr">상품가격</span><input type="text" placeholder="가격"/>원</li>
-							<li><span class="spanMr">출발지역</span>
-								<select>
+							<li><span class="spanMr">출발지역</span><select>
 									<option value="0">=출발지역=</option>
 									<option value="1">서울</option>
 									<option value="2">인천</option>
@@ -285,8 +290,7 @@
 			        	<li><span class="spanMr">출발일자</span><input type="text" id="startDate"/></li>
 						<li><span class="spanMr">도착일자</span><input type="text" id="backDate" disabled/><button onclick="insertDate()">추가</button></li>
 		        	</ul>
-		        	<ul id="dateList">
-					</ul>
+		        	<ul id="dateList"></ul>
 		        </td>
 		    </tr>
 		    <tr>
