@@ -23,4 +23,7 @@
 		update gt_register set tel=#{tel}, zipCode=#{zipCode}, addr=#{addr}, detailAddr=#{detailAddr}, email=#{email}
 		where userId=#{userId} and userPwd=#{userPwd}
 	</update>
+	<delete id="deleteRecord" parameterType="String">
+		delete from gt_register where userId=#{param1} and userPwd=#{param2}
+	</delete>
 </mapper>

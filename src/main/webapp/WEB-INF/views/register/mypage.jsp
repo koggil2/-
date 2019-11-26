@@ -10,8 +10,8 @@
 	$("#imgBannerText>h1").text("<%=pageName%>");
 	$("#imgBannerText>h2").text("<%=pageSideName%>");
 
-
-
+	
+	
 </script>
 <style>
 	#myProfile{height:300px;}
@@ -32,6 +32,8 @@
 	#revData tr>td:nth-child(3){width:25%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 	#revData tr>td:nth-child(6){width:6%}
 	#revData tr>td:nth-child(8){width:9%}
+	
+ 	#profileDiv input{width:120px;margin-top:5px;} 
 </style>
 
 <section>
@@ -44,7 +46,8 @@
 			<div><img src="/tour/image/myPageProfile.png"/></div>
 			<h5>${logname}님</h5>
 			
-			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정" onclick="location.href='editForm?userId=${logid}'"/>
+			<input type="button" id ="edit-btn" class="btn btn-secondary" value="회원정보수정" onclick="location.href='editForm?userId=${logid}'"/><br/>
+			<input type="button" id ="del-btn" class="btn btn-secondary" value="회원탈퇴" onclick="location.href='del?userId=${logid}'"/>
 		</div>
 		<div id="membershipDiv">
 			<h4>회원등급</h4>

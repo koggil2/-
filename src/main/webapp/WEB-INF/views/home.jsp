@@ -75,7 +75,9 @@
 					<!-- 작은메뉴 -->
 					<ul id="miniMenu" class="navbar-header">
 					<li class="nav-item"><a href="/tour/board/list?commuPage=infoCenter">고객센터</a></li>
+					<c:if test="${logid!=null }">
 					<li class="nav-item"><a href="/tour/reservation/basket">여행바구니</a></li>
+					</c:if>
 					<c:if test="${logid==null }">
 					<li class="nav-item"><a href="/tour/register/registerForm">회원가입</a></li>
 					<li class="nav-item"><a href="/tour/register/loginForm">로그인</a></li>

@@ -136,4 +136,31 @@ public class RegisterController {
 	public String mypage() {
 		return "register/mypage";
 	}
+	
+	//È¸¿øÅ»Åð ÆûÀ¸·Î ÀÌµ¿
+	@RequestMapping("/register/del")
+	public String delForm(@RequestParam("userId") String userId) {
+		return "register/deleteForm";
+	}
+	
+	//È¸¿øÅ»Åð 
+	@RequestMapping(value="/register/deleteOk", method = RequestMethod.POST)
+	public ModelAndView deleteOk(@RequestParam("userId") String userId,
+								 @RequestParam("userPwd") String userPwd,
+								 HttpServletRequest req) {
+		
+		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
+		int cnt = dao.deleteRecord(userId, userPwd);
+		
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		System.out.println(cnt);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("cnt", cnt);
+		mav.setViewName("register/deleteOk");
+		
+		return mav;
+	}
 }

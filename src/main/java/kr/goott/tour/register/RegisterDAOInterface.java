@@ -18,4 +18,6 @@ public interface RegisterDAOInterface {
 
 	public RegisterVO selectRecord(String userId);//회원가입수정 폼
 	
+	public int deleteRecord(String userId, String userPwd);
+	
 }
