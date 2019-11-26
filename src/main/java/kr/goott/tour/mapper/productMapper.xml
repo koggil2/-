@@ -13,9 +13,11 @@
 		where goodCode=#{goodCode}
 	</select>
 	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
-		 select a.sc_num, a.goodcode, startdate, backdate, userid, jang 
- 		 from (select * from gt_schedule where goodCode=#{goodCode}) a 
- 		 left join ( select * from gt_basket where userId=#{userId}) b on  a.sc_num=b.sc_num; 
+		 select sc_num, goodcode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+ 		 from gt_schedule where goodCode=#{goodCode}
+	</select>
+	<select id="selectUserSchedule" resultType="java.lang.Integer">
+		 select count(num) from gt_basket where sc_num=${sc_num} and userId='${userId}'
 	</select>
 	<select id="selectShcedule" resultType="kr.goott.tour.product.ScheduleVO">
 		select sc_num, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate

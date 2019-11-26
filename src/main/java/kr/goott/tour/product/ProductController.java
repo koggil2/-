@@ -1,6 +1,9 @@
 package kr.goott.tour.product;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +29,9 @@ public class ProductController {
 		
 		List<ProductVO> list = dao.getAllRecord(vo);
 		
-		ProductVO vo2 = list.get(0);
-		
-		System.out.println(vo2.getGoodCode()+","+vo2.getTravelType());
-		
-		
+//		ProductVO vo2 = list.get(0);
+//		System.out.println(vo2.getGoodCode()+","+vo2.getTravelType());
+				
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.setViewName("product/product_list");
@@ -61,23 +62,29 @@ public class ProductController {
 	//여행 일정 페이지로 이동
 	@RequestMapping("/product/product_view")
 	public ModelAndView product_view(@RequestParam("goodCode") String goodCode,
-									 @RequestParam("userId") String userId) {  
-      ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
-      ProductVO pvo = new ProductVO();
-      pvo = dao.selectRecord(goodCode);
+									 HttpServletRequest req) {
+//	  System.out.println(goodCode+","+userId);
+	  String userId = (String)req.getSession().getAttribute("logid");
       
-      BasketVO bvo = new BasketVO();
-      bvo.setUserId(userId);
+	  ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+      ProductVO vo = new ProductVO();
+      vo = dao.selectRecord(goodCode);
       
-      List<ScheduleVO> list = dao.selectAllSchedule(pvo.getGoodCode(), bvo.getUserId());
-      
-      
-      
+      List<ScheduleVO> list = dao.selectAllSchedule(vo.getGoodCode());
       ModelAndView mav = new ModelAndView();
-   
+      
+      if(userId != null) {  
+    	  List<Integer> list2 = new ArrayList<Integer>();
+    	for (int j = 0; j < list.size(); j++) {
+//    		System.out.println(list.get(j).getSc_num());
+    		list2.add(dao.selectUserSchedule(list.get(j).getSc_num(), userId));
+//    		System.out.println(dao.selectUserSchedule(list.get(j).getSc_num(), userId));
+		}
+    	 mav.addObject("list2", list2);
+      }
+      
       mav.addObject("list", list);
-      mav.addObject("pvo", pvo);
-      mav.addObject("bvo", bvo);
+      mav.addObject("vo", vo);
       mav.setViewName("product/product_view");
       
       return mav;
