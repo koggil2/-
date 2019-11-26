@@ -27,4 +27,12 @@ public interface ProductDAOInterface {
     public int insertBasket(BasketVO vo);
     // 여행바구니 취소
     public int deleteBasket(BasketVO vo);
+    // 여행선택(테이블에 있는지 없는 여부 확인)
+    public int selectBasket(@Param("sc_num") int sc_num, @Param("userId") String userId);
+    // 관심 추가
+    public int insertHeart(HeartVO vo);
+    // 관심 취소
+    public int deleteHeart(HeartVO vo);
+    // 관심선택(테이블에 있는지 없는 여부 확인)
+    public int selectHeart(@Param("sc_num") int sc_num, @Param("userId") String userId);
 }

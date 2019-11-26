@@ -37,4 +37,22 @@
 		delete from gt_basket
 		where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId}
 	</delete>
+	<select id="selectBasket" resultType="int">
+		select count(num) 
+		from gt_basket
+		where sc_num=#{sc_num} and userId=#{userId}
+	</select>
+	<insert id="insertHeart" parameterType="kr.goott.tour.product.HeartVO">
+		insert into gt_like(num, goodCode, sc_num, userId, heart)
+		values(gt_heart_sq.nextVal, #{goodCode}, #{sc_num}, #{userId}, ${heart} )
+	</insert>
+	<delete id="deleteHeart" parameterType="kr.goott.tour.product.HeartVO">
+		delete from gt_like
+		where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId}
+	</delete>
+	<select id="selectHeart" resultType="int">
+		select count(num) 
+		from gt_like
+		where sc_num=#{sc_num} and userId=#{userId}
+	</select>
 </mapper>

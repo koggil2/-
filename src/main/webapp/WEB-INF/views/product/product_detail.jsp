@@ -20,7 +20,93 @@ $("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
 $("#imgBannerText>h1").text("<%=pageName%>");
 $("#imgBannerText>h2").text("<%=pageSideName%>");
 
-	$(function(){
+	/* 아이디 없을 때 하트 */
+	function heart(){
+		alert("로그인이 필요합니다.");
+		$("#heart1").prop('checked', false);
+	}
+
+	$(function(){	
+		/* 하트 */
+		$("#heart1").change(function(){
+			console.log($(this).prop("checked"))
+			if($(this).prop("checked")){
+				var state=1;
+				var url = "heartIn"
+				var params = $(this).val()+state;
+				$.ajax({
+					url: url,
+					data : params,
+					type : "GET",
+					success : function(result){ 
+						if(result>0){
+							alert("관심 등록됐습니다.");
+						}
+					},
+					erorr : function(e){
+						alert(e.responseText);
+					}
+				})
+			}else {
+				state=0;
+				var url = "heartOut"
+				var params = $(this).val()+state;
+				$.ajax({
+					url: url,
+					data : params,
+					type : "GET",
+					success : function(result){ 
+						if(result>0){
+							alert("관심 등록이 취소됐습니다.");
+						}
+					},
+					erorr : function(e){
+						alert(e.responseText);
+					}
+				});
+			}
+		});
+		
+		$("#cart").click(function(){
+			if($(this).val()>0){
+				if(confirm("이미 등록된 상품입니다. 등록취소하시겠습니까?")){
+					var params = "goodCode=${vo.goodCode}&sc_num=${sc.sc_num}&userId=${logid}"
+					$.ajax({
+						url : "basketOut",
+						data : params,
+						type : "GET",
+						success : function(result){ 
+							if(result>0){
+								alert("관심 등록이 취소됐습니다.");
+							}
+						},
+						erorr : function(e){
+							alert(e.responseText);
+						}
+						
+					});
+				}
+			}else{
+				var state = 1;
+				var params = "goodCode=${vo.goodCode}&sc_num=${sc.sc_num}&userId=${logid}&jang="+state;	
+				$.ajax({
+						url : "basketIn",
+						data : params,
+						type : "GET",
+						success : function(result){ 
+							if(result>0){
+								alert("여행바구니에 등록됐습니다.");
+							}
+						},
+						erorr : function(e){
+							alert(e.responseText);
+						}
+						
+					});
+			}
+		});
+		
+		
 		var clickYN = true;
 			$("#gg").click(function(){
 				if(clickYN){
@@ -66,8 +152,14 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 				</div>
 				<div class="title_text" style="text-align: left">
 					<div class="circle_heart">
-					<input type="checkbox" id="cart1" style="display:none;"/>
-									<label for="cart1"><i class="fas fa-heart"></i></label>
+						<c:if test="${logid != null}">
+							<input type="checkbox" id="heart1" <c:if test="${heart!=0}">checked</c:if> style="display:none;" value="userId=${logid}&goodCode=${vo.goodCode}&sc_num=${sc.sc_num}&heart="/>
+							<label for="heart1"><i class="fas fa-heart"></i></label>
+						</c:if>
+						<c:if test="${logid == null}">
+							<input type="checkbox" id="heart1" style="display:none;" onchange="heart()"/>
+							<label for="heart1"><i class="fas fa-heart"></i></label>
+						</c:if>
 					</div>
 					<div class="title_name"><h1 style="text-align: left; padding-right: 40px; font-size:30px; font-weight: 600;">${vo.goodName}(${vo.travelTerm})</h1></div>
 					<div class='code' style="text-align: left"> ( 상품코드: ${vo.goodCode} )</div>
@@ -81,7 +173,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 					</div>
 					<div class="btn_menu">
 						<button class="btn-1" >예약하기</button>
-						<button class="btn-2" >장바구니</button>
+						<button class="btn-2" id="cart" value="${jang}">장바구니</button>
 					</div>
 				</div>
 			</div>
@@ -242,7 +334,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
             <div class="input-group">
              	<input type="hidden" name="sc_num"	value="${sc.sc_num}"/>
                <input type="hidden" name="goodCode" value="${vo.goodCode}"/>
-               <input type="hidden" name="userId" value="${logid }"/>
+               <input type="hidden" name="userId" value="${logid}"/>
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
                <span class="input-group-btn">
                     <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
