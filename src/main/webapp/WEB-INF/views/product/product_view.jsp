@@ -11,12 +11,12 @@
 </style>
 <style>
 #a1{width : 100px;}
-#main{margin : 0px auto; width : 1200px ;height : 600px;}
+#main{margin : 0px auto; width : 1100px ;height : 600px;}
 #a1{margin : 0px auto; width : 100%; height:50px; line-height:50px; font-size:20px;}
 #main2>div{float : left; height : 600px;}
-#imgslide, #select{border:1px solid #ddd; margin-top:20px; padding:20px}
-#imgslide{margin-left:20px;border-radius:5px 0px 0px 5px;width:400px; }
-#select{margin-right:20px;border-radius:0px 5px 5px 0px;width:750px;padding:0px; }
+#imgslide, #select{border:1px solid #ddd; margin:20px 0; padding:20px}
+#imgslide{border-radius:5px 0px 0px 5px;width:400px; }
+#select{margin:20px;border-radius:0px 5px 5px 0px;width:650px; }
 
 #prospec{height : 500px; margin : 0px auto; width : 1200px;}
 #tabmenu>div{border:1px solid #ddd; width : 33.33%; float : left;}
@@ -25,9 +25,9 @@
 #list2,#list3{display : none;}
 hr{margin:10px 5px;}
 
-#reply{width:1200px;}
+#reply{width:1100px;}
 #list3{padding-top:30px;text-align:left;}
-#img1{width:350px; height:200px;margin-top: 30px;}
+#img1{margin-top: 30px;}
 #img1>img{width:350px; height:200px;}
 #imgslide ul, #imgslide li{clear:left;}
 
@@ -50,8 +50,8 @@ hr{margin:10px 5px;}
     width: 100px;
 }
 
-#eve {width:1200px; height:100px;margin:150px 0px 50px 0px;}
-#product_list{width:1200px;}
+#eve {width:1100px; height:100px;margin:150px 0px 50px 0px;}
+#product_list{width:1100px;}
 #tblist{font-family:"맑은 고딕";font-size:13px;}
 input[id^=cart]+label{width: 20px;height: 20px;background: url(../image/cart_off.png);}
 input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
@@ -332,22 +332,21 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 		<div id="tableList">
 			<table id="tblist" class="table table-bordered">
 				<colgroup>
-					<col style="width:138px;">
-					<col style="width:108px;">
-					<col style="width:89px;">
-					<col style="width:469px;">
-					<col style="width:118px;">
-					<col style="width:99px;">
-					<col style="width:79px;">
+					<col style="width:150px;">
+					<col style="width:100px;">
+					<col style="width:450px;">
+					<col style="width:100px;">
+					<col style="width:100px;">
+					<col style="width:100px;">
 				</colgroup>
 				<thead>
 					<tr>
 						<th scope="col" class="col1">출/도착정보</th>
-						<th scope="col" class="col3">여행기간</th>
-						<th scope="col" class="col4">상품명</th>
-						<th scope="col" class="col5">상품가격</th>
-						<th scope="col" class="col6">예약상태</th>
-						<th scope="col" class="col7">장바구니</th>
+						<th scope="col" class="col2">여행기간</th>
+						<th scope="col" class="col3">상품명</th>
+						<th scope="col" class="col4">상품가격</th>
+						<th scope="col" class="col5">예약상태</th>
+						<th scope="col" class="col6">장바구니</th>
 					</tr>
 				</thead>
 				<!-- 일정목록 -->
@@ -356,10 +355,10 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 						<tr>
 							<td><span style="color:blue;">${s.startDate}</span><br>${s.backDate}</td>
 							<td>${vo.travelTerm}</td>
-							<td><a href="product_detail?goodCode=${vo.goodCode}&num=${s.num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
+							<td><a href="product_detail?goodCode=${vo.goodCode}&sc_num=${s.sc_num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
 							<td>${vo.price}</td>
 							<td>예약대기</td>
-							<td><input type="checkbox" id="cart1" style="display:none;"/>
+							<td><input type="checkbox" id="cart${s.sc_num}" style="display:none;"/>
 								<label for="cart1"></label>
 							</td>
 						</tr>

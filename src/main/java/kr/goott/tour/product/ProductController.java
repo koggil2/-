@@ -79,16 +79,16 @@ public class ProductController {
 	//여행상품 상세페이지로 이동
 	@RequestMapping("/product/product_detail")
 	public ModelAndView product_detail(@RequestParam("goodCode") String goodCode,
-								 @RequestParam("num") int num) {
+								 @RequestParam("sc_num") int sc_num) {
 		//상품코드로 상품정보
 		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
 		ProductVO vo =  new ProductVO();
 		vo = dao.selectRecord(goodCode);
 		
-		System.out.println(vo.getGoodCode()+","+vo.getTravelType()+","+num);
+		System.out.println(vo.getGoodCode()+","+vo.getTravelType()+","+sc_num);
 		
 		ScheduleVO svo = new ScheduleVO();
-		svo = dao.selectShcedule(num);
+		svo = dao.selectShcedule(sc_num);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sc", svo);

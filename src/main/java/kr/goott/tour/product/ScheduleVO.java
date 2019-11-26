@@ -1,16 +1,16 @@
 package kr.goott.tour.product;
 
 public class ScheduleVO {
-	private int num;
+	private int sc_num;
 	private String goodCode;
 	private String startDate;
 	private String backDate;
 	
-	public int getNum() {
-		return num;
+	public int getSc_num() {
+		return sc_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setSc_num(int sc_num) {
+		this.sc_num = sc_num;
 	}
 	public String getGoodCode() {
 		return goodCode;

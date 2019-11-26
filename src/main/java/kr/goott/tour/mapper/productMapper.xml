@@ -13,14 +13,14 @@
 		where goodCode=#{goodCode}
 	</select>
 	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
-		select num, goodCode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate  
+		select sc_num, goodCode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate  
 		from gt_schedule
 		where goodCode=#{goodCode}
 	</select>
 	<select id="selectShcedule" resultType="kr.goott.tour.product.ScheduleVO">
 		select to_char(startDate, 'YYYY-MM-DD')startDate, to_char(backDate, 'YYYY-MM-DD') backDate
 		from gt_schedule
-		where num=#{num}
+		where sc_num=#{num}
 	</select>
 	<select id="travelTypeList" resultType="kr.goott.tour.product.ProductVO">
 		select num, goodCode, goodName, price, travelType, travelTerm, startarea, destination, resermin, resernum, assure1, assure2, assure3, gooddata
