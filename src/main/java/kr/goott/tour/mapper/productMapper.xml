@@ -18,7 +18,7 @@
  		 left join ( select * from gt_basket where userId=#{userId}) b on  a.sc_num=b.sc_num; 
 	</select>
 	<select id="selectShcedule" resultType="kr.goott.tour.product.ScheduleVO">
-		select to_char(startDate, 'YYYY-MM-DD')startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+		select sc_num, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
 		from gt_schedule
 		where sc_num=#{num}
 	</select>
