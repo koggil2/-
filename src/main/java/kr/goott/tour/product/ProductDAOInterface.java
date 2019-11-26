@@ -14,9 +14,13 @@ public interface ProductDAOInterface {
     // 여행상품 선택
     public ProductVO selectRecord(String goodcode);
     // 상품 일정 전체 목록 선택
-    public List<ScheduleVO> selectAllSchedule(String goodcode);
+    public List<ScheduleVO> selectAllSchedule(String goodcode, String userId);
     // 상세 상품 선택
     public ScheduleVO selectShcedule(int num);
     // 여행분류별 상품 리스트선택
     public List<ProductVO> travelTypeList(String travelType);
+    // 여행바구니 추가
+    public int insertBasket(BasketVO vo);
+    // 여행바구니 취소
+    public int deleteBasket(BasketVO vo);
 }

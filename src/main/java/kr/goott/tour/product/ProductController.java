@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.goott.tour.register.RegisterVO;
 
 
 @Controller
@@ -35,8 +38,6 @@ public class ProductController {
 		return mav;
 	}
 	
-	
-	
 	//추천상품 페이지로 이동
 	@RequestMapping("/product/product_recommendList")
 	public ModelAndView product_recommendList(ProductVO vo) {
@@ -59,17 +60,24 @@ public class ProductController {
 	
 	//여행 일정 페이지로 이동
 	@RequestMapping("/product/product_view")
-	public ModelAndView product_view(@RequestParam("goodCode") String goodCode) {  
+	public ModelAndView product_view(@RequestParam("goodCode") String goodCode,
+									 @RequestParam("userId") String userId) {  
       ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
-      ProductVO vo = new ProductVO();
-      vo = dao.selectRecord(goodCode);
+      ProductVO pvo = new ProductVO();
+      pvo = dao.selectRecord(goodCode);
       
-      List<ScheduleVO> list = dao.selectAllSchedule(vo.getGoodCode());
+      BasketVO bvo = new BasketVO();
+      bvo.setUserId(userId);
+      
+      List<ScheduleVO> list = dao.selectAllSchedule(pvo.getGoodCode(), bvo.getUserId());
+      
+      
       
       ModelAndView mav = new ModelAndView();
    
       mav.addObject("list", list);
-      mav.addObject("vo", vo);
+      mav.addObject("pvo", pvo);
+      mav.addObject("bvo", bvo);
       mav.setViewName("product/product_view");
       
       return mav;
@@ -126,5 +134,35 @@ public class ProductController {
 		mav.setViewName("product/product_writer");
 		
 		return mav;
+	}
+	
+	//여행바구니 추가
+	@RequestMapping("/product/basketIn")
+	@ResponseBody
+	public int basketIn(BasketVO vo) {
+		System.out.println(vo.getUserId());	//로그인 아이디
+		System.out.println(vo.getGoodCode());	//상품코드
+		System.out.println(vo.getSc_num());	//일정번호
+		System.out.println(vo.getJang());		//여행바구니
+		
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		int cnt = dao.insertBasket(vo);
+		return cnt;
+	}
+	
+	//여행바구니 추가
+	@RequestMapping("/product/basketOut")
+	@ResponseBody
+	public int basketOut(BasketVO vo) {
+		System.out.println(vo.getUserId());	//로그인 아이디
+		System.out.println(vo.getGoodCode());	//상품코드
+		System.out.println(vo.getSc_num());	//일정번호
+		System.out.println(vo.getJang());		//여행바구니
+		
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		int cnt = dao.deleteBasket(vo);
+		return cnt;
 	}
 }

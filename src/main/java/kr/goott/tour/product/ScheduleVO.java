@@ -1,10 +1,18 @@
 package kr.goott.tour.product;
 
 public class ScheduleVO {
-	private int sc_num;
-	private String goodCode;
-	private String startDate;
-	private String backDate;
+	private int sc_num;			//일정번호
+	private String goodCode;	//상품코드
+	private String startDate;	//출발날짜
+	private String backDate;	//도착날짜
+	
+	private String userId;		//사용자 아이디
+	private int j_num;			//여행바구니 일련번호
+	private int jang;			//여행바구니
+	
+	private int h_num;			//관심 일련번호
+	private int heart;			//관심
+	
 	
 	public int getSc_num() {
 		return sc_num;

@@ -44,7 +44,7 @@
 	    			<td>상품이미지</td>
 	    			<td>${p.goodCode}</td>
 	    			<td>${p.travelType}</td>
-	    			<td><a href="product_view?goodCode=${p.goodCode}">${p.goodName}</a></td>
+	    			<td><a href="product_view?goodCode=${p.goodCode}&userId=${logid}">${p.goodName}</a></td>
 	    			<td>${p.startArea}</td>
 	    			<td>${p.destination}</td>
 	    			<td>${p.travelTerm}</td>

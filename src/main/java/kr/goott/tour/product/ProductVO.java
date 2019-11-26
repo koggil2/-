@@ -18,6 +18,7 @@ public class ProductVO {
 	private String assure2;
 	private String assure3;
 	
+	
 	public int getNum() {
 		return num;
 	}
@@ -108,12 +109,5 @@ public class ProductVO {
 	public void setAssure3(String assure3) {
 		this.assure3 = assure3;
 	}
-	
-	
-	
-	
-	
-	
-		
-	
+
 }

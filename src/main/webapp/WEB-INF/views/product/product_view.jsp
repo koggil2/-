@@ -53,21 +53,11 @@ hr{margin:10px 5px;}
 #eve {width:1100px; height:100px;margin:150px 0px 50px 0px;}
 #product_list{width:1100px;}
 #tblist{font-family:"맑은 고딕";font-size:13px;}
-input[id^=cart]+label{width: 20px;height: 20px;background: url(../image/cart_off.png);}
+input[id^=cart]+label{width: 20px;height: 20px; background: url(../image/cart_off.png);}
 input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 </style>
 <script>
-	var state=0;
-	function ChangeImage() {
-		console.log(this.name);
-		if(state==0) {
-			$(this).attr("src", "../image/cart_on.png");
-			state=1;
-		} else {
-			$(this).attr("src", "../image/cart_off.png");
-			state=0;
-		}
-	}
+
 	function setCal(){
  		var List="";
 		for(i=1; i<=12; i++){
@@ -91,6 +81,56 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 	}
 	
 	$(function(){
+		/* 아이디 없을 때 장바구니 */
+		function cart(){
+			alert("로그인이 필요합니다.");
+			$("tbody input[type='checkbox']").prop('checked', false);
+		}
+			
+		/* 장바구니 */
+		$("tbody input[type='checkbox']").change(function(){
+			console.log($(this).prop("checked"))
+			if($(this).prop("checked")){
+				var state=1;
+				var url = "basketIn"
+				var params = $(this).val()+state;
+				$.ajax({
+					url: url,
+					data : params,
+					type : "GET",
+					url : url,
+					data : params,
+					success : function(result){ 
+						if(result>0){
+							alert("여행바구니에 등록됐습니다.");
+						}
+					},
+					erorr : function(e){
+						alert(e.responseText);
+					}
+				})
+			}else {
+				state=0;
+				var url = "basketOut"
+				var params = $(this).val()+state;
+				$.ajax({
+					url: url,
+					data : params,
+					type : "GET",
+					url : url,
+					data : params,
+					success : function(result){ 
+						if(result>0){
+							alert("여행바구니에 등록이 취소됐습니다.");
+						}
+					},
+					erorr : function(e){
+						alert(e.responseText);
+					}
+				})
+			}
+			
+		});
 		var x = parseInt($("#count>div:nth-child(2)").html());
 		
 		$("#count>div").on("click",function(){
@@ -98,14 +138,14 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 				var cnt = x+=1
 				$("#count>div:nth-child(2)").text(cnt);
 				$("#price>span").text(parseInt($("#price>span").html())+92000)
-			}
-			if($("#count>div:nth-child(2)").html() <= 100 &&$("#count>div:nth-child(2)").html() > 0 && $(this).index() == 0){
+			}else if($("#count>div:nth-child(2)").html() <= 100 &&$("#count>div:nth-child(2)").html() > 0 && $(this).index() == 0){
 				var cnt = x-=1
 				$("#count>div:nth-child(2)").text(cnt);
 				$("#price>span").text(parseInt($("#price>span").html())-92000)
 				
 			}
 		});
+		
 		$("#tabmenu>div").on("click",function(){
 			if($(this).index() == 0){
 				$(this).css("background","#00a7f0").css("color","#fff");
@@ -132,7 +172,159 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 		
 		$("#up").click(function(){imageMove2();});
 		$("#down").click(function(){imageMove();});
-	});			
+		
+	});	
+	
+	/* 달력  */	    
+   var today = null;
+   var year = null;
+   var month = null;
+   var firstDay = null;
+   var lastDay = null;
+   var $tdDay = null;
+   var $tdSche = null;
+   var jsonData = null;
+   $(document).ready(function() {
+       drawCalendar();
+       initDate();
+       drawDays();
+       drawSche();
+       $("#movePrevMonth").on("click", function(){movePrevMonth();});
+       $("#moveNextMonth").on("click", function(){moveNextMonth();});
+   });
+   
+   //Calendar 그리기
+   function drawCalendar(){
+       var setTableHTML = "";
+       setTableHTML+='<table class="calendar">';
+       setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
+       for(var i=0;i<6;i++){
+           setTableHTML+='<tr height="80">';
+           for(var j=0;j<7;j++){
+               setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
+               setTableHTML+='    <div class="cal-day"></div>';
+               setTableHTML+='    <div class="cal-schedule"></div>';
+               setTableHTML+='</td>';
+           }
+           setTableHTML+='</tr>';
+       }
+       setTableHTML+='</table>';
+       $("#cal_tab").html(setTableHTML);
+   }
+   
+   //날짜 초기화
+   function initDate(){
+       $tdDay = $("td div.cal-day")
+       $tdSche = $("td div.cal-schedule")
+       dayCount = 0;
+       today = new Date();
+       year = today.getFullYear();
+       month = today.getMonth()+1;
+       if(month < 10){month = "0"+month;}
+       firstDay = new Date(year,month-1,1);
+       lastDay = new Date(year,month,0);
+   }
+   
+   //calendar 날짜표시
+   function drawDays(){
+       $("#cal_top_year").text(year);
+       $("#cal_top_month").text(month);
+       for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
+           $tdDay.eq(i).text(++dayCount);
+       }
+       for(var i=0;i<42;i+=7){
+           $tdDay.eq(i).css("color","red");
+       }
+       for(var i=6;i<42;i+=7){
+           $tdDay.eq(i).css("color","blue");
+       }
+   }
+   
+   //calendar 월 이동
+   function movePrevMonth(){
+       month--;
+       if(month<=0){
+           month=12;
+           year--;
+       }
+       if(month<10){
+           month=String("0"+month);
+       }
+       getNewInfo();
+       }
+   
+   function moveNextMonth(){
+       month++;
+       if(month>12){
+           month=1;
+           year++;
+       }
+       if(month<10){
+           month=String("0"+month);
+       }
+       getNewInfo();
+   }
+   
+   //정보갱신
+   function getNewInfo(){
+       for(var i=0;i<42;i++){
+           $tdDay.eq(i).text("");
+           $tdSche.eq(i).text("");
+       }
+       dayCount=0;
+       firstDay = new Date(year,month-1,1);
+       lastDay = new Date(year,month,0);
+       drawDays();
+       drawSche();
+   }
+   
+   //2019-08-27 추가본
+   
+   //데이터 등록
+   function setData(){
+       jsonData = 
+       {
+           "2019":{
+               "07":{
+                   "17":"제헌절"
+               }
+               ,"08":{
+                   "7":"칠석"
+                   ,"15":"광복절"
+                   ,"23":"처서"
+               }
+               ,"09":{
+                   "13":"추석"
+                   ,"23":"추분"
+               }
+               ,"11":{
+               	"21" : "450,000~"
+               }
+           }
+       }
+   }
+   
+   //스케줄 그리기
+   function drawSche(){
+       setData();
+       var dateMatch = null;
+       for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
+           var txt = "";
+           txt =jsonData[year];
+           if(txt){
+               txt = jsonData[year][month];
+               if(txt){
+                   txt =  jsonData[year][month][i];
+                   if(txt) {
+                   	txt = "<a href='#product_list'>" + jsonData[year][month][i] + "</a>";
+                    dateMatch = firstDay.getDay() + i -1; 
+                    $tdSche.eq(dateMatch).html(txt);
+                   }
+               }
+           }
+       }
+   }
+   
 </script>
 
 <section>
@@ -176,158 +368,6 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 		<a href="http://www.modetour.com/Package/Incentive.aspx" target="_blank"><img src="../image/eve.PNG" style="width:100%; height:100px;"/></a>
 	</div>
 	
-	<script type="text/javascript">
-	    
-	    var today = null;
-	    var year = null;
-	    var month = null;
-	    var firstDay = null;
-	    var lastDay = null;
-	    var $tdDay = null;
-	    var $tdSche = null;
-	    var jsonData = null;
-	    $(document).ready(function() {
-	        drawCalendar();
-	        initDate();
-	        drawDays();
-	        drawSche();
-	        $("#movePrevMonth").on("click", function(){movePrevMonth();});
-	        $("#moveNextMonth").on("click", function(){moveNextMonth();});
-	    });
-	    
-	    //Calendar 그리기
-	    function drawCalendar(){
-	        var setTableHTML = "";
-	        setTableHTML+='<table class="calendar">';
-	        setTableHTML+='<tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr>';
-	        for(var i=0;i<6;i++){
-	            setTableHTML+='<tr height="80">';
-	            for(var j=0;j<7;j++){
-	                setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
-	                setTableHTML+='    <div class="cal-day"></div>';
-	                setTableHTML+='    <div class="cal-schedule"></div>';
-	                setTableHTML+='</td>';
-	            }
-	            setTableHTML+='</tr>';
-	        }
-	        setTableHTML+='</table>';
-	        $("#cal_tab").html(setTableHTML);
-	    }
-	    
-	    //날짜 초기화
-	    function initDate(){
-	        $tdDay = $("td div.cal-day")
-	        $tdSche = $("td div.cal-schedule")
-	        dayCount = 0;
-	        today = new Date();
-	        year = today.getFullYear();
-	        month = today.getMonth()+1;
-	        if(month < 10){month = "0"+month;}
-	        firstDay = new Date(year,month-1,1);
-	        lastDay = new Date(year,month,0);
-	    }
-	    
-	    //calendar 날짜표시
-	    function drawDays(){
-	        $("#cal_top_year").text(year);
-	        $("#cal_top_month").text(month);
-	        for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
-	            $tdDay.eq(i).text(++dayCount);
-	        }
-	        for(var i=0;i<42;i+=7){
-	            $tdDay.eq(i).css("color","red");
-	        }
-	        for(var i=6;i<42;i+=7){
-	            $tdDay.eq(i).css("color","blue");
-	        }
-	    }
-	    
-	    //calendar 월 이동
-	    function movePrevMonth(){
-	        month--;
-	        if(month<=0){
-	            month=12;
-	            year--;
-	        }
-	        if(month<10){
-	            month=String("0"+month);
-	        }
-	        getNewInfo();
-	        }
-	    
-	    function moveNextMonth(){
-	        month++;
-	        if(month>12){
-	            month=1;
-	            year++;
-	        }
-	        if(month<10){
-	            month=String("0"+month);
-	        }
-	        getNewInfo();
-	    }
-	    
-	    //정보갱신
-	    function getNewInfo(){
-	        for(var i=0;i<42;i++){
-	            $tdDay.eq(i).text("");
-	            $tdSche.eq(i).text("");
-	        }
-	        dayCount=0;
-	        firstDay = new Date(year,month-1,1);
-	        lastDay = new Date(year,month,0);
-	        drawDays();
-	        drawSche();
-	    }
-	    
-	    //2019-08-27 추가본
-	    
-	    //데이터 등록
-	    function setData(){
-	        jsonData = 
-	        {
-	            "2019":{
-	                "07":{
-	                    "17":"제헌절"
-	                }
-	                ,"08":{
-	                    "7":"칠석"
-	                    ,"15":"광복절"
-	                    ,"23":"처서"
-	                }
-	                ,"09":{
-	                    "13":"추석"
-	                    ,"23":"추분"
-	                }
-	                ,"11":{
-	                	"21" : "450,000~"
-	                }
-	            }
-	        }
-	    }
-	    
-	    //스케줄 그리기
-	    function drawSche(){
-	        setData();
-	        var dateMatch = null;
-	        for(var i=firstDay.getDay();i<firstDay.getDay()+lastDay.getDate();i++){
-	            var txt = "";
-	            txt =jsonData[year];
-	            if(txt){
-	                txt = jsonData[year][month];
-	                if(txt){
-	                    txt =  jsonData[year][month][i];
-	                    if(txt) {
-	                    	txt = "<a href='#product_list'>" + jsonData[year][month][i] + "</a>";
-		                    dateMatch = firstDay.getDay() + i -1; 
-		                    $tdSche.eq(dateMatch).html(txt);
-	                    }
-	                }
-	            }
-	        }
-	    }
-	 
-	</script>
 	<div id="product_list">
 		<div id="tableList">
 			<table id="tblist" class="table table-bordered">
@@ -358,9 +398,16 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 							<td><a href="product_detail?goodCode=${vo.goodCode}&sc_num=${s.sc_num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
 							<td>${vo.price}</td>
 							<td>예약대기</td>
-							<td><input type="checkbox" id="cart${s.sc_num}" style="display:none;"/>
-								<label for="cart1"></label>
-							</td>
+							<c:if test="${logid != null}">
+								<td><input type="checkbox" id="cart${s.sc_num}" value="userId=${logid}&goodCode=${vo.goodCode}&sc_num=${s.sc_num}&jang=" style="display:none;"/>
+									<label for="cart${s.sc_num}"></label>
+								</td>
+							</c:if>
+							<c:if test="${logid == null}">
+								<td><input type="checkbox" id="cart${s.sc_num}" style="display:none;" onchange="cart()"/>
+									<label for="cart${s.sc_num}"></label>
+								</td>
+							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
