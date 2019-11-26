@@ -2,6 +2,7 @@ package kr.goott.tour.reservation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,5 +23,12 @@ public class ReservationController {
 		
 		mav.setViewName("reservation/reservation");
 		return mav;
+	}
+	
+	//결제 폼으로 이동
+	@RequestMapping(value="/reservation/payment", method=RequestMethod.POST)
+	public String paymentPage() {
+		
+		return"reservation/paymentForm";
 	}
 }
