@@ -3,22 +3,26 @@
 <script>
 </script>
 <style>
+.card{width:300px; float:left; margin:25px;}
 </style>
 <section>
-	<div>
+	<div id="container">
 	 	<c:if test="${list!=null}">
-		 	<h5> 추천여행지로 원하시는 여행을 즐겨보세요. </h5>
-		 	<div>
-		 		<c:forEach var="p_list" items="${list}">
-			 		<div>
-				 		<a href="product/product_view?goodCode=${p_list.goodCode}">
-				 			<img src="/tour/image/main_img_banner_1.jpg"/>
-				 		</a>
-				 		${p_list.goodName}<br/>
-				 		${p_list.price} 원
-			 		</div>
-		 		</c:forEach>
-		 	</div>
+	 		<c:forEach var="p_list" items="${list}">
+		 		<div class="card">
+						<a href="product_view?goodCode=${p_list.goodCode}">
+							<img class="card-img-top" src="http://placehold.it/700x400" alt="">
+						</a>
+						<!-- 여행분류과 상품코드 필요함. product_view?goodcode=?&treveltype=? -->
+						<div class="card-body">
+							<h4 class="card-title">
+								<a href="product_view?goodCode=${p_list.goodCode}">${p_list.goodName }</a>
+							</h4>
+							<h5>${p_list.price}</h5>
+							<p class="card-text">${p_list.destination}, ${p_list.travelTerm}</p>
+						</div>
+					</div>
+	 		</c:forEach>
  		</c:if>
  	</div>
 </section>

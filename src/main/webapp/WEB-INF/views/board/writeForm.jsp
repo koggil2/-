@@ -27,8 +27,6 @@ function backPage(){
 	history.back();
 }
 </script>
-
-<section>
 	<%@ include file="../inc/boardSide.jspf" %>
 	<div id="writePan">
 		<div id="writeTab1">
