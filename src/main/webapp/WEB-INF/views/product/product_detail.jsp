@@ -100,7 +100,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						success : function(result){ 
 							if(result>0){
 								alert("여행바구니에 등록됐습니다.");
-								$("#cart").attr("vlaue","1");
+								$("#cart").attr("value","1");
 							}
 						},
 						erorr : function(e){
@@ -460,7 +460,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
                <input type="hidden" name="goodCode" value="${vo.goodCode}"/>
                <input type="hidden" name="userId" value="${logid}"/>
                <c:if test="${logid == null}">
-                <input type="text" class="form-control" id="content" name="content" placeholder="로그인 후 입력이 가능합니다..">
+                <input type="text" class="form-control" id="content" name="content" placeholder="로그인 후 입력이 가능합니다.." readonly >
                </c:if>
                <c:if test="${logid !=null }">
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">

@@ -29,12 +29,13 @@ public class ReplyController{
     @ResponseBody
     public List<ReplyVO> replyServiceList(@RequestParam("sc_num") int sc_num) throws Exception{
     	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class);   
+    	
         return commentDAO.commentList(sc_num);
     }
     
     @RequestMapping(value="/product/reply/insert", method=RequestMethod.POST) //´ñ±Û ÀÛ¼º 
     @ResponseBody
-    public int replyServiceInsert(ReplyVO comment, HttpServletRequest req) throws Exception{
+    public List<ReplyVO> replyServiceInsert(ReplyVO comment, HttpServletRequest req) throws Exception{
     	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class);  
         
     	
@@ -45,7 +46,8 @@ public class ReplyController{
         
         System.out.println(comment.getNum()+","+ comment.getSc_num()+","+ comment.getGoodCode()+","+ comment.getContent()+","
         		+comment.getUserId());
-        return commentDAO.commentInsert(comment);
+         commentDAO.commentInsert(comment);
+        return commentDAO.commentList(comment.getSc_num());
     }
     
     @RequestMapping("/product/reply/update") //´ñ±Û ¼öÁ¤  

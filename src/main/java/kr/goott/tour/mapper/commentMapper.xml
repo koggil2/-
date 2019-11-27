@@ -8,11 +8,11 @@
         FROM gt_feedback
     </select>
     <select id="commentList" resultType="kr.goott.tour.reply.ReplyVO">
-        SELECT num FROM gt_feedback where sc_num=#{sc_num}
+        SELECT num, sc_num, goodCode, content, userId FROM gt_feedback where sc_num=#{sc_num} order by num
     </select>
     <insert id="commentInsert" parameterType="kr.goott.tour.reply.ReplyVO">
         INSERT INTO gt_feedback (num, sc_num, goodcode, content, userId)
-        VALUES(gt_reply_sq.nextVal,#{sc_num},#{goodCode},#{content},#{userId}); 
+        VALUES(gt_reply_sq.nextVal,#{sc_num},#{goodCode},#{content},#{userId})
     </insert>
     <update id="commentUpdate" parameterType="kr.goott.tour.reply.ReplyVO">
         UPDATE gt_feedback
