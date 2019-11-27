@@ -126,7 +126,13 @@
 		    <scope>system</scope>
 		    <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
 		</dependency>
-		
+		<!-- cos -->
+		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
+			<dependency>
+			    <groupId>servlets.com</groupId>
+			    <artifactId>cos</artifactId>
+			    <version>05Nov2002</version>
+			</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
 	    	<groupId>commons-dbcp</groupId>
