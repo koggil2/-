@@ -216,14 +216,15 @@ public class ProductController {
 	@RequestMapping("/product/basketOut")
 	@ResponseBody
 	public int basketOut(BasketVO vo) {
-//		System.out.println(vo.getUserId());	//로그인 아이디
-//		System.out.println(vo.getGoodCode());	//상품코드
-//		System.out.println(vo.getSc_num());	//일정번호
-//		System.out.println(vo.getJang());		//여행바구니
+		System.out.println(vo.getUserId());	//로그인 아이디
+		System.out.println(vo.getGoodCode());	//상품코드
+		System.out.println(vo.getSc_num());	//일정번호
+		System.out.println(vo.getJang());		//여행바구니
 		
 		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
 		
 		int cnt = dao.deleteBasket(vo);
+		System.out.println(cnt);
 		return cnt;
 	}
 	

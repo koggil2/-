@@ -9,7 +9,20 @@
 	<select id="getReservation" resultType="kr.goott.tour.reservation.ReservationVO">
 		select reserName, reserTel, reserEmail, resermemo, goodCode, goodNum from gt_booking 
 	</select>
-	<select id="getBasket" resultType="kr.goott.tour.reservation.ReservationVO">
-		select goodCode, sc_num, userId from gt_basket where userId=#{param1}
+	<select id="basketList" resultType="kr.goott.tour.product.BasketVO">
+		select num, goodCode, sc_num, userId, jang from gt_basket where userId=#{userId}
 	</select>
+	<select id="productInfo" resultType="kr.goott.tour.product.ProductVO">
+		select num, goodName, goodCode, price, travelType, travelTerm, startarea, destination, resermin, resernum, assure1, assure2, assure3, gooddata
+		from gt_product
+		where goodCode=#{goodCode}
+	</select>
+	<select id="scheduleInfo" resultType="kr.goott.tour.product.ScheduleVO">
+		select sc_num, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+		from gt_schedule
+		where sc_num=#{sc_num}
+	</select>
+	<delete id="deleteBasket">
+		delete from gt_basket where num=#{num}
+	</delete>
 </mapper>

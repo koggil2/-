@@ -24,14 +24,14 @@
 	#membershipDiv>div{width:100%; float:left; margin:50px auto;}
 	#membershipDiv>select{margin-top:60px; margin-bottom:10px}
 	#myReservation ,#myLike{margin:20px auto;}
-	#myReservation>div>h3, #myLike>div>h3{float:left; line-height:30px}
-	#myReservation>div>h5, #myLike>div>h5{float:right; line-height:30px}
+	#myReservation>div>h3, #myLike>div>h3, #myPay>div>h3{float:left; line-height:30px}
+	#myReservation>div>h5, #myLike>div>h5, #myPay>div>h5{float:right; line-height:30px}
 	
-	#revData{table-layout:fixed}
-	#revData tr>td{width:15%}
-	#revData tr>td:nth-child(3){width:25%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-	#revData tr>td:nth-child(6){width:6%}
-	#revData tr>td:nth-child(8){width:9%}
+	#revData , #payData {table-layout:fixed}
+	#revData tr>td, #payData tr>td{width:10%}
+	#revData tr>td:nth-child(2), #payData tr>td:nth-child(2){width:25%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+	#revData tr>td:nth-child(6), #payData tr>td:nth-child(6){width:6%}
+	#revData tr>td:nth-child(8), #payData tr>td:nth-child(8){width:9%}
 	
  	#profileDiv input{width:120px;margin-top:5px;} 
 </style>
@@ -58,31 +58,6 @@
 			</div>
 		</div>
 	</div>
-	<div id="myReservation">
-	<div><h3>■ 예약정보</h3></div>
-		<table id="revData" class="table table-bordered">
-		  <tr>
-			<td>예약날짜</td> 
-			<td>상품코드</td>
-			<td>상품명</td>
-		    <td>출발일</td>
-		 	<td>도착일</td>
-		    <td>인원</td>
-		    <td><a href="#">결제금액</a></td>
-		    <td>상태</td>
-		  </tr>
-		  <tr>
-		    <td>2019년9월19일</td>
-		    <td><a href='#'>AAP3412TWB</a></td>
-		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
-		    <td>2019년10월20일</td>
-		    <td>2019년10월22일</td>
-		    <td>2</td>
-		    <td>500,000</td>
-		    <td>결제대기</td>
-		  </tr>
-		</table>
-	</div>
 	<div id="myLike">
 	<div><h3>■ 관심</h3></div>
 		<table id="likeData" class="table table-bordered">
@@ -91,7 +66,7 @@
 			<td>상품명</td>
 		    <td>출발일</td>
 		 	<td>도착일</td>
-		    <td>가격</td>
+		    <td>금액</td>
 		  </tr>
 		  <tr>
 		    <td><a href='#'>AAP3412TWB</a></td>
@@ -99,6 +74,60 @@
 		    <td>2019년10월20일</td>
 		    <td>2019년10월22일</td>
 		    <td>500,000</td>
+		  </tr>
+		</table>
+	</div>
+	<div id="myReservation">
+	<div><h3>■ 예약정보</h3></div>
+		<table id="revData" class="table table-bordered">
+		  <tr>
+			<td>상품코드</td>
+			<td>상품명</td>
+		    <td>출발일</td>
+		 	<td>도착일</td>
+		    <td>인원</td>
+		    <td>금액</td>
+		    <td>예약날짜</td> 
+		    <td>예약</td>
+		  </tr>
+		  <tr>
+		    <td><a href='#'>AAP3412TWB</a></td>
+		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
+		    <td>2019년10월20일</td>
+		    <td>2019년10월22일</td>
+		    <td>2</td>
+		    <td>500,000</td>
+		    <td>2019년9월19일</td>
+		    <td>예약완료
+		    	<input type="button" value="예약취소"/>
+		    </td>
+		  </tr>
+		</table>
+	</div>
+	<div id="myPay">
+	<div><h3>■ 결제정보</h3></div>
+		<table id="payData" class="table table-bordered">
+		  <tr>
+			<td>상품코드</td>
+			<td>상품명</td>
+		    <td>출발일</td>
+		 	<td>도착일</td>
+		 	<td>인원</td>
+		    <td>가격</td>
+		    <td>결제날짜</td>
+		    <td>결제</td>
+		  </tr>
+		  <tr>
+		    <td><a href='#'>AAP3412TWB</a></td>
+		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
+		    <td>2019년10월20일</td>
+		    <td>2019년10월22일</td>
+		    <td>2</td>
+		    <td>500,000</td>
+		    <td>2019년9월19일</td>
+		    <td>결제완료
+		    	<input type="button" value="결제취소"/>
+		    </td>
 		  </tr>
 		</table>
 	</div>

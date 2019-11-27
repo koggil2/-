@@ -1,17 +1,17 @@
 package kr.goott.tour.product;
 
 public class BasketVO {
-	private int j_num;
+	private int num;
 	private String userId;
 	private String goodCode;
 	private int sc_num;
 	private int jang;
 	
-	public int getJ_num() {
-		return j_num;
+	public int getNum() {
+		return num;
 	}
-	public void setJ_num(int j_num) {
-		this.j_num = j_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public String getUserId() {
 		return userId;
