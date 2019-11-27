@@ -5,17 +5,16 @@ public class ReservationVO {
 	private String goodCode;
 	private int sc_num;
 	private String userId;
+	
 	private String t1;
 	private String t2;
 	private String t3;
-	private String tel;
-	
-	private String email;
+	private String reserTel;
+	private String reserName;
+	private String reserEmail;
 	private String emailDomain;
 	private String emailId;
 	
-	
-	private String goodMemo;
 	private String reserDate;//예약날짜
 	private int price;
 	private String payDate;//결제날짜
@@ -23,6 +22,11 @@ public class ReservationVO {
 	private String state;//예약상태
 	private String pay;//결제
 	private String goodOk;//상품평유무
+	private String resermemo;//문의사항
+	
+	
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -65,28 +69,22 @@ public class ReservationVO {
 	public void setT3(String t3) {
 		this.t3 = t3;
 	}
-	public String getTel() {
-		return tel;
+	public String getReserTel() {
+		return reserTel;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
-		String t[] = tel.split("-");
+	public void setReserTel(String reserTel) {
+		this.reserTel = reserTel;
+		
+		String t[] = reserTel.split("-");
 		t1 = t[0];
 		t2 = t[1];
 		t3 = t[2]; 
-		
 	}
-	public String getEmail() {
-		return email;
+	public String getReserEmail() {
+		return reserEmail;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-		
-		String mail[] = email.split("@");
-		emailId = mail[0];
-		emailDomain = mail[1];
-		
-		
+	public void setReserEmail(String reserEmail) {
+		this.reserEmail = reserEmail;
 	}
 	public String getEmailDomain() {
 		return emailDomain;
@@ -99,12 +97,6 @@ public class ReservationVO {
 	}
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-	public String getGoodMemo() {
-		return goodMemo;
-	}
-	public void setGoodMemo(String goodMemo) {
-		this.goodMemo = goodMemo;
 	}
 	public String getReserDate() {
 		return reserDate;
@@ -148,6 +140,19 @@ public class ReservationVO {
 	public void setGoodOk(String goodOk) {
 		this.goodOk = goodOk;
 	}
+	public String getResermemo() {
+		return resermemo;
+	}
+	public void setResermemo(String resermemo) {
+		this.resermemo = resermemo;
+	}
+	public String getReserName() {
+		return reserName;
+	}
+	public void setReserName(String reserName) {
+		this.reserName = reserName;
+	}
+	
 	
 	
 

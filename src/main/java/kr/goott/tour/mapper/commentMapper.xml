@@ -12,7 +12,7 @@
     </select>
     <insert id="commentInsert" parameterType="kr.goott.tour.reply.ReplyVO">
         INSERT INTO gt_feedback (num, sc_num, goodcode, content, userId)
-        VALUES(gt_reply_sq.nextVal,#{sc_num:NUMBER},#{goodCode:VARCHAR},#{content:VARCHAR},#{userId:VARCHAR}); 
+        VALUES(gt_reply_sq.nextVal,#{sc_num},#{goodCode},#{content},#{userId}); 
     </insert>
     <update id="commentUpdate" parameterType="kr.goott.tour.reply.ReplyVO">
         UPDATE gt_feedback

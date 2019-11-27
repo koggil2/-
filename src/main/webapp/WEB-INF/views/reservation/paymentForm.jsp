@@ -44,18 +44,22 @@
 	<form id="paymentMain">	
 		<div id="reservationRgt">
 			<h3>주문자 정보</h3>
-			<div><label>이름*</label><input type="text" class="ipf form-control" name="reserName" id="reserName" maxlength='15'></div>
-			<div><label>이메일 주소*</label><input type="text" class="ipf form-control" name="reserEmail" id="reserEmail" maxlength='20'></div>
-			<div><label>연락처*</label><input type="text" class="ipf form-control" name="reserTel" id="reserTel" maxlength='20'></div>
-					
+			<div><label>이름*</label><input type="text" class="ipf form-control" name="reserName" id="reserName" maxlength='15' value="${vo3.reserName }" readonly></div>
+			<div><label>이메일 주소*</label><input type="text" class="ipf form-control" name="reserEmail" id="reserEmail" maxlength='20' value="${vo3.reserEmail }" readonly></div>
+			<div><label>연락처*</label>
+				<input type="text" class="ipf form-control" name="reserTel" id="reserTel1" maxlength='10' value="${vo3.reserTel }" style="" readonly>
+			</div>
+			<div class="uk-margin">
+            	<label>문의 사항*</label><textarea class="uk-textarea" rows="5" style="width:480px;height:200px;float:left;" value="${vo3.resermemo }" readonly></textarea>
+        	</div>		
 			
 		</div>
 		<div id="goPay">
 			<h3>주문 상품정보</h3>
 			<div id="order" style="background:#fff">
-				<div><label>상품코드*</label><label>AAAA01</label></div>
-				<div><label>인원*</label><label>AAAA02</label></div>
-				<div><label>출발일*</label><label>AAAA03</label></div>
+				<div><label>상품코드*</label><label>${vo3.goodCode }</label></div>
+				<div><label>인원*</label><label>${vo3.goodNum }</label></div>
+				<div><label>출발일*</label><label></label></div>
 				<div><label>도착일*</label><label>AAAA04</label></div>
 				<div><label></label><label>총 결제금액</label></div>
 				<div><label></label><label>199000원</label></div>

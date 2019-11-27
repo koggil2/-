@@ -27,7 +27,8 @@
 	#rev-tel, #trv-tel, #rev-email, #rev-tel1, #rev-email1, #rev-txt{height:40px; text-align:center; } 
 	#email-bar, #email-bar2, #email-bar3, #email-bar4{width:181px; height:34px;text-align:left;}
 	#rev-name1, #rev-name, #trv-name{text-align:left;margin-top:10px;}
-	#txt{text-align:left;}	
+	#txt{text-align:left;}
+	#btn1{width:250px;height:50px;}
 </style>
 <script type="text/javascript">
 $("#bannerImg1").prop("src","/tour/image/<%=pageImage%>");
@@ -103,24 +104,24 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<div class="uk-margin" id='rev-name'>
 	        <div class="uk-inline" id="rev-User" style="width:150px;text-align: left">
 	            <span class="uk-form-icon" uk-icon="icon: user"></span>
-	            <input class="uk-input" type="text">
+	            <input class="uk-input" type="text" value="${vo2.userName }" readonly> 
 	        </div>
 	    </div>
 		연락처
 		<div class="uk-margin" id='rev-tel' style="max-width:;">
 	        <div class="uk-inline" id="rev-phone" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='rev-tel1'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel2'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel3'>
+	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='rev-tel1' value="${vo2.t1}" readonly> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel2' value="${vo2.t2 }" readonly> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel3' value="${vo2.t3 }" readonly>
 	        </div>
 	    </div>
 		이메일
 		<div class="uk-margin" id='rev-email' style="max-width:;">
 	        <div class="uk-inline" id="rev-mail" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15"> @
-	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15"> 
+	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15" value="${vo2.emailId}" readonly> @
+	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15" value="${vo2.emailDomain}" readonly> 
 	            
 	        </div>
 	    </div>
@@ -144,29 +145,30 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<div class="uk-margin" id='rev-tel1'>
 	        <div class="uk-inline" id="reservationTel" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='trv-tel'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel2'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel3'>
+	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='trv-tel' name="t1"> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel2' name="t2"> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel3' name="t3">
 	        </div>
 	    </div>
 		이메일
 		<div class="uk-margin" id='rev-email1'>
 	        <div class="uk-inline" id="reservationEmail" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15"> @
-	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15"> 
+	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15" name="emailId"> @
+	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15" name="emailDomain"> 
 	        </div>
 	    </div>
 		문의사항
-		<div class="uk-margin" id='rev-txt'>
+		<div class="uk-margin" id='rev-txt' style="height:200px;">
 			<div class="uk-inline" id="reservationCommenting" style="float:left;">
-		        <textarea class="uk-textarea" id="txt" rows="5" style="font-size:20px;width:450px;"></textarea>
+		        <textarea class="uk-textarea" id="txt" rows="5" style="font-size:20px;width:450px;" name="resermemo"></textarea>
 	        </div>
 	    </div>
-		<div id='btn-rev'>
-			<input type="submit" class='btn active' id='btn1' value="예약하기"/>
+	    <div id='btn-rev'>
+			<input type="submit" class='btn btn-danger' id='btn1' value="예약하기"/>
 		</div>
 	</form>
-	</div>	
+	</div>
+	
 	</div>	
 </section>

@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.reservation.ReservationDAOInterface">
 	<select id="getRegister" resultType="kr.goott.tour.register.RegisterVO">
-		select count(userId) from gt_register where userId=#{param1}
+		select username, tel, email from gt_register where userId=#{param1}
+	</select>
+	<select id="getReservation" resultType="kr.goott.tour.reservation.ReservationVO">
+		select reserName, reserTel, reserEmail, resermemo, goodCode, goodNum from gt_booking 
 	</select>
 </mapper>
