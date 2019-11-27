@@ -26,7 +26,7 @@
 		<!-- 오라클서버 위치와 id, 비번, DataSource객체 생성 -->
 	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></beans:property>
-		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></beans:property>
+		<beans:property name="url" value="jdbc:oracle:thin:@192.168.0.59:1521:xe"></beans:property>
 		<beans:property name="username" value="hr"></beans:property>
 		<beans:property name="password" value="hr"></beans:property>
 	</beans:bean>
