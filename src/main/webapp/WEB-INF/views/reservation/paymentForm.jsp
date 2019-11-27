@@ -14,9 +14,9 @@
 
 </script>
 <style>
-	#paymentMain{height:1000px;width:1500px;}
-	#reservationRgt{float:left;width:700px;height:900px;background:lightgray;margin-top:50px;box-sizing: border-box;}
-	#goPay{width:700px;background:gray;height:900px;float:left;margin-top:50px;}
+	#paymentMain{height:800px;width:1100px;}
+	#reservationRgt{float:left;width:550px;height:900px;background:;margin-top:50px;box-sizing: border-box;}
+	#goPay{width:550px;background:;height:900px;float:left;margin-top:50px;}
 	#reservationRgt div, #order div{margin-bottom:10px;}
 	#reservationRgt h3, #goPay h3{text-align:left;margin-bottom:30px;margin-top:30px;}
 	#reservationRgt label, #order label{float:left;
@@ -26,36 +26,53 @@
 						  text-align:left;
 						  }
 
-	#reservationRgt input{width:300px;left:180px;position:relative;}
+	#reservationRgt input{width:300px;left:80px;position:relative;}
 	#reservationRgt h5{text-align:left;margin-bottom:-15px;}
 	#txt{size:15px;height:300px;width:600px;border-radius:5px;text-align:left;}
 	/* ============ */
-	#order{width:500px;height:400px;padding-left:30px;}
-	#order input{width:300px;left:100px;position:relative;}
-	#order div{border-bottom:1px solid red;width:650px;}
+	#order{width:450px;height:500px;padding-left:30px;padding-top:15px;left: 70px;
+    position: relative;border:1px solid black;}
+	#order input{width:300px;left:100px;}
+	#order div{border-bottom:1px solid lightgray;width:400px;height:35px;}
+	#order label:nth-child(even){float:right;}
+	#order div:nth-child(5){top:15px;position:relative;border-bottom:#fff}
+	#order div:nth-child(6), #order div:nth-child(7), #order div:nth-child(8), #order div:nth-child(9){border-bottom:#fff}
+	#order div:nth-child(6) label{font-size:30px;width:145px;}
+	#goPay h3{left:70px;position:relative;}
 </style>
-<section >
+<section>
 	<form id="paymentMain">	
 		<div id="reservationRgt">
 			<h3>주문자 정보</h3>
 			<div><label>이름*</label><input type="text" class="ipf form-control" name="reserName" id="reserName" maxlength='15'></div>
 			<div><label>이메일 주소*</label><input type="text" class="ipf form-control" name="reserEmail" id="reserEmail" maxlength='20'></div>
 			<div><label>연락처*</label><input type="text" class="ipf form-control" name="reserTel" id="reserTel" maxlength='20'></div>
-			<div><label>생년월일*</label><input type="text" class="ipf form-control" name="reserBirth" id="reserBirth" maxlength='20'></div>
-			<div style="height:38px;"><label>주소*</label><input type="button" class="btn btn-secondary" name="reserZip" onclick="sample3_execDaumPostcode()" value="검색" style="width:100px;float:left;"></div>
-			<div><input type="text" class="ipf form-control" name='addr' id='addr'style="width:400px;left:280px;text-align:left;"></div>
-			<div><input type="text" class="ipf form-control" name='detailAddr' id='detailAddr' placeholder="* 상세주소 입력(필수)" style="width:400px;left:280px;text-align:left;"></div>
-			
+					
 			
 		</div>
 		<div id="goPay">
 			<h3>주문 상품정보</h3>
-			<div id="order">
-				<div><label>상품코드*</label><input type="text" class="ipf form-control" name="reserCode" id="reserCode" maxlength='20'></div>
-				<div><label>인원*</label><input type="text" class="ipf form-control" name="reserPeople" id="reserPeople" maxlength='5'></div>
-				<div><label>출발일*</label><input type="text" class="ipf form-control" name="reserGo" id="reserGo" maxlength='15'></div>
-				<div><label>도착일*</label><input type="text" class="ipf form-control" name="reserBack" id="reserBack" maxlength='15'></div>
-				<div><label>결제금액</label></div>
+			<div id="order" style="background:#fff">
+				<div><label>상품코드*</label><label>AAAA01</label></div>
+				<div><label>인원*</label><label>AAAA02</label></div>
+				<div><label>출발일*</label><label>AAAA03</label></div>
+				<div><label>도착일*</label><label>AAAA04</label></div>
+				<div><label></label><label>총 결제금액</label></div>
+				<div><label></label><label>199000원</label></div>
+				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid" style="    margin-bottom: -25px;">
+            		<label style="width: 150px;font-size: 15px;"><input class="uk-radio" type="radio" name="radio2" style="width:16px;left:0;" checked> 신용카드 결제</label>
+            	</div>
+            	<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid" style="margin-bottom: -25px;">
+            		<label style="width:150px;"><input class="uk-radio" type="radio" name="radio2" style="width:16px;left:0;" > 실시간 계좌이체</label>
+            	</div>
+            	<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+            		<label style="width:150px;"><input class="uk-radio" type="radio" name="radio2" style="width:16px;left:0;" > 가상계좌 결제</label>
+            		
+            	</div>
+            	<input type="button" class="btn btn-danger" name="paying" onclick="" value="결제하기" style="left:-10px;position:relative;width:400px;top:40px;">
+            	
+            		
+            	
 			</div>			
 		</div>
 	</form>
