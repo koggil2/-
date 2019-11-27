@@ -1,13 +1,11 @@
-package kr.goott.tour.mapper;
+package kr.goott.tour.reply;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
  
-import kr.goott.tour.reply.ReplyVO;
- 
 //@Repository("kr.goott.tour.mapper.CommentMapper")
-public interface CommentMapper {
+public interface ReplyDAOInterface {
     // ´ñ±Û °³¼ö
     public int commentCount() throws Exception;
  

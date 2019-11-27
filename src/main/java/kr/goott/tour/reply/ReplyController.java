@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import kr.goott.tour.reply.ReplyVO;
-import kr.goott.tour.mapper.CommentMapper;
 
 
 @Controller
@@ -29,14 +28,14 @@ public class ReplyController{
     @RequestMapping(value="/product/reply/list", method=RequestMethod.POST) //¥Ò±€ ∏ÆΩ∫∆Æ
     @ResponseBody
     public List<ReplyVO> replyServiceList(@RequestParam("sc_num") int sc_num) throws Exception{
-    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class);   
+    	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class);   
         return commentDAO.commentList(sc_num);
     }
     
     @RequestMapping(value="/product/reply/insert", method=RequestMethod.POST) //¥Ò±€ ¿€º∫ 
     @ResponseBody
     public int replyServiceInsert(ReplyVO comment, HttpServletRequest req) throws Exception{
-    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class);  
+    	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class);  
         
     	
     	HttpSession sess =req.getSession();
@@ -52,7 +51,7 @@ public class ReplyController{
     @RequestMapping("/product/reply/update") //¥Ò±€ ºˆ¡§  
     @ResponseBody
     public int replyServiceUpdateProc(@RequestParam int num, @RequestParam String content) throws Exception{
-    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class); 
+    	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class); 
         ReplyVO comment = new ReplyVO();
         comment.setNum(num);
         comment.setContent(content);
@@ -63,7 +62,7 @@ public class ReplyController{
     @RequestMapping("/product/reply/delete/{num}") //¥Ò±€ ªË¡¶  
     @ResponseBody
     public int replyServiceDelete(@PathVariable int num) throws Exception{
-    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class); 
+    	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class); 
         return commentDAO.commentDelete(num);
     }
     
