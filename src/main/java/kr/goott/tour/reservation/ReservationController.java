@@ -45,6 +45,13 @@ public class ReservationController {
 		return mav;
 	}
 	
+	//예약하기
+	@RequestMapping("/reservation/reser")
+	public ModelAndView	insertReservation(ReservationVO vo) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("reservation/basket");
+		return mav;
+	}
 	
 //	//예약페이지로 이동
 //	@RequestMapping("/reservation/reservation")
