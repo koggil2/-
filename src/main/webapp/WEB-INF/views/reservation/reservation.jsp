@@ -47,8 +47,9 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 					$("#reservationEmail input:nth-of-type(2)").val($("#rev-mail input:nth-of-type(2)").val());
 					$("#sameFrm input").prop("readonly",true);
 				}else{
-					$("#sameFrm input").val("");
+					$("#sameFrm input[type='text']").val("");
 					$("#sameFrm input").prop("readonly",false);
+					
 				}
 			});
 			
@@ -56,7 +57,6 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 				if(confirm("결제 창으로 넘어 가시겠습니까?")){
 					return true;
 				}else{
-			
 					return false;
 				}
     		});

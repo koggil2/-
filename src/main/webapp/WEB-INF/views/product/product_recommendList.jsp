@@ -329,7 +329,9 @@ a:link, a:hover, a:visited {
 
 		<!--  기업/일반단체 탭  -->
 		<div id="tab4" class="col-lg-9 tabcontent">
-			<div class="container">
+		<%@ include file="counseling.jspf"%>
+		
+<!-- 			<div class="container">
 				<table>
 					<tr id="counselingTop">
 						<td style="font-size:20px;color:lightblack;font-weight:bold">일반/기업 단체</td>
@@ -370,7 +372,7 @@ a:link, a:hover, a:visited {
 			    <div style="text-align: center;" class="uk-child-width-1-2@m uk-grid-match" style="">
 			    	<button class="uk-button uk-button-primary" class="uk-card uk-card-default uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true" style="width:165px;border-radius:10px;top:30px;position:relative;margin:0 auto;left:-15px;">상담/신청하기 ></button>
 			    </div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
