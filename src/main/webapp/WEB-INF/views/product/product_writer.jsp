@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/tour/resources/css/jquery-ui.min.css" type="text/css"/>
 <script src="/tour/resources/js/jquery-ui.min.js"></script>
+<script src="/tour/resources/js/jquery.bxslider.js"></script>
+<link rel="stylesheet" href="/tour/resources/css/jquery.bxslider.css" type="text/css"/>
 <title>상품 상세 페이지</title>
 <style>
  	.container{margin-top: 80px; max-width: initial; padding:0; }
@@ -77,13 +79,22 @@
 	.btStylePlus {margin-left: 20px; width:25px; height:25px; font-size:25px; border: 0; background:none;}
 	
 	.spanWiMr{width:200px; text-align:left;}
-	.w3-content {max-width:490px; max-height:340px; margin:7px;}
-	.w3-content div {width:240px; height:165px; float:left; margin-right:6px; margin-bottom:6px; border:1px solid #ddd;}
-	.w3-content div:nth-child(2n) {margin-right:0px;}
-	.w3-content div:nth-child(3),.w3-content div:nth-child(4){margin-bottom:0px;}
+	#imgBx{width:500px; height:340px; overflow:hidden; margin:5px; border:1px solid #ddd}
+	#imgBx img{max-width:500px;}
 </style>
 <script>
 	$(function(){
+		//bxslider
+			$("#imgBx").bxSlider({
+				mode:'horizontal',
+				sliderWidth:500,
+				sliderHeight:340,
+				auto:true
+			});
+		//
+		$("#goodCode").keyup(function(){
+			$("#goodCodeCopy").val($("#goodCode").val());
+		});
 		//
 		$.datepicker.setDefaults({
                 dateFormat: 'yy-mm-dd' //Input Display Format 변경
@@ -102,60 +113,116 @@
                 ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
             });
 		//날짜선택
-		$("#startDate").datepicker();
+		$("#startD").datepicker();
 		
 		//도착일 자동선택
-		$("#startDate").change(function(){
-			var day = $("#periodSel option").index($("#periodSel option:selected"));
+		$("#startD").change(function(){
+			var day = $("#travelTerm option").index($("#travelTerm option:selected"));
 			if(day>0){
 				
 				var dayPlus = (day-1)*86400000;
 				var today = new Date();
-				var backDate = Date.parse($("#startDate").val())+dayPlus;
+				var backD = Date.parse($("#startD").val())+dayPlus;
 				
-				today.setTime(backDate);
+				today.setTime(backD);
 				
 				var backYear = today.getFullYear();
 				var backMonth = today.getMonth()+1;
 				if(backMonth<10)backMonth = "0" + backMonth ;
-				var backDate = today.getDate();
-				if(backDate<10)backDate = "0" + backDate ;
+				var backD = today.getDate();
+				if(backD<10)backD = "0" + backD ;
 				
 				
-				var setDate = backYear+"-"+backMonth+"-"+backDate;
+				var setDate = backYear+"-"+backMonth+"-"+backD;
 	
-				$("#backDate").val(setDate);
+				$("#backD").val(setDate);
 			
 			}else{
 				alert("여행기간을 선택해주세요.");
-				$("#startDate").val("");
+				$("#startD").val("");
+			}
+		});
+		// 여행기간 변경 시 초기화
+		$("#travelTerm").change(function(){
+			if($("#dateList li").length>0){
+				$("#dateList").html("");
 			}
 		});
 		
-		var clickYN = true;
-		$("#gg").click(function(){
-			if(clickYN){
-				clickYN = false;
-				$(".OkClose").css("display","none");
-				$(".btnClose").css("visibility","hidden");
-			}else{
-				clickYN = true;
-				$(".OkClose").css("display","block");
-				$(".btnClose").css("visibility","visible");
+		
+		// 작성 완료.
+		$("#writerOk").click(function(){
+			
+			//상품명
+			if($("#goodName").val()==""){
+				alert("상품명을 입력하십시오.");
+				return false;
 			}
-			var day = $("#periodSel option").index($("#periodSel option:selected"));
+			//상품코드
+			if($("#goodCode").val()==""){
+				alert("상품코드를 입력하십시오.");
+				return false;
+			}
+			//상품가격
+			if($("#price").val()==""){
+				alert("상품가격을 입력하십시오.");
+				return false;
+			}
+			//출발지역
+			if($("#startArea").val()==0){
+				alert("출발지역을 선택하십시오.");
+				return false;
+			}
+			//여행지역
+			if($("#destination").val()==""){
+				alert("여행지역을 입력하십시오.");
+				return false;
+			}
+			//여행분류
+			if($("#travelType").val()==0){
+				alert("여행분류를 선택하십시오.");
+				return false;
+			}
+			//일정등록
+			if($("#dateList li").length<=0){
+				alert("여행일정을 등록하십시오.");
+				return false;
+			}
+			
+			
+			$(".OkClose").css("display","none");
+			$(".btnClose").css("visibility","hidden");
+			
+			var day = $("#travelTerm option").index($("#travelTerm option:selected"));
 			
 			for(i=1; i<=day; i++){
 				$("#"+i+"DayPan tr td .tableBar").height($("#"+i+"DayPan").height()-70);
 			}
+			
+			$("#goodData").val($("#revDetailTable").html());
+			
+			//입력한 일정 정리
+			var sd = "";
+			var bd = "";
+			
+			for(i=1; i<=$("#dateList li").length; i++){
+				var oneDate = $("#dateList li:nth-child("+i+")").html();
+				var od = (oneDate.substring(0,23)).split(" ~ ");
+				sd += "v^v["+od[0]; //첫번째토큰은 스타트데이트
+				bd += "y^y["+od[1]; //두번째토큰은 백데이트
+			}
+			
+			$("#startDate").val(sd);
+			$("#backDate").val(bd);
+			
 		});
 	});
 	function insertDate(){
-		if($("#startDate").val()!=""&&$("#backDate").val()!=""){
-			var dateTxt = "<li class='dateListLi'>"+$("#startDate").val()+" ~ "+$("#backDate").val()+"<button class='btStyle btnClose' onclick='deleteDate()'>x</button></li>"
+		if($("#startD").val()!=""&&$("#backD").val()!=""){
+			var dateTxt = "<li class='dateListLi'>"+$("#startD").val()+" ~ "+$("#backD").val()+"<button class='btStyle btnClose' onclick='deleteDate()'>x</button></li>"
 			$("#dateList").append(dateTxt);
-			$("#startDate").val("");
-			$("#backDate").val("");
+			$("#startD").val("");
+			$("#backD").val("");
 		}
 	}
 	function deleteDate(){
@@ -200,8 +267,8 @@
 	
 	var oldDay = 0;
 	var oldTxt = "";
-	function periodChange() {
-		var periodID = document.getElementById("periodSel");
+	function travelTermChange() {
+		var periodID = document.getElementById("travelTerm");
 		var day = periodID.options[periodID.selectedIndex].value;
 		if(oldDay==0){
 			var txt= "";
@@ -233,80 +300,111 @@
 		}
 		oldDay = day;
 	}
+	//이미지 첨부 이벤트
+	function imgUpload(){
+		var formData = new FormData(document.getElementById("imgUploadForm"));
+		
+		var url = "imgUpload";
+		$.ajax({
+			type:"POST",
+			url:url,
+			data:formData,
+			processData:false,
+			contentType:false,
+			success:function(result){//fileAddr
+				var txt = "<img src='/tour/imgUpload/"+result+"'/>";
+				$("#imgDiv").append(txt);
+			},error:function(e){
+				alert(e.responseText);
+			}
+		});
+	}
 </script>
 <section>
 	<div class="container">
-		<div id="detail-content"> 	
-			<div class="page_location">
-				<a href="<%=request.getContextPath()%>/index.jsp">홈></a><a href="#">1박2일</a>
-			</div>
-			<div class="sec_div">
-				<div class="gall_big">
-					<div class="w3-content">
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
+		<form onsubmit="return false">
+			<div id="detail-content"> 	
+				<div class="page_location">
+					<a href="<%=request.getContextPath()%>/index.jsp">홈></a><a href="#">1박2일</a>
+				</div>
+				<div class="sec_div">
+					<div class="gall_big">
+						<div class="w3-content">
+							<ul id="imgBx">
+							</ul>
+						</div>
+					</div>
+					<div class="title_text">
+						<div class="title_name"><input type="text" name="goodName" id="goodName" placeholder="상품명"/></div>
+						<div class='code'> ( 상품코드 : <input type="text" name="goodCode" id="goodCode" placeholder="상품코드"/> )</div>
+						<div class="product_list">
+							<ul class="product_menu">
+								<li><span class="spanMr">상품가격</span><input type="text" name="price" id="price" placeholder="가격"/>원</li>
+								<li><span class="spanMr">출발지역</span><select name="startArea" id="startArea">
+										<option value="0">=출발지역=</option>
+										<option value="seoul">서울</option>
+										<option value="incheon">인천</option>
+										<option value="busan">부산</option>
+									</select>
+								</li>
+								<li><span class="spanMr">여행지역</span><input type="text" name="destination" id="destination" placeholder="지역"/></li>
+								<li><span class="spanMr">여행분류</span><select name="travelType" id="travelType">
+										<option value="0">=여행분류=</option>
+										<option value="family">가족여행</option>
+										<option value="school">수학여행</option>
+										<option value="study">현장학습</option>
+									</select></li>
+								<li><span class="spanMr">사진첨부</span><button class="button" onclick="document.all.fileName.click()">파일 선택</button></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-				<div class="title_text">
-					<div class="title_name"><input type="text" placeholder="상품명"/></div>
-					<div class='code'> ( 상품코드 : <input type="text" placeholder="상품코드"/> )</div>
-					<div class="product_list">
-						<ul class="product_menu">
-							<li><span class="spanMr">상품가격</span><input type="text" placeholder="가격"/>원</li>
-							<li><span class="spanMr">출발지역</span><select>
-									<option value="0">=출발지역=</option>
-									<option value="1">서울</option>
-									<option value="2">인천</option>
-									<option value="3">부산</option>
-								</select>
-							</li>
-							<li><span class="spanMr">여행지역</span><input type="text" placeholder="지역"/></li>
-							<li><span class="spanMr">여행분류</span><input type="text" placeholder="분류"/></li> 
-						</ul>
-					</div>
-				</div>
 			</div>
-		</div>
-
-	<div class="tb_alldiv">
-		<table class="table_01">
-		    <tr>
-		        <th scope="row">예약인원</th>
-		        <td>최소 출발 인원 <input type="text" placeholder="최소" style="width:50px"/>명 / 정원 <input type="text" placeholder="정원" style="width:50px"/>명</td>
-		    </tr>
-		    <tr>
-		        <th scope="row">여행일자</th>
-		        <td>
-		        	<ul id="datePan">
-		        		<li><span class="spanMr">여행기간</span>
-		        			<select id="periodSel" name="period" onchange="periodChange()">
-		        				<option value="0">=여행기간=</option><option value="1">당일치기</option>
-		        				<option value="2">1박2일</option>
-		        				<option value="3">2박3일</option>
-		        			</select>
-		        		</li>
-			        	<li><span class="spanMr">출발일자</span><input type="text" id="startDate"/></li>
-						<li><span class="spanMr">도착일자</span><input type="text" id="backDate" disabled/><button onclick="insertDate()">추가</button></li>
-		        	</ul>
-		        	<ul id="dateList"></ul>
-		        </td>
-		    </tr>
-		    <tr>
-		        <th scope="row">보험</th>
-		        <td class="row1">
-		        	<ul>
-		        		<li><span class="spanWiMr">[여행자보험]</span><input type="radio" name="assure1">가입 <input type="radio" name="assure1" checked>미가입</li>
-		        		<li><span class="spanWiMr">[영업보증보험]</span><input type="radio" name="assure2">가입 <input type="radio" name="assure2" checked>미가입</li>
-		        		<li><span class="spanWiMr">[기획여행 보증보험]</span><input type="radio" name="assure3">가입 <input type="radio" name="assure3" checked>미가입</li>
-		        	</ul>
-			    </td>
-		    </tr>
-		</table>
-	</div>
-	<div id="revDetailTable" style="position:relative">
-	</div>
-	<button id="gg">클릭~</button>
+			<div class="tb_alldiv">
+				<table class="table_01">
+				    <tr>
+				        <th scope="row">예약인원</th>
+				        <td>최소 출발 인원 <input type="text" placeholder="최소" name="reserMin" style="width:50px"/>명 / 정원 <input type="text" placeholder="정원" name="reserNum" style="width:50px"/>명</td>
+				    </tr>
+				    <tr>
+				        <th scope="row">여행일자</th>
+				        <td>
+				        	<ul id="datePan">
+				        		<li><span class="spanMr">여행기간</span>
+				        			<select id="travelTerm" name="travelTerm" onchange="travelTermChange()">
+				        				<option value="0">=여행기간=</option>
+				        				<option value="1">당일치기</option>
+				        				<option value="2">1박2일</option>
+				        				<option value="3">2박3일</option>
+				        			</select>
+				        		</li>
+					        	<li><span class="spanMr">출발일자</span><input type="text" id="startD" readonly/></li>
+								<li><span class="spanMr">도착일자</span><input type="text" id="backD" disabled/><button onclick="insertDate()">추가</button></li>
+				        	</ul>
+				        	<ul id="dateList"></ul>
+				        </td>
+				    </tr>
+				    <tr>
+				        <th scope="row">보험</th>
+				        <td class="row1">
+				        	<ul>
+				        		<li><span class="spanWiMr">[여행자보험]</span><input type="radio" name="assure1">가입 <input type="radio" name="assure1" checked>미가입</li>
+				        		<li><span class="spanWiMr">[영업보증보험]</span><input type="radio" name="assure2">가입 <input type="radio" name="assure2" checked>미가입</li>
+				        		<li><span class="spanWiMr">[기획여행 보증보험]</span><input type="radio" name="assure3">가입 <input type="radio" name="assure3" checked>미가입</li>
+				        	</ul>
+					    </td>
+				    </tr>
+				</table>
+			</div>
+			<input type="hidden" name="startDate" id="startDate"/>
+			<input type="hidden" name="backDate" id="backDate"/>
+			<input type="hidden" name="goodData" id="goodData"/>
+			<div id="revDetailTable" style="position:relative"></div>
+			<button id="writerOk" class="btn btn-secondary">작성</button>
+		</form>
+		<form id="imgUploadForm" method="POST" enctype="multipart/form-data" onchange="imgUpload()">
+			<input type="text" name="goodCodeCopy" id="goodCodeCopy" style="display:none"/>
+			<input type="file" name="fileName" id="fileName" style="display:none"/>
+		</form>
     </div>	
 </section>

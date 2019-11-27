@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.goott.tour.register.RegisterVO;
 import oracle.net.aso.d;
@@ -20,6 +24,7 @@ import oracle.net.aso.d;
 
 @Controller
 public class ProductController {
+	public String path = null;
 	@Autowired
 	SqlSession sqlSession;
 	
@@ -217,5 +222,37 @@ public class ProductController {
 		
 		int cnt = dao.deleteHeart(vo);
 		return cnt;
+	}
+	
+	// 사진첨부
+	@RequestMapping(value = "/product/imgUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public String imgUpload(HttpServletRequest req) {
+		String fileName = "";
+		try {
+		//파일의 절대경로
+		path = req.getSession().getServletContext().getRealPath("/imgUpload");
+		
+		MultipartRequest multi = new MultipartRequest(req, path, 5 * 1024 * 1024, "UTF-8",
+				new DefaultFileRenamePolicy());
+		
+		String goodCode = multi.getParameter("goodCodeCopy");
+		fileName = multi.getFilesystemName("fileName");
+
+		ImgUploadVO vo = new ImgUploadVO();
+		vo.setGoodCode(goodCode);
+		vo.setFileName(fileName);
+		
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		int cnt = dao.InsertImg(vo);
+		 	
+		if(cnt<0) fileName= null;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return fileName;
 	}
 }

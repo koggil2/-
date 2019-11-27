@@ -55,4 +55,8 @@
 		from gt_like
 		where sc_num=#{sc_num} and userId=#{userId}
 	</select>
+		<insert id="InsertImg">
+		insert into gt_pro_img(imgNum, goodCode, fileName)
+		values(gt_img_sq.nextval, #{goodCode}, #{fileName})
+	</insert>
 </mapper>
