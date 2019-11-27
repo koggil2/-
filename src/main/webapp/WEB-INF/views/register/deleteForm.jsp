@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" />
 <script	src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
-<section style="height:300px;line-">
+
+<section style="height:300px;">
 	<h2>회원 탈퇴</h2>
 	<form method="post" action="deleteOk?">
 		<table style="text-align: center;margin:0 auto;">

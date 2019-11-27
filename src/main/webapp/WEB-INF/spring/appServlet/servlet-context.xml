@@ -44,7 +44,8 @@
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
 	</beans:bean>
-	<!-- Mybatis 객체 생성 -->
+
+		<!-- Mybatis 객체 생성 -->
 	
 	<context:component-scan base-package="kr.goott.tour" />	
 	

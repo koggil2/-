@@ -1,57 +1,70 @@
 package kr.goott.tour.reply;
 
 import java.util.List;
-
-import javax.inject.Inject;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
- 
-import org.springframework.web.bind.annotation.ModelAttribute;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
- 
- 
-// REST : Representational State Transfer
-// 하나의 URI가 하나의 고유한 리소스를 대표하도록 설계된 개념
- 
-// http://localhost/spring02/list?bno=1 ==> url+파라미터
-// http://localhost/spring02/list/1 ==> url
-// RestController은 스프링 4.0부터 지원
-// @Controller, @RestController 차이점은 메서드가 종료되면 화면전환의 유무
-//@Controller
 
-public class ReplyController  {
-	 
-    @Inject
-    ReplyService replyService;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+import kr.goott.tour.reply.ReplyVO;
+import kr.goott.tour.mapper.CommentMapper;
+
+
+@Controller
+public class ReplyController{
+
+	@Autowired
+	SqlSession sqlSession;
     
-    // 댓글 입력 
-    @RequestMapping("insert.do")
-    public void insert(@ModelAttribute ReplyVO rvo, HttpSession session){
-        String userId = (String)session.getAttribute("userId");
-        rvo.setUserId(userId);
-        replyService.create(rvo);
+    @RequestMapping(value="/product/reply/list", method=RequestMethod.POST) //댓글 리스트
+    @ResponseBody
+    public List<ReplyVO> replyServiceList(@RequestParam("sc_num") int sc_num) throws Exception{
+    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class);   
+        return commentDAO.commentList(sc_num);
     }
     
-    // 댓글 목록(@Controller방식 : veiw(화면)를 리턴)
-    @RequestMapping("list.do")
-    public ModelAndView list(@RequestParam String goodCode, ModelAndView mav){
-        List<ReplyVO> list = replyService.list(goodCode);
-        // 뷰이름 지정
-        mav.setViewName("board/replyList");
-        // 뷰에 전달할 데이터 지정
-        mav.addObject("list", list);
-        // replyList.jsp로 포워딩
-        return mav;
+    @RequestMapping(value="/product/reply/insert", method=RequestMethod.POST) //댓글 작성 
+    @ResponseBody
+    public int replyServiceInsert(ReplyVO comment, HttpServletRequest req) throws Exception{
+    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class);  
+        
+    	
+    	HttpSession sess =req.getSession();
+    	System.out.println((String)sess.getAttribute("logid"));
+        comment.setUserId((String)sess.getAttribute("logid"));  
+        
+        
+        System.out.println(comment.getNum()+","+ comment.getSc_num()+","+ comment.getGoodCode()+","+ comment.getContent()+","
+        		+comment.getUserId());
+        return commentDAO.commentInsert(comment);
     }
     
-    // 댓글 목록(@RestController Json방식으로 처리 : 데이터를 리턴)
-    @RequestMapping("listJson.do")
-    @ResponseBody // 리턴데이터를 json으로 변환(생략가능)
-    public List<ReplyVO> listJson(@RequestParam  String goodCode){
-        List<ReplyVO> list = replyService.list(goodCode);
-        return list;
+    @RequestMapping("/product/reply/update") //댓글 수정  
+    @ResponseBody
+    public int replyServiceUpdateProc(@RequestParam int num, @RequestParam String content) throws Exception{
+    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class); 
+        ReplyVO comment = new ReplyVO();
+        comment.setNum(num);
+        comment.setContent(content);
+        
+        return commentDAO.commentUpdate(comment);
     }
+    
+    @RequestMapping("/product/reply/delete/{num}") //댓글 삭제  
+    @ResponseBody
+    public int replyServiceDelete(@PathVariable int num) throws Exception{
+    	CommentMapper commentDAO = sqlSession.getMapper(CommentMapper.class); 
+        return commentDAO.commentDelete(num);
+    }
+    
 }

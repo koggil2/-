@@ -13,12 +13,14 @@
 		where goodCode=#{goodCode}
 	</select>
 	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
-		 select a.sc_num, a.goodcode, startdate, backdate, userid, jang 
- 		 from (select * from gt_schedule where goodCode=#{goodCode}) a 
- 		 left join ( select * from gt_basket where userId=#{userId}) b on  a.sc_num=b.sc_num; 
+		 select sc_num, goodcode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+ 		 from gt_schedule where goodCode=#{goodCode}
+	</select>
+	<select id="selectUserSchedule" resultType="java.lang.Integer">
+		 select count(num) from gt_basket where sc_num=${sc_num} and userId='${userId}'
 	</select>
 	<select id="selectShcedule" resultType="kr.goott.tour.product.ScheduleVO">
-		select to_char(startDate, 'YYYY-MM-DD')startDate, to_char(backDate, 'YYYY-MM-DD') backDate
+		select sc_num, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
 		from gt_schedule
 		where sc_num=#{num}
 	</select>
@@ -35,4 +37,22 @@
 		delete from gt_basket
 		where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId}
 	</delete>
+	<select id="selectBasket" resultType="int">
+		select count(num) 
+		from gt_basket
+		where sc_num=#{sc_num} and userId=#{userId}
+	</select>
+	<insert id="insertHeart" parameterType="kr.goott.tour.product.HeartVO">
+		insert into gt_like(num, goodCode, sc_num, userId, heart)
+		values(gt_heart_sq.nextVal, #{goodCode}, #{sc_num}, #{userId}, ${heart} )
+	</insert>
+	<delete id="deleteHeart" parameterType="kr.goott.tour.product.HeartVO">
+		delete from gt_like
+		where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId}
+	</delete>
+	<select id="selectHeart" resultType="int">
+		select count(num) 
+		from gt_like
+		where sc_num=#{sc_num} and userId=#{userId}
+	</select>
 </mapper>

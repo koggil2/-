@@ -117,7 +117,7 @@
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
                     <span class="qt-plus">+</span>
-                    <a class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px">예약하기</a>
+                    <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
@@ -140,7 +140,7 @@
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
                     <span class="qt-plus">+</span>
-                    <a class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px">예약하기</a>
+                    <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
@@ -163,7 +163,7 @@
                     <span class="qt-minus">-</span>
                     <span class="qt">0</span>
                     <span class="qt-plus">+</span>
-                    <a class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px">예약하기</a>
+                    <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
                     <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
                    	<h2 class="price">20,000원</h2>
                     <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>

@@ -2,13 +2,14 @@ package kr.goott.tour.reply;
 
 public class ReplyVO {
 	
-		//만족도 //
-		private int num;
-		private String goodCode;
-		private String userId;
-		private int jumsu;
-		private String content;
-		private String regDate;
+		
+		private int num;//글번호	rno
+		private int sc_num;// sc_num(일정번호)&goodCode(번호) 필요함
+		private String goodCode;//게시글번호 (코드) bno
+		private String userId; //작성자 username
+		private int jumsu; //만족도
+		private String content;	// 내용 replytext
+		private String regDate; // 시간 regdatetime 
 		
 		public int getNum() {
 			return num;
@@ -40,15 +41,19 @@ public class ReplyVO {
 		public void setContent(String content) {
 			this.content = content;
 		}
-		public String getReg_datetime() {
+	    public int getSc_num() {
+			return sc_num;
+		}
+		public void setSc_num(int sc_num) {
+			this.sc_num = sc_num;
+		}
+		public String getRegDate() {
 			return regDate;
 		}
-		public void setReg_datetime(String reg_datetime) {
-			this.regDate = reg_datetime;
+		public void setRegDate(String regDate) {
+			this.regDate = regDate;
 		}
-		// 만족도 //
-		
-	    // toString()
+		// toString()
 	    @Override
 	    public String toString() {
 	        return "ReplyVO [num=" + num + ", goodCode=" + goodCode + ", userId=" + userId + ", jumsu=" + jumsu

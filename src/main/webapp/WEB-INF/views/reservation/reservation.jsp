@@ -35,10 +35,6 @@ $("#imgBannerText>h1").text("<%=pageName%>");
 $("#imgBannerText>h2").text("<%=pageSideName%>");
     	
     	$(function(){
-			$('#btn1').on('click',function(){
-				$(this).css('background-color','orange').css('color','#fff');
-				alert('예약이완료됨.');
-			});
 				
 			$("#samecheck").change(function(){
 				if(this.checked){
@@ -54,7 +50,17 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 					$("#sameFrm input").prop("readonly",false);
 				}
 			});
+			
+			$("#sameFrm").submit(function(){
+				if(confirm("결제 창으로 넘어 가시겠습니까?")){
+					return true;
+				}else{
+			
+					return false;
+				}
+    		});
     	}); 
+  	
 </script>
 
 <section style="text-align:left">
@@ -104,9 +110,9 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<div class="uk-margin" id='rev-tel' style="max-width:;">
 	        <div class="uk-inline" id="rev-phone" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3"name='rev-tel1' id='rev-tel1'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4"name='rev-tel2' id='rev-tel2'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4"name='rev-tel3' id='rev-tel3'>
+	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='rev-tel1'> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel2'> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel3'>
 	        </div>
 	    </div>
 		이메일
@@ -126,7 +132,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		</div>
 		<hr style='margin:10px auto;'/>
 
-	<form id="sameFrm">
+	<form id="sameFrm" method="post" action="payment">
 		예약자
 		<div class="uk-margin" id='rev-name1'>
 	        <div class="uk-inline" id="reservationUser" style="width:150px;text-align: left">
@@ -138,9 +144,9 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<div class="uk-margin" id='rev-tel1'>
 	        <div class="uk-inline" id="reservationTel" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3"name='trv-tel' id='trv-tel'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4"name='trv-tel2' id='trv-tel2'> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4"name='trv-tel3' id='trv-tel3'>
+	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='trv-tel'> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel2'> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='trv-tel3'>
 	        </div>
 	    </div>
 		이메일
@@ -158,7 +164,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 	        </div>
 	    </div>
 		<div id='btn-rev'>
-		<a href='https://www.naver.com'><button class='btn active' id='btn1'>예약하기</button></a>
+			<input type="submit" class='btn active' id='btn1' value="예약하기"/>
 		</div>
 	</form>
 	</div>	

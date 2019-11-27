@@ -5,6 +5,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 
 <style>
 *{font-family:'Noto Sans KR',sans-serif;}
@@ -79,14 +80,14 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 	function imageMove2(){
 		$("#allMonth div").last().prependTo("#allMonth");
 	}
+
+	/* 아이디 없을 때 장바구니 */
+	function cart(){
+		alert("로그인이 필요합니다.");
+		$("tbody input[type='checkbox']").prop('checked', false);
+	}
 	
 	$(function(){
-		/* 아이디 없을 때 장바구니 */
-		function cart(){
-			alert("로그인이 필요합니다.");
-			$("tbody input[type='checkbox']").prop('checked', false);
-		}
-			
 		/* 장바구니 */
 		$("tbody input[type='checkbox']").change(function(){
 			console.log($(this).prop("checked"))
@@ -98,8 +99,6 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 					url: url,
 					data : params,
 					type : "GET",
-					url : url,
-					data : params,
 					success : function(result){ 
 						if(result>0){
 							alert("여행바구니에 등록됐습니다.");
@@ -117,8 +116,6 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 					url: url,
 					data : params,
 					type : "GET",
-					url : url,
-					data : params,
 					success : function(result){ 
 						if(result>0){
 							alert("여행바구니에 등록이 취소됐습니다.");
@@ -127,10 +124,10 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 					erorr : function(e){
 						alert(e.responseText);
 					}
-				})
+				});
 			}
-			
 		});
+		
 		var x = parseInt($("#count>div:nth-child(2)").html());
 		
 		$("#count>div").on("click",function(){
@@ -391,25 +388,25 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 				</thead>
 				<!-- 일정목록 -->
 				<tbody>
-		    		<c:forEach var="s" items="${list}">
+				<c:forEach var="i" begin="1" end="${fn:length(list)}" step="1">
 						<tr>
-							<td><span style="color:blue;">${s.startDate}</span><br>${s.backDate}</td>
+							<td><span style="color:blue;">${list[i-1].startDate}</span><br>${list[i-1].backDate}</td>
 							<td>${vo.travelTerm}</td>
-							<td><a href="product_detail?goodCode=${vo.goodCode}&sc_num=${s.sc_num}" data-idx="0" data-pnum="58740423" target="_blank">${vo.goodName}</a></td>
+							<td><a href="product_detail?goodCode=${vo.goodCode}&sc_num=${list[i-1].sc_num}" data-idx="0" data-pnum="58740423">${vo.goodName}</a></td>
 							<td>${vo.price}</td>
 							<td>예약대기</td>
 							<c:if test="${logid != null}">
-								<td><input type="checkbox" id="cart${s.sc_num}" value="userId=${logid}&goodCode=${vo.goodCode}&sc_num=${s.sc_num}&jang=" style="display:none;"/>
-									<label for="cart${s.sc_num}"></label>
+								<td><input type="checkbox" <c:if test="${list2[i-1]!=0 }">checked</c:if> id="cart${list[i-1].sc_num}" value="userId=${logid}&goodCode=${vo.goodCode}&sc_num=${list[i-1].sc_num}&jang=" style="display:none;" />
+									<label for="cart${list[i-1].sc_num}"></label>
 								</td>
 							</c:if>
 							<c:if test="${logid == null}">
-								<td><input type="checkbox" id="cart${s.sc_num}" style="display:none;" onchange="cart()"/>
-									<label for="cart${s.sc_num}"></label>
+								<td><input type="checkbox" id="cart${list[i-1].sc_num}" style="display:none;" onchange="cart()"/>
+									<label for="cart${list[i-1].sc_num}"></label>
 								</td>
 							</c:if>
 						</tr>
-					</c:forEach>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>					

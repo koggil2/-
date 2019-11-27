@@ -233,18 +233,15 @@
 
 						<tr>
 							<td class="stit" rowspan="3" style="text-align: center;">주소</td>
-
 							<td class="frm">
-								<div id="wrap"
-									style="display: none; border: 1px solid; width: 500px; height: 300px; margin: -10px 0px 5px -10px; position: absolute">
+								<div id="wrap" style="display: none; border: 1px solid; width: 500px; height: 300px; margin: -10px 0px 5px -10px; position: absolute">
 									<img src="//t1.daumcdn.net/postcode/resource/images/close.png"
 										id="btnFoldWrap"
 										style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
 										onclick="foldDaumPostcode()" alt="접기 버튼">
-								</div> <input type="text" class="ipf" name='zipCode' id='zipCode'
-								placeholder="* 검색 버튼을 누르세요."><input type="button"
-								class="btn btn-secondary" onclick="sample3_execDaumPostcode()"
-								value="검색" />
+								</div>
+								<input type="text" class="ipf" name='zipCode' id='zipCode' placeholder="* 검색 버튼을 누르세요.">
+								<input type="button" class="btn btn-secondary" onclick="sample3_execDaumPostcode()" value="검색" />
 							</td>
 						</tr>
 						<tr>

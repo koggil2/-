@@ -2,6 +2,8 @@ package kr.goott.tour.product;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface ProductDAOInterface {
 	// 여행상품 전체목록
 	public List<ProductVO> getAllRecord(ProductVO vo);	
@@ -14,7 +16,9 @@ public interface ProductDAOInterface {
     // 여행상품 선택
     public ProductVO selectRecord(String goodcode);
     // 상품 일정 전체 목록 선택
-    public List<ScheduleVO> selectAllSchedule(String goodcode, String userId);
+    public List<ScheduleVO> selectAllSchedule(String goodcode);
+    // 상품 일정 전체 목록 선택(로그인 시)
+    public Integer selectUserSchedule(@Param("sc_num") int sc_num, @Param("userId") String userId);    
     // 상세 상품 선택
     public ScheduleVO selectShcedule(int num);
     // 여행분류별 상품 리스트선택
@@ -23,4 +27,12 @@ public interface ProductDAOInterface {
     public int insertBasket(BasketVO vo);
     // 여행바구니 취소
     public int deleteBasket(BasketVO vo);
+    // 여행선택(테이블에 있는지 없는 여부 확인)
+    public int selectBasket(@Param("sc_num") int sc_num, @Param("userId") String userId);
+    // 관심 추가
+    public int insertHeart(HeartVO vo);
+    // 관심 취소
+    public int deleteHeart(HeartVO vo);
+    // 관심선택(테이블에 있는지 없는 여부 확인)
+    public int selectHeart(@Param("sc_num") int sc_num, @Param("userId") String userId);
 }
