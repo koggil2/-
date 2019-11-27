@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.goott.tour.product.ProductVO;
 
@@ -41,5 +42,21 @@ public class HomeController {
 	public String clauseInfo(@RequestParam("cip") int cip) {
 		System.out.println(cip);
 		return "companyInfo/clauseInfo";
+	}
+	
+	//표준약관 ｜취급방침 ｜이용약관
+	@RequestMapping("/search")
+	public ModelAndView search(@RequestParam("searchWord") String searchWord) {
+		HomeDAOInterface dao = sqlSession.getMapper(HomeDAOInterface.class);
+		ModelAndView mav = new ModelAndView();
+		
+		List<ProductVO> list = dao.search_list("%"+searchWord+"%");
+		if(list!=null) {
+			mav.addObject("list", list);
+		}
+		
+		mav.addObject("searchWord", searchWord);
+		mav.setViewName("search");
+		return mav;
 	}
 }

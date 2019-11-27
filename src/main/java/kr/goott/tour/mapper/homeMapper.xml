@@ -9,4 +9,9 @@
 		where rownum <![CDATA[ <= ]]> 9
 		order by goodCode desc
   	</select>
+  	<select id="search_list" parameterType="String" resultType="kr.goott.tour.product.ProductVO">
+  		select num, goodCode, travelType, goodName, startArea, destination, travelTerm, goodData, price, reserMin, reserNum, assure1, assure2, assure3, regDate 
+		from gt_product
+		where destination like #{param1}
+  	</select>
   </mapper>

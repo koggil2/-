@@ -17,23 +17,6 @@
 %>
 </head>
 	<script>
-	/* 	function setImage(){
-			
-			var imglist = '';
-			var url = ['project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp',
-						'project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp','project/sangfum1.jsp']
-			for(i=1; i<=9; i++){
-				imglist += '<div><a href="product/product_view"><img src="/tour/image/main_img_banner_';
-				
-				if(i<=9)
-				imglist += i;
-				imglist +='.jpg"/></a>'+i+'번째 이미지 </div>';
-		
-			}
-			document.getElementById('cjimg').innerHTML=imglist;
-		} */
-	</script>
-	<script>
 		var imgNum = 1;
 		$(function(){
 			var sectionHeight = $("section").height();
@@ -65,10 +48,15 @@
 					$("#bannerImg").trigger("click");
 			}, 8000);
 			
+			
+			//검색
+			$(".searchBtn").on("click",function(){
+				location.href="search?searchWord="+$(this).prev().val();
+			});
 		});
 		
 	</script>
-<body onload='setImage();'>
+<body>
 		<header class="navbar navbar-expand-lg" id='mainbanner'>
 			<div>
 				<div id="mainMenu">
@@ -97,7 +85,7 @@
 						<c:if test="${memType=='직원'}">
 							<li class="nav-item"><a href="/tour/product/management">상품관리</a></li>
 						</c:if>
-						<li class="nav-item"><div><input type="text" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="submit"  style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
+						<li class="nav-item"><div><input type="text" id="searchWord2" name="searchWord" placeholder='검색어를 입력해보세요!' style="border:none; border-radius: 15px 0 0 15px; font-size:30%; text-align: left; padding-left:20px;"><input type="button" class="searchBtn" style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); color:transparent; background-size: 20px 20px;background-position:center;  vertical-align: -4px; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;vertical-align: -16px;"></div></li>
 					</ul><!--  돋보기 높이 설정 : vertical-align: 2px;  -->
 				</div>
 				
@@ -108,7 +96,7 @@
 		<div id="imgBanner">
 			<img src="/tour/image/mainimg1.jpg" id="bannerImg"/>
 			<div>				<!-- 이동만 보려고 임시로 클릭이벤트로 해놓음. -->
-			<input type="text" placeholder="가고 싶은 여행지를 검색해보세요!" style="border:none; position:relative; z-index:200;  border-radius: 15px 0 0 15px; font-size:150%; font-style:italic ;  "/><input type="submit" onclick="location.href='project/search.jsp'" style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); position:relative; z-index:200; color:transparent; background-size: 40px 40px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0; vertical-align: 3px;">
+			<input type="text" id="searchWord1" name="searchWord" placeholder="가고 싶은 여행지를 검색해보세요!" style="border:none; position:relative; z-index:200;  border-radius: 15px 0 0 15px; font-size:150%; font-style:italic;"/><input type="button" class="searchBtn" style="background-image:url('<%=request.getContextPath()%>/image/magno.png'); position:relative; z-index:200; color:transparent; background-size: 40px 40px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0; vertical-align: bottom;">
 			</div>
 		</div>
 		<div class="overlay"></div>

@@ -20,6 +20,16 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/tour/plugin/ckeditor/ckeditor.js"></script>
 
+<script>
+$(function(){
+	//검색
+	$(".searchBtn").on("click",function(){
+		location.href="/tour/search?searchWord="+$(this).prev().val();
+
+	});
+
+});
+</script>
 
 <style>
 *{font-family:'Noto Sans KR',sans-serif;}
@@ -55,7 +65,7 @@
 				<c:if test="${memType=='직원'}">
 					<li class="nav-item"><a href="/tour/product/management">상품관리</a></li>
 				</c:if>
-				<li class="nav-item"><div><input type="text" style="border:none; border-radius: 15px 0 0 15px"><input type="submit"  style="background-image:url('/tour/image/magno.png'); color:transparent; background-size: 20px 20px;vertical-align: 2px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0;"></div></li>
+				<li class="nav-item"><div><input type="text" id="searchWord2" name="searchWord" style="border:none; border-radius: 15px 0 0 15px"><input type="submit" class="searchBtn" style="background-image:url('/tour/image/magno.png'); color:transparent; background-size: 20px 20px;vertical-align: 2px; background-position:center; background-color:white; border:none; background-repeat:no-repeat; border-radius:0 15px 15px 0; vertical-align: 2px;"></div></li>
 			</ul>
 		</div>
 		<!-- 이미지배너 -->

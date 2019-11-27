@@ -281,23 +281,9 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
    function setData(){
        jsonData = 
        {
-           "2019":{
-               "07":{
-                   "17":"제헌절"
-               }
-               ,"08":{
-                   "7":"칠석"
-                   ,"15":"광복절"
-                   ,"23":"처서"
-               }
-               ,"09":{
-                   "13":"추석"
-                   ,"23":"추분"
-               }
-               ,"11":{
-               	"21" : "450,000~"
-               }
-           }
+          /*  "2019":{"07":{"17":"제헌절"},"08":{"9":"칠석","15":"광복절","23":"처서"},"09":{"13":"추석","23":"추분"},"11":{"21" : "450,000~"}}
+           ,"2020":{"01":{"3":"설날"}}     */ 
+       	${scheduleDate}              
        }
    }
    
@@ -313,7 +299,7 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
                if(txt){
                    txt =  jsonData[year][month][i];
                    if(txt) {
-                   	txt = "<a href='#product_list'>" + jsonData[year][month][i] + "</a>";
+                   	txt = jsonData[year][month][i] ;
                     dateMatch = firstDay.getDay() + i -1; 
                     $tdSche.eq(dateMatch).html(txt);
                    }

@@ -14,7 +14,7 @@
 	</select>
 	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
 		 select sc_num, goodcode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
- 		 from gt_schedule where goodCode=#{goodCode}
+ 		 from gt_schedule where goodCode=#{goodCode} order by startDate
 	</select>
 	<select id="selectUserSchedule" resultType="java.lang.Integer">
 		 select count(num) from gt_basket where sc_num=${sc_num} and userId='${userId}'

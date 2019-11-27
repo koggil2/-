@@ -76,7 +76,43 @@ public class ProductController {
       ProductVO vo = new ProductVO();
       vo = dao.selectRecord(goodCode);
       
+      
       List<ScheduleVO> list = dao.selectAllSchedule(vo.getGoodCode());
+      String scheduleDate = "";
+      String y="", m="", d="";
+      for(int i=0; i<list.size(); i++) {
+    	  String sc = list.get(i).getStartDate();
+    	  if(i==0) {
+    		  y = sc.substring(0,4);
+    		  m = sc.substring(5,7);
+    		  d= sc.substring(8,10);
+    		  scheduleDate = "\""+y+"\":{\""+m+"\":{\"" +Integer.parseInt(d)+"\":\"출발\"";    		  
+    	  }else {
+    		  if(!y.equals(sc.substring(0,4))) {
+				  scheduleDate += "}} , \""+sc.substring(0,4)+"\":{\""+sc.substring(5,7)+"\":{\"" +Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
+				  y = sc.substring(0,4);
+				  m = sc.substring(5,7);
+	    		  d= sc.substring(8,10);
+    		  }else {
+    			  if(!m.equals(sc.substring(5,7))) {
+    				  scheduleDate += "} ,\""+sc.substring(5,7)+"\":{\"" +Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
+    				  m = sc.substring(5,7);
+    	    		  d = sc.substring(8,10);
+    			  }else {
+    				  if(!d.equals(sc.substring(8,10))){
+    	    			  scheduleDate += ",\""+Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
+    	    			  d=sc.substring(8,10);	  
+    				  }
+    				  
+    			  }
+    		  }
+    	  }
+    	  
+      }
+      scheduleDate += "}}";
+      
+      System.out.println(scheduleDate);
+
       ModelAndView mav = new ModelAndView();
       
       if(userId != null) {  
@@ -88,7 +124,7 @@ public class ProductController {
 		}
     	 mav.addObject("list2", list2);
       }
-      
+      mav.addObject("scheduleDate", scheduleDate);
       mav.addObject("list", list);
       mav.addObject("vo", vo);
       mav.setViewName("product/product_view");
