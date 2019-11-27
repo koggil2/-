@@ -12,7 +12,7 @@
 	.title_text{float: left; width: 580px; position: relative; height: 350px; padding-top:6px; padding-left:40px;}
 	.sec_div{width:100%; height: 352px; border: 1px solid lightgray;}
 	.product_menu>li{width:860px; height: 37px; font-size: 17px; text-align: left; }
-	.code{font-size: 12px; width:280px; height: 26px; margin:10px 0; padding-left:30px;}
+	.code{font-size: 12px; width:300px; height: 26px; margin:10px 0; padding-left:30px;}
 	.spanMr {margin-right: 60px;}
 	.title_name{height:40px;}
 	.title_name input{width:550px; line-height:30px;}
@@ -79,22 +79,51 @@
 	.btStylePlus {margin-left: 20px; width:25px; height:25px; font-size:25px; border: 0; background:none;}
 	
 	.spanWiMr{width:200px; text-align:left;}
-	#imgBx{width:500px; height:340px; overflow:hidden; margin:5px; border:1px solid #ddd}
-	#imgBx img{max-width:500px;}
+	
+	#imgBx{height:340px;}
+	#imgBx li{width:500px; height:340px; overflow:hidden;}
+	#imgBx img{width:500px;}
 </style>
 <script>
+	var mySlider;
+	var codeChkOk = true;
 	$(function(){
-		//bxslider
-			$("#imgBx").bxSlider({
-				mode:'horizontal',
-				sliderWidth:500,
-				sliderHeight:340,
-				auto:true
-			});
-		//
-		$("#goodCode").keyup(function(){
-			$("#goodCodeCopy").val($("#goodCode").val());
+		//코드 중복체크
+		$('#codeChk').click(function(){
+			var goodCode = $("#goodCode").val();
+			if(codeChkOk){
+				$.ajax({
+					type : "GET",
+					url : "codeCheck",
+					data : "goodCode="+goodCode,
+					success : function(result){
+						if(result!=""){
+							if(confirm("입력하신 코드는 "+goodCode+"는 사용가능합니다.\n이 코드를 사용하시겠습니까?\n(수정이 불가능합니다.)")){
+								$("#goodCode").attr("value",goodCode);
+								$("#goodCodeCopy").val(goodCode);
+								/* document.getElementById("goodCode").setAttribute("readonly"); */
+								codeChkOk = false;
+							}else{
+								$("#goodCode").val("");
+							}
+						}else{
+							alert("코드를 입력해주세요.");
+							$("#goodCode").val("");	
+						}	
+					},
+					error : function(e){
+						alert(e.responseText);
+					}
+				});
+			}
 		});
+		//bxslider
+		mySlider = $("#imgBx").bxSlider({
+						mode:'horizontal',
+						sliderWidth:500,
+						sliderHeight:340,
+						auto:true
+					});
 		//
 		$.datepicker.setDefaults({
                 dateFormat: 'yy-mm-dd' //Input Display Format 변경
@@ -163,6 +192,16 @@
 				alert("상품코드를 입력하십시오.");
 				return false;
 			}
+			//상품코드 확인
+			if(codeChkOk){
+				alert("상품코드 중복확인을 하십시오.");
+				return false;
+			}
+			//이미지 등록
+			if($("#imgBx li").length<=0){
+				alert("이미지를 등록하십시오.");
+				return false;
+			}
 			//상품가격
 			if($("#price").val()==""){
 				alert("상품가격을 입력하십시오.");
@@ -208,13 +247,31 @@
 			for(i=1; i<=$("#dateList li").length; i++){
 				var oneDate = $("#dateList li:nth-child("+i+")").html();
 				var od = (oneDate.substring(0,23)).split(" ~ ");
-				sd += "v^v["+od[0]; //첫번째토큰은 스타트데이트
-				bd += "y^y["+od[1]; //두번째토큰은 백데이트
+				sd += "Startv"+od[0]; //첫번째토큰은 스타트데이트
+				bd += "Backy"+od[1]; //두번째토큰은 백데이트
 			}
 			
 			$("#startDate").val(sd);
 			$("#backDate").val(bd);
 			
+			
+			var url = "product_write";
+			var params = $("#productFrm").serialize();//폼의 데이터를 직렬화한다.
+			$.ajax({
+				type:"POST",
+				data:params,
+				url:url,
+				success:function(result){
+					if(result>0){
+						alert("작성되었습니다.");
+						location.href="management";
+					}else{
+						alert("작성실패하였습니다.");
+					}
+				},error:function(e){
+					alert("작성실패"+e.responseText);
+				}
+			});
 		});
 	});
 	function insertDate(){
@@ -301,9 +358,8 @@
 		oldDay = day;
 	}
 	//이미지 첨부 이벤트
-	function imgUpload(){
+	function imgUpload(){	
 		var formData = new FormData(document.getElementById("imgUploadForm"));
-		
 		var url = "imgUpload";
 		$.ajax({
 			type:"POST",
@@ -312,17 +368,28 @@
 			processData:false,
 			contentType:false,
 			success:function(result){//fileAddr
-				var txt = "<img src='/tour/imgUpload/"+result+"'/>";
-				$("#imgDiv").append(txt);
+				var txt = "<li><a><img src='/tour/imgUpload/"+result+"'/></a></li>";
+				$("#imgBx").append(txt);
+				mySlider.reloadSlider();
+				
 			},error:function(e){
 				alert(e.responseText);
 			}
 		});
 	}
+	//코드가 있을때만 파일 선택 가능.
+	function fileSel(){
+		if(!codeChkOk){
+			document.all.fileName.click();
+		}else{
+			alert("상품코드를 입력하고 중복확인을 하십시오.");
+			return false;
+		}
+	}
 </script>
 <section>
 	<div class="container">
-		<form onsubmit="return false">
+		<form id="productFrm" method="post" onsubmit="return false">
 			<div id="detail-content"> 	
 				<div class="page_location">
 					<a href="<%=request.getContextPath()%>/index.jsp">홈></a><a href="#">1박2일</a>
@@ -336,7 +403,8 @@
 					</div>
 					<div class="title_text">
 						<div class="title_name"><input type="text" name="goodName" id="goodName" placeholder="상품명"/></div>
-						<div class='code'> ( 상품코드 : <input type="text" name="goodCode" id="goodCode" placeholder="상품코드"/> )</div>
+						<div class='code'> ( 상품코드 : <input type="text" name="goodCode" id="goodCode" placeholder="상품코드"/>
+													<input type="button" id="codeChk" value="확인" /> )</div>
 						<div class="product_list">
 							<ul class="product_menu">
 								<li><span class="spanMr">상품가격</span><input type="text" name="price" id="price" placeholder="가격"/>원</li>
@@ -354,7 +422,7 @@
 										<option value="school">수학여행</option>
 										<option value="study">현장학습</option>
 									</select></li>
-								<li><span class="spanMr">사진첨부</span><button class="button" onclick="document.all.fileName.click()">파일 선택</button></li>
+								<li><span class="spanMr">사진첨부</span><button class="button" onclick="fileSel()">파일 선택</button></li>
 							</ul>
 						</div>
 					</div>

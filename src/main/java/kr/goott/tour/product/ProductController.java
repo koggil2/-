@@ -18,9 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import kr.goott.tour.register.RegisterVO;
-import oracle.net.aso.d;
-
 
 @Controller
 public class ProductController {
@@ -76,43 +73,7 @@ public class ProductController {
       ProductVO vo = new ProductVO();
       vo = dao.selectRecord(goodCode);
       
-      
       List<ScheduleVO> list = dao.selectAllSchedule(vo.getGoodCode());
-      String scheduleDate = "";
-      String y="", m="", d="";
-      for(int i=0; i<list.size(); i++) {
-    	  String sc = list.get(i).getStartDate();
-    	  if(i==0) {
-    		  y = sc.substring(0,4);
-    		  m = sc.substring(5,7);
-    		  d= sc.substring(8,10);
-    		  scheduleDate = "\""+y+"\":{\""+m+"\":{\"" +Integer.parseInt(d)+"\":\"출발\"";    		  
-    	  }else {
-    		  if(!y.equals(sc.substring(0,4))) {
-				  scheduleDate += "}} , \""+sc.substring(0,4)+"\":{\""+sc.substring(5,7)+"\":{\"" +Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
-				  y = sc.substring(0,4);
-				  m = sc.substring(5,7);
-	    		  d= sc.substring(8,10);
-    		  }else {
-    			  if(!m.equals(sc.substring(5,7))) {
-    				  scheduleDate += "} ,\""+sc.substring(5,7)+"\":{\"" +Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
-    				  m = sc.substring(5,7);
-    	    		  d = sc.substring(8,10);
-    			  }else {
-    				  if(!d.equals(sc.substring(8,10))){
-    	    			  scheduleDate += ",\""+Integer.parseInt(sc.substring(8,10))+"\":\"출발\"";
-    	    			  d=sc.substring(8,10);	  
-    				  }
-    				  
-    			  }
-    		  }
-    	  }
-    	  
-      }
-      scheduleDate += "}}";
-      
-      System.out.println(scheduleDate);
-
       ModelAndView mav = new ModelAndView();
       
       if(userId != null) {  
@@ -124,7 +85,7 @@ public class ProductController {
 		}
     	 mav.addObject("list2", list2);
       }
-      mav.addObject("scheduleDate", scheduleDate);
+      
       mav.addObject("list", list);
       mav.addObject("vo", vo);
       mav.setViewName("product/product_view");
@@ -281,7 +242,7 @@ public class ProductController {
 		
 		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
 		
-		int cnt = dao.InsertImg(vo);
+		int cnt = dao.insertImg(vo);
 		 	
 		if(cnt<0) fileName= null;
 			
@@ -290,5 +251,49 @@ public class ProductController {
 		}
 		
 		return fileName;
+	}
+	
+	//코드 중복검사
+	@RequestMapping("/product/codeCheck")
+	@ResponseBody
+	public String codeCheck(@RequestParam("goodCode") String goodCode) {		
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		
+		int result = dao.codeCheck(goodCode); //코드 중복검사
+		
+		if(result>0) return null; //코드가 중복일 경우
+		return goodCode; //코드가 중복이 아닐경우
+	}
+	
+	// 상품 작성
+	@RequestMapping(value="/product/product_write", method=RequestMethod.POST)
+	@ResponseBody
+	public int product_write(ProductVO vo) {
+		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
+		String goodCode = vo.getGoodCode();
+		System.out.println(goodCode);
+		//상품등록
+		int result = dao.insertProduct(vo);
+		if(result>0) {
+			//일정등록
+			String startDate = vo.getStartDate();
+			String backDate = vo.getBackDate();
+			
+			String startD[] = startDate.split("Startv");
+			String backD[] = backDate.split("Backy");
+			System.out.println(startD.length);
+			result = 0;
+			for(int i=1; i<startD.length; i++) {
+				startDate = startD[i];
+				backDate = backD[i];
+				System.out.println(startDate);
+				int r = dao.insertSchedule(goodCode, startDate, backDate);
+				result += r;
+			}
+		}else {
+			result = 0;
+		}
+		
+		return result;
 	}
 }

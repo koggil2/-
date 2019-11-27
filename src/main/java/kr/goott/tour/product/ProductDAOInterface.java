@@ -36,5 +36,13 @@ public interface ProductDAOInterface {
     // 관심선택(테이블에 있는지 없는 여부 확인)
     public int selectHeart(@Param("sc_num") int sc_num, @Param("userId") String userId);
     // 이미지 첨부
-    public int InsertImg(ImgUploadVO vo);
+    public int insertImg(ImgUploadVO vo);
+    // 코드 중복 검사
+    public int codeCheck(String goodCode);
+    // 상품 등록
+    public int insertProduct(ProductVO vo);
+    // 일정 등록
+    public int insertSchedule(@Param("goodCode") String goodCode
+    						, @Param("startDate") String startDate
+    						, @Param("backDate") String backDate);
 }

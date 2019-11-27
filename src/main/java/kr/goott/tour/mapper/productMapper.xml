@@ -14,7 +14,7 @@
 	</select>
 	<select id="selectAllSchedule" resultType="kr.goott.tour.product.ScheduleVO">
 		 select sc_num, goodcode, to_char(startDate, 'YYYY-MM-DD') startDate, to_char(backDate, 'YYYY-MM-DD') backDate
- 		 from gt_schedule where goodCode=#{goodCode} order by startDate
+ 		 from gt_schedule where goodCode=#{goodCode}
 	</select>
 	<select id="selectUserSchedule" resultType="java.lang.Integer">
 		 select count(num) from gt_basket where sc_num=${sc_num} and userId='${userId}'
@@ -55,8 +55,19 @@
 		from gt_like
 		where sc_num=#{sc_num} and userId=#{userId}
 	</select>
-		<insert id="InsertImg">
+	<insert id="insertImg">
 		insert into gt_pro_img(imgNum, goodCode, fileName)
 		values(gt_img_sq.nextval, #{goodCode}, #{fileName})
+	</insert>
+	<select id="codeCheck" parameterType="String" resultType="int">
+		select count(goodCode) from gt_product where goodCode=#{param1}
+	</select>
+	<insert id="insertProduct" parameterType="kr.goott.tour.product.ProductVO">
+		insert into gt_product(num, goodCode, traveltype, goodname, startarea, destination, regdate, travelterm, goodData, price, reserMin, reserNum, assure1, assure2, assure3)
+		values(gt_product_sq.nextval, #{goodCode}, #{travelType}, #{goodName}, #{startArea}, #{destination}, sysdate, #{travelTerm}, #{goodData}, #{price}, #{reserMin}, #{reserNum}, #{assure1}, #{assure2}, #{assure3})
+	</insert>
+	<insert id="insertSchedule">
+		insert into gt_schedule(sc_num, goodCode, startDate, backDate)
+		values(gt_schedule_sq.nextval, #{goodCode}, #{startDate}, #{backDate})
 	</insert>
 </mapper>

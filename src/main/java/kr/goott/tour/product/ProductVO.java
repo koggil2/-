@@ -18,6 +18,42 @@ public class ProductVO {
 	private String assure2;
 	private String assure3;
 	
+	private String startDate;
+	private String backDate;
+	
+	public ProductVO() {}
+	public ProductVO(int num, String goodCode, String travelType, String goodName, String startArea, String destination, String regDate, String travelTerm,
+		   			String goodData, int price, int reserMin, int reserNum, String assure1, String assure2, String assure3, String startDate, String backDate) {
+		this.num=num;
+		this.goodCode=goodCode;
+		this.travelType=travelType;
+		this.goodName=goodName;
+		this.startArea=startArea;
+		this.destination=destination;
+		this.regDate=regDate;
+		this.travelTerm=travelTerm;
+		this.goodData=goodData;
+		this.price=price;
+		this.reserMin=reserMin;
+		this.reserNum=reserNum;
+		this.assure1=assure1;
+		this.assure2=assure2;
+		this.assure3=assure3;
+		this.startDate=startDate;
+		this.backDate=backDate;
+   }
+   	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getBackDate() {
+		return backDate;
+	}
+	public void setBackDate(String backDate) {
+		this.backDate = backDate;
+	}
 	
 	public int getNum() {
 		return num;
