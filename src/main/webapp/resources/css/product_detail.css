@@ -181,3 +181,9 @@ button::before, button::after {
 #btnReply{text-align: right; }
 #listReply {text-align: left;}
 
+.comment_div{text-align: left;}
+#content {text-align: left;}
+
+#comment_btn{border: 1px solid lightgray; height: 50px;}
+
+

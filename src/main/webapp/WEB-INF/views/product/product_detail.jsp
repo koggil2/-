@@ -450,16 +450,24 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
     	</div> 
   -->
     <!-- **댓글 목록 출력할 위치 --> 
-      <div class="container">
-        <label for="content">comment</label>
+      <div class="container comment_div">
+        <label for="content" style="text-align: left;font-size: 23px; font-weight: 600;">상품문의</label>
         <form name="commentInsertForm" method="post">
             <div class="input-group">
              	<input type="hidden" name="sc_num"	value="${sc.sc_num}"/>
                <input type="hidden" name="goodCode" value="${vo.goodCode}"/>
                <input type="hidden" name="userId" value="${logid}"/>
+               <c:if test="${logid == null}">
+                <input type="text" class="form-control" id="content" name="content" placeholder="로그인 후 입력이 가능합니다..">
+               </c:if>
+               <c:if test="${logid !=null }">
                <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+               </c:if>
                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+               
+               <c:if test="${logid != null}">
+					<button id="comment_btn" class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+			   </c:if>
                </span>
               </div>
         </form>
@@ -469,9 +477,9 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
         <div class="commentList"></div>
     </div>
     
-    <%@ include file="commentS.jsp" %>
+    <%@ include file="comment.jspf" %>
     <!-- 댓글 끝나는 div끝..  -->
-		<!-- 상품문의 끝  -->
+	<!-- 상품문의 끝  -->
 	</div>
 </div>
 	<script>

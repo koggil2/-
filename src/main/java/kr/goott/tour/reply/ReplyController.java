@@ -43,6 +43,9 @@ public class ReplyController{
     	System.out.println((String)sess.getAttribute("logid"));
         comment.setUserId((String)sess.getAttribute("logid"));  
         
+        
+        System.out.println(comment.getNum()+","+ comment.getSc_num()+","+ comment.getGoodCode()+","+ comment.getContent()+","
+        		+comment.getUserId());
         return commentDAO.commentInsert(comment);
     }
     

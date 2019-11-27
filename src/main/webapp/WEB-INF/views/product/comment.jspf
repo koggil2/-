@@ -10,7 +10,7 @@ function commentInsert(insertData){
 	var params = insertData
     $.ajax({
         url : '/tour/product/reply/insert',
-        type : 'POST',
+        type : 'post',
         data : params,
         success : function(data){
         	console.log("5555");
@@ -27,7 +27,6 @@ $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시
     var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
     console.log(insertData);
     commentInsert(insertData); //Insert 함수호출(아래)
-    
 });
 
 //댓글 목록 
