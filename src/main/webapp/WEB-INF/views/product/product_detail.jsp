@@ -80,6 +80,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						success : function(result){ 
 							if(result>0){
 								alert("여행바구니 등록이 취소됐습니다.");
+								$("#cart").attr("vlaue","0");
 							}
 						},
 						erorr : function(e){
@@ -99,6 +100,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						success : function(result){ 
 							if(result>0){
 								alert("여행바구니에 등록됐습니다.");
+								$("#cart").attr("vlaue","1");
 							}
 						},
 						erorr : function(e){
