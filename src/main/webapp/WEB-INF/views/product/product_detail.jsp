@@ -67,6 +67,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 			}
 		});
 		
+		/* 여행바구니 */
 		$("#cart").click(function(){
 			if($(this).val()>0){
 				if(confirm("이미 등록된 상품입니다. 등록취소하시겠습니까?")){
@@ -77,7 +78,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						type : "GET",
 						success : function(result){ 
 							if(result>0){
-								alert("관심 등록이 취소됐습니다.");
+								alert("여행바구니 등록이 취소됐습니다.");
 							}
 						},
 						erorr : function(e){
@@ -86,7 +87,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						
 					});
 				}
-			}else{
+			}else if($(this).val()==0){
 				var state = 1;
 				var params = "goodCode=${vo.goodCode}&sc_num=${sc.sc_num}&userId=${logid}&jang="+state;	
 				$.ajax({
