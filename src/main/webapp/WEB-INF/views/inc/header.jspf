@@ -51,7 +51,7 @@ $(function(){
 				<li class="nav-item"><a href="/tour/register/loginForm">로그인</a></li>
 				</c:if>
 				<c:if test="${logid!=null }">
-				<li class="nav-item"><a href="/tour/register/mypage">마이페이지</a></li>
+				<li class="nav-item"><a href="/tour/register/mypage?userId=${logid}">마이페이지</a></li>
 				<li class="nav-item">${logname}님 <a href="/tour/register/logoutOk">로그아웃</a></li>
 			</c:if>
 			</ul>

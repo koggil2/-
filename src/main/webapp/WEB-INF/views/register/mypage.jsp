@@ -68,13 +68,15 @@
 		 	<td>도착일</td>
 		    <td>금액</td>
 		  </tr>
+		  <c:forEach var="l" items="${l_list}">
 		  <tr>
-		    <td><a href='#'>AAP3412TWB</a></td>
-		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
-		    <td>2019년10월20일</td>
-		    <td>2019년10월22일</td>
-		    <td>500,000</td>
+		    <td><a href='#'>${l.goodCode}</a></td>
+		   	<td>${pvo.goodName}</td>
+			<td>${svo.startDate}</td>
+			<td>${svo.backDate}</td>
+		    <td>${pvo.price}</td>
 		  </tr>
+		  </c:forEach>
 		</table>
 	</div>
 	<div id="myReservation">
@@ -90,18 +92,18 @@
 		    <td>예약날짜</td> 
 		    <td>예약</td>
 		  </tr>
-		  <tr>
-		    <td><a href='#'>AAP3412TWB</a></td>
-		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
-		    <td>2019년10월20일</td>
-		    <td>2019년10월22일</td>
-		    <td>2</td>
-		    <td>500,000</td>
-		    <td>2019년9월19일</td>
-		    <td>예약완료
-		    	<input type="button" value="예약취소"/>
-		    </td>
-		  </tr>
+		  <c:forEach var="r" items="${r_list}">
+			  <tr>
+			    <td><a href='#'>${r.goodCode}</a></td>
+			    <td>${pvo.goodName}</td>
+			    <td>${svo.startDate}</td>
+			    <td>${svo.backDate}</td>
+			    <td>${r.goodNum}</td>
+			    <td>${r.price}</td>
+			    <td>${r.reserDate}</td>
+			    <td>${r.state}</td>
+			  </tr>
+		  </c:forEach>
 		</table>
 	</div>
 	<div id="myPay">
@@ -117,18 +119,18 @@
 		    <td>결제날짜</td>
 		    <td>결제</td>
 		  </tr>
-		  <tr>
-		    <td><a href='#'>AAP3412TWB</a></td>
-		    <td>제주도 5일_특급 신라호텔 바로출발,제주도 5일_특급 신라호텔 바로출발</td>
-		    <td>2019년10월20일</td>
-		    <td>2019년10월22일</td>
-		    <td>2</td>
-		    <td>500,000</td>
-		    <td>2019년9월19일</td>
-		    <td>결제완료
-		    	<input type="button" value="결제취소"/>
-		    </td>
-		  </tr>
+		  <c:forEach var="p" items="${p_list}">
+			  <tr>
+			    <td><a href='#'>${p.goodCode}</a></td>
+			    <td>${pvo.goodName}</td>
+			    <td>${svo.startDate}</td>
+			    <td>${svo.backDate}</td>
+			    <td>${p.goodNum}</td>
+			    <td>${p.price}</td>
+			    <td>${p.payDate }</td>
+			    <td>${p.pay}</td>
+			  </tr>
+		  </c:forEach>
 		</table>
 	</div>
 </section>

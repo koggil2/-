@@ -26,4 +26,19 @@
 	<delete id="deleteRecord" parameterType="String">
 		delete from gt_register where userId=#{param1} and userPwd=#{param2}
 	</delete>
+	<select id="myRevList" resultType="kr.goott.tour.reservation.ReservationVO">
+		select num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay, payDate
+		from gt_booking 
+		where userId=#{userId} and state='예약완료'
+	</select>
+	<select id="myPayList" resultType="kr.goott.tour.reservation.ReservationVO">
+		select num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay, payDate
+		from gt_booking 
+		where userId=#{userId} and pay='결제완료'
+	</select>
+	<select id="myLikeList" resultType="kr.goott.tour.product.HeartVO">
+		select num, goodCode, sc_num, userId 
+		from gt_like 
+		where userId=#{userId}
+	</select>
 </mapper>
