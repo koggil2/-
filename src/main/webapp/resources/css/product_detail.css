@@ -182,8 +182,28 @@ button::before, button::after {
 #listReply {text-align: left;}
 
 .comment_div{text-align: left;}
-#content {text-align: left;}
+#content1, #content2 {text-align: left; height: 50px;}
 
 #comment_btn{border: 1px solid lightgray; height: 50px;}
+.commentArea div{text-align: left;}
+
+/*  */
+#revDetailTable{width:100%}
+#revDetailTable *{text-align:left; margin-top:0px;}
+#revDetailTable table{background-color:#fff; margin-bottom:40px;}
+
+.circleIco{width:20px; height:20px; border-radius:20px; background-color:#aaa; border:5px solid #ddd; position:relative; left:-6px; top:25px; z-index:2}
+.tableLeftMargin{margin-left:30px; margin-bottom:10px;}
+.tableBar{position:absolute; width:2px; height:247px; background-color:#ddd; z-index:1; left:24px;}
+.m-tTen{margin-top:20px;}
+#revDetailTable .dayVal{background:#aaa; width:200px; color:white; font-size:1.1em; font-weight:bold; z-index:2; text-align:center;}
+
+#revDetailTable table tr:first-child td{border-bottom:0px; font-size:20px;}
+#revDetailTable table tr:first-child td:last-child{font-size:18px;}
+#revDetailTable table tr{line-height:30px}
+
+.dayTable td{width:100px; padding:20px; border:1px solid #ccc;}
+.dayTable td:last-child{width:1200px; padding:0px 20px;}
+
 
 

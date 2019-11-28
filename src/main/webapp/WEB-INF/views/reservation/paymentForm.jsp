@@ -41,28 +41,29 @@
 	#goPay h3{left:70px;position:relative;}
 </style>
 <section>
-	<form id="paymentMain">	
+	<form id="paymentMain" action="payOk">
+		<input type="hidden" name="num" value="${rev_vo.num}"/>
 		<div id="reservationRgt">
 			<h3>주문자 정보</h3>
-			<div><label>이름*</label><input type="text" class="ipf form-control" name="reserName" id="reserName" maxlength='15' value="${vo3.reserName }" readonly></div>
-			<div><label>이메일 주소*</label><input type="text" class="ipf form-control" name="reserEmail" id="reserEmail" maxlength='20' value="${vo3.reserEmail }" readonly></div>
+			<div><label>이름*</label><input type="text" class="ipf form-control" name="reserName" id="reserName" maxlength='15' value="${rev_vo.reserName }" readonly></div>
+			<div><label>이메일 주소*</label><input type="text" class="ipf form-control" name="reserEmail" id="reserEmail" maxlength='20' value="${rev_vo.reserEmail }" readonly></div>
 			<div><label>연락처*</label>
-				<input type="text" class="ipf form-control" name="reserTel" id="reserTel1" maxlength='10' value="${vo3.reserTel }" style="" readonly>
+				<input type="text" class="ipf form-control" name="reserTel" id="reserTel1" maxlength='10' value="${rev_vo.reserTel }" style="" readonly>
 			</div>
 			<div class="uk-margin">
-            	<label>문의 사항*</label><textarea class="uk-textarea" rows="5" style="width:480px;height:200px;float:left;" value="${vo3.resermemo }" readonly></textarea>
+            	<label>문의 사항*</label><textarea class="uk-textarea" rows="5" style="width:480px;height:200px;float:left;" readonly>${rev_vo.resermemo}</textarea>
         	</div>		
 			
 		</div>
 		<div id="goPay">
 			<h3>주문 상품정보</h3>
 			<div id="order" style="background:#fff">
-				<div><label>상품코드*</label><label>${vo3.goodCode }</label></div>
-				<div><label>인원*</label><label>${vo3.goodNum }</label></div>
-				<div><label>출발일*</label><label></label></div>
-				<div><label>도착일*</label><label>AAAA04</label></div>
+				<div><label>상품코드*</label><label>${rev_vo.goodCode}</label></div>
+				<div><label>인원*</label><label>${rev_vo.goodNum}</label></div>
+				<div><label>출발일*</label><label>${svo.startDate}</label></div>
+				<div><label>도착일*</label><label>${svo.backDate}</label></div>
 				<div><label></label><label>총 결제금액</label></div>
-				<div><label></label><label>199000원</label></div>
+				<div><label></label><label>${rev_vo.price}원</label></div>
 				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid" style="    margin-bottom: -25px;">
             		<label style="width: 150px;font-size: 15px;"><input class="uk-radio" type="radio" name="radio2" style="width:16px;left:0;" checked> 신용카드 결제</label>
             	</div>
@@ -73,10 +74,7 @@
             		<label style="width:150px;"><input class="uk-radio" type="radio" name="radio2" style="width:16px;left:0;" > 가상계좌 결제</label>
             		
             	</div>
-            	<input type="button" class="btn btn-danger" name="paying" onclick="" value="결제하기" style="left:-10px;position:relative;width:400px;top:40px;">
-            	
-            		
-            	
+            	<input type="submit" class="btn btn-danger" name="paying" onclick="" value="결제하기" style="left:-10px;position:relative;width:400px;top:40px;">
 			</div>			
 		</div>
 	</form>

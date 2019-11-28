@@ -53,13 +53,6 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 				}
 			});
 			
-			$("#sameFrm").submit(function(){
-				if(confirm("결제 창으로 넘어 가시겠습니까?")){
-					return true;
-				}else{
-					return false;
-				}
-    		});
     	}); 
   	
 </script>
@@ -72,60 +65,58 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<table class="table table-bordered" style="table-layout:fixed">
 			<thead>
 			  <tr>
-				<th style='width:145px;'>예약날짜</th> 
 				<th style='width:130px;'>상품코드</th>
 				<th style='width:200px;'>상품명</th>
-				<th style='width:100px;'>결제금액</th>
+				<th style='width:100px;'>금액</th>
 				<th style='width:60px;'>인원</th>
 			    <th style='width:145px;'>출발일</th>
-			    <th>여행도우미</th>
-			    <th style="width:90px">예약상태</th>
-			    <th>상품평</th>
+			    <th style='width:145px;'>도착일</th>
 			  </tr>
 			</thead>
 			<tbody id='rev-body'>
 			  <tr>
-			    <td>2019년9월19일</td>
-			    <td><a href='#'>AAP3412TWB</a></td>
-			    <td style="width:240px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">제주도 5일_특급 신라호텔 바로출발제주도 5일_준특급 신라호텔</td>
-			    <td>500,000</td>
-			    <td>2</td>
-			    <td>2019년10월20일</td>
-			    <td>man</td>
-			    <td>Yes</td>
-			    <td><button class='btn btn-secondary'>작성하기 </button></td>
+			    <td><a href='#'>${rev_vo.goodCode}</a></td>
+			    <td style="width:240px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">${pvo.goodName}</td>
+			    <td>${rev_vo.price} 원</td>
+			    <td>${rev_vo.goodNum}</td>
+			    <td>${svo.startDate}</td>
+			    <td>${svo.backDate}</td>
 			  </tr>
 			</tbody>
 		</table>
 	<div id='join'>
 	
-	<form id="reserFrm">
+	<form id="reserFrm"  method="post" action="reservationOK">
+		<input type="hidden" name="goodCode" value="${rev_vo.goodCode}"/>
+		<input type="hidden" name="sc_num" value="${rev_vo.sc_num}"/>
+		<input type="hidden" name="userId" value="${rev_vo.userId}"/>
+		<input type="hidden" name="price" value="${rev_vo.price}"/>
+		<input type="hidden" name="goodNum" value="${rev_vo.goodNum}"/>
 		예약자
 		<div class="uk-margin" id='rev-name'>
 	        <div class="uk-inline" id="rev-User" style="width:150px;text-align: left">
 	            <span class="uk-form-icon" uk-icon="icon: user"></span>
-	            <input class="uk-input" type="text" value="${vo2.userName }" readonly> 
+	            <input class="uk-input" type="text" value="${rvo.userName}" readonly> 
 	        </div>
 	    </div>
 		연락처
 		<div class="uk-margin" id='rev-tel' style="max-width:;">
 	        <div class="uk-inline" id="rev-phone" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: receiver"></span>
-	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='rev-tel1' value="${vo2.t1}" readonly> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel2' value="${vo2.t2 }" readonly> -
-	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel3' value="${vo2.t3 }" readonly>
+	            <input class="uk-input" type="text" style="width:150px;text-align:center;"maxlength="3" id='rev-tel1' value="${rvo.t1}" readonly> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel2' value="${rvo.t2 }" readonly> -
+	            <input class="uk-input" type="text" style="width:130px;text-align:left;"maxlength="4" id='rev-tel3' value="${rvo.t3 }" readonly>
 	        </div>
 	    </div>
 		이메일
 		<div class="uk-margin" id='rev-email' style="max-width:;">
 	        <div class="uk-inline" id="rev-mail" style="float:left;">
 	            <span class="uk-form-icon" uk-icon="icon: mail"></span>
-	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15" value="${vo2.emailId}" readonly> @
-	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15" value="${vo2.emailDomain}" readonly> 
+	            <input class="uk-input" type="text" style="width:230px;text-align:center;"maxlength="15" value="${rvo.emailId}" readonly> @
+	            <input class="uk-input" type="text" style="width:200px;text-align:left;"maxlength="15" value="${rvo.emailDomain}" readonly> 
 	            
 	        </div>
-	    </div>
-		</form>		 
+	    </div>	 
 		<hr style='margin:10px auto;'/>
 		<br/> 
 		<div id='samecontent'>
@@ -133,12 +124,11 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		</div>
 		<hr style='margin:10px auto;'/>
 
-	<form id="sameFrm" method="post" action="payment">
 		예약자
 		<div class="uk-margin" id='rev-name1'>
 	        <div class="uk-inline" id="reservationUser" style="width:150px;text-align: left">
 	            <span class="uk-form-icon" uk-icon="icon: user"></span>
-	            <input class="uk-input" type="text">
+	            <input class="uk-input" type="text" name="reserName">
 	        </div>
 	    </div>
 		연락처

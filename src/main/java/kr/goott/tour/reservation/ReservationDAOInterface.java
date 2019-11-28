@@ -16,4 +16,14 @@ public interface ReservationDAOInterface {
 	public ProductVO productInfo(String goodCode);
 	//일정정보 가져오기
 	public ScheduleVO scheduleInfo(int sc_num);
+	// 회원정보 받아오기
+	public RegisterVO registerInfo(String userId);
+	// 예약하기
+	public int insertReservation(ReservationVO rev_vo);
+	// 예약정보 가져오기
+	public ReservationVO reservationInfo(@Param("userId") String userId,
+										 @Param("goodCode") String goodCode,
+										 @Param("sc_num") int sc_num);
+	// 결제하기
+	public int payReservation(@Param("num") int num);
 }

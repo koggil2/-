@@ -18,12 +18,23 @@ function commentInsert(insertData){
         	
         	var a =''; 
             $data.each(function(idx, value){ 
-               a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-               a += '<div class="commentInfo'+value.num+'">'+'댓글번호 : '+value.num+' / 작성자 : '+value.userId;
+/*                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+               a += '<div class="commentInfo'+value.num+'">'+'댓글번호 : '+value.num+' / 작성자 : '+value.userId +'/ 시간: '+value.regDate;
+              
                a += '<a onclick="commentUpdate('+value.num+',\''+value.content+'\');"> 수정 </a>';
                a += '<a onclick="commentDelete('+value.num+');"> 삭제 </a> </div>';
                a += '<div class="commentContent'+value.num+'"> <p> 내용 : '+value.content +'</p>';
-               a += '</div></div>';
+               a += '</div></div>'; */
+                a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
+                a += '<div class="commentInfo'+value.num+'">'+' '+value.userId ;
+                a += '<br>'+value.regDate;
+                if(logid == value.userId){
+                a += '<a onclick="commentUpdate('+value.num+',\''+value.content+'\');" style="cursor:pointer"> 수정 </a>';
+                a += '<a onclick="commentDelete('+value.num+');" style="cursor:pointer"> 삭제 </a>';
+                }
+                a += '</div>';
+                a += '<div class="commentContent'+value.num+'"><p style="text-align: left;"> '+value.content +'</p>';
+                a += '</div></div>';
            });
            
            $(".commentList").html(a); 
@@ -39,32 +50,38 @@ function commentInsert(insertData){
  
  
 $('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
-	if($("#content").val()!=null){
+	if($("#content2").val()!=""){
     var insertData = $('[name=commentInsertForm]').serialize(); //commentInsertForm의 내용을 가져옴
-    console.log(insertData);
+    /* console.log(insertData); */
     commentInsert(insertData);//Insert 함수호출(아래)
-    $("#content").val("");
-    }else if($("#content").val()=="" || $("#content").val()==null){
-    	alert("댓글을 입력해 주세요..");
+ 	$("#content2").val(""); 
+    }else if($("#content2").val()=="" || $("#content2").val()==null || $("#content").val()=="" || $("#content").val==null){
+    	alert("입력하신 내용이 없습니다!");
     }
 });
 
+var logid = "${logid}";
+var sc_num = "${sc.sc_num}"
 //댓글 목록 
- function commentList(){
+function commentList(){
     $.ajax({
         url : '/tour/product/reply/list',
         type : 'POST',
-        data : {'goodCode':'${vo.goodCode}'},
+        data : {'sc_num':'${sc.sc_num}'},
         dataType : 'json',
         success : function(data){
-            console.log(data);
+            /* console.log(data); */
         	var a =''; 
              $.each(data, function(key, value){ 
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
-                a += '<div class="commentInfo'+value.num+'">'+'댓글번호 : '+value.num+' / 작성자 : '+value.userId;
-                a += '<a onclick="commentUpdate('+value.num+',\''+value.content+'\');"> 수정 </a>';
-                a += '<a onclick="commentDelete('+value.num+');"> 삭제 </a> </div>';
-                a += '<div class="commentContent'+value.num+'"> <p> 내용 : '+value.content +'</p>';
+                a += '<div class="commentInfo'+value.num+'">'+' '+value.userId ;
+                a += '<p style="text-align: left;" >'+value.regDate ;
+                if(logid == value.userId){
+                a += '<a onclick="commentUpdate('+value.num+',\''+value.content+'\');" style="cursor:pointer"> 수정 </a>';
+                a += '<a onclick="commentDelete('+value.num+');" style="cursor:pointer"> 삭제 </a></p>';
+                }
+                a += '</div>';
+                a += '<div class="commentContent'+value.num+'"><p style="text-align: left; font-size:19px;"> '+value.content +'</p>';
                 a += '</div></div>';
             });
             
@@ -78,8 +95,11 @@ function commentUpdate(num, content){
     var a ='';
     
     a += '<div class="input-group">';
-    a += '<input type="text" class="form-control" name="content'+num+'" value="'+content+'"/>';
+    a += '<form id="replyupdate'+num+'" method="post"><input type="hidden" value="'+num+'" name="num">';
+   /*  a += '<input type="hidden" value="'+sc_num+'" name="sc_num">'; */
+    a += '<input type="text" class="form-control" name="content" value="'+content+'" style="text-align:left"/>';
     a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="commentUpdateProc('+num+');">수정</button> </span>';
+   	a += '</form>'
     a += '</div>';
     
     $('.commentContent'+num).html(a);
@@ -88,14 +108,16 @@ function commentUpdate(num, content){
  
 //댓글 수정
 function commentUpdateProc(num){
-    var updateContent = $('[name=content_'+num+']').val();
+	var sel ="#replyupdate"+num;
+    var params = $(sel).serialize();
     
     $.ajax({
-        url : 'reply/update',
-        type : 'post',
-        data : {'content' : updateContent, 'num' : num},
+        url : '/tour/product/reply/update',
+        type : 'POST',
+        data : params,
         success : function(data){
-            if(data == 1) commentList(goodCode); //댓글 수정후 목록 출력 
+            if(data == 1)
+            	commentList(); //댓글 수정후 목록 출력 
         }
     });
 }
@@ -103,10 +125,12 @@ function commentUpdateProc(num){
 //댓글 삭제 
 function commentDelete(num){
     $.ajax({
-        url : 'reply/delete/'+num,
-        type : 'post',
+        url : '/tour/product/reply/delete',
+        type : 'get',
+        data : 'num='+num,
         success : function(data){
-            if(data == 1) commentList(goodCode); //댓글 삭제후 목록 출력 
+            if(data == 1) 
+            	commentList(); //댓글 삭제후 목록 출력 
         }
     });
 }

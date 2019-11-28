@@ -70,6 +70,7 @@ public class ReservationVO {
 		this.t3 = t3;
 	}
 	public String getReserTel() {
+		reserTel= t1 + "-" + t1 + "-" +t3;
 		return reserTel;
 	}
 	public void setReserTel(String reserTel) {
@@ -81,10 +82,14 @@ public class ReservationVO {
 		t3 = t[2]; 
 	}
 	public String getReserEmail() {
-		return reserEmail;
+		return emailId+"@"+emailDomain;
 	}
 	public void setReserEmail(String reserEmail) {
 		this.reserEmail = reserEmail;
+		
+		String mail[] = reserEmail.split("@");
+		emailId = mail[0];
+		emailDomain = mail[1];
 	}
 	public String getEmailDomain() {
 		return emailDomain;

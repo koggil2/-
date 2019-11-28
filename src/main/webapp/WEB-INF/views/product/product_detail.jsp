@@ -111,35 +111,12 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 			}
 		});
 		
-		
-		var clickYN = true;
-			$("#gg").click(function(){
-				if(clickYN){
-					clickYN = false;
-					$(".OkClose").css("display","none");
-					$(".btnClose").css("visibility","hidden");
-				}else{
-					clickYN = true;
-					$(".OkClose").css("display","block");
-					$(".btnClose").css("visibility","visible");
-				}
-				
-				for(i=1; i<=${day}; i++){
-					$("#"+i+"DayPan tr td .tableBar").height($("#"+i+"DayPan").height()-65);
-				}
-			});
+		//예약하기
+		$("#revBtn").click(function(){
+			location.href="/tour/reservation/reservation";
+		});
 	});
 </script>
-
-
-<!-- 댓글등록..  -->
-
-<!-- 댓글등록 끝..  -->
-
-   
-
-
-
 
 <div class="container">
 	<div id="detail-content"> 	
@@ -177,7 +154,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 						</ul>
 					</div>
 					<div class="btn_menu">
-						<button class="btn-1" >예약하기</button>
+						<!-- <button class="btn-1" id="revBtn">예약하기</button> -->
 						<button class="btn-2" id="cart" value="${jang}">장바구니</button>
 					</div>
 				</div>
@@ -188,7 +165,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		<table class="table_01">
 		    <tr>
 		        <th class="tb1" scope="row">일정</th>
-		        <td><span>${vo.travelTerm } </span> <span><button class="btn-3">다른 출발일 보기</button></span>
+		        <td><span>${vo.travelTerm } </span> <!-- <span><button class="btn-3">다른 출발일 보기</button></span> -->
 		        <br>
 		        <ul>
 		        	<li>${sc.startDate}일 00:00출발  - ${sc.startDate}일 00:00 도착</li>
@@ -304,7 +281,6 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 					</table>
 				</c:forEach> --%>
 				</div>
-				<button id="gg">클릭~</button>
 		    </div>
 		    <div id="menu1" class="tab-pane fade"><br>
 		      <h3>여행약관</h3>
@@ -459,11 +435,12 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
              	<input type="hidden" name="sc_num"	value="${sc.sc_num}"/>
                <input type="hidden" name="goodCode" value="${vo.goodCode}"/>
                <input type="hidden" name="userId" value="${logid}"/>
+               <input type="hidden" name="regDate" value="${vo.regDate }">
                <c:if test="${logid == null}">
-                <input type="text" class="form-control" id="content" name="content" placeholder="로그인 후 입력이 가능합니다.." readonly >
+                <input type="text" class="form-control" id="content1" name="content" placeholder="로그인 후 입력이 가능합니다.." readonly >
                </c:if>
                <c:if test="${logid !=null }">
-               <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요.">
+               <input type="text" class="form-control" id="content2" name="content" placeholder="내용을 입력하세요.">
                </c:if>
                <span class="input-group-btn">
                
@@ -478,7 +455,6 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
     <div class="container">
         <div class="commentList"></div>
     </div>
-    
     <%@ include file="comment.jspf" %>
     <!-- 댓글 끝나는 div끝..  -->
 	<!-- 상품문의 끝  -->

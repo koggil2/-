@@ -50,22 +50,22 @@ public class ReplyController{
         return commentDAO.commentList(comment.getSc_num());
     }
     
-    @RequestMapping("/product/reply/update") //´ñ±Û ¼öÁ¤  
+    @RequestMapping(value="/product/reply/update", method = RequestMethod.POST) //´ñ±Û ¼öÁ¤  
     @ResponseBody
-    public int replyServiceUpdateProc(@RequestParam int num, @RequestParam String content) throws Exception{
+    public int replyServiceUpdateProc(ReplyVO comment)throws Exception{
+    	System.out.println(comment.getNum()+','+comment.getContent());
     	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class); 
-        ReplyVO comment = new ReplyVO();
-        comment.setNum(num);
-        comment.setContent(content);
+    	
         
         return commentDAO.commentUpdate(comment);
     }
     
-    @RequestMapping("/product/reply/delete/{num}") //´ñ±Û »èÁ¦  
+    @RequestMapping(value="/product/reply/delete", method = RequestMethod.GET) //´ñ±Û »èÁ¦  
     @ResponseBody
-    public int replyServiceDelete(@PathVariable int num) throws Exception{
+    public int replyServiceDelete(@RequestParam int num) throws Exception{
     	ReplyDAOInterface commentDAO = sqlSession.getMapper(ReplyDAOInterface.class); 
-        return commentDAO.commentDelete(num);
+        
+    	return commentDAO.commentDelete(num);
     }
     
 }
