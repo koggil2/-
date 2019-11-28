@@ -135,6 +135,14 @@ a:link, a:hover, a:visited {
 .card-text{
 	color: gray;
 }
+.listImgH{
+	 height:180px;
+	 overflow:hidden;
+ }
+.listImgH img{
+	position: relative;
+	top: -15px;
+}
 </style>
 
 <section>
@@ -200,8 +208,8 @@ a:link, a:hover, a:visited {
 				<c:forEach var="t1" items="${list1}">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="product_view?goodCode=${t1.goodCode}">
-								<img class="card-img-top" src="http://placehold.it/700x400" alt="">
+							<a href="product_view?goodCode=${t1.goodCode}" class="listImgH">
+								<img src="/tour/imgUpload/${t1.fileName}">
 							</a>
 							<!-- 여행분류과 상품코드 필요함. product_view?goodcode=?&treveltype=? -->
 							<div class="card-body">
@@ -256,8 +264,8 @@ a:link, a:hover, a:visited {
 				<c:forEach var="t2" items="${list2}">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="product_view?goodCode=${t2.goodCode}">
-								<img class="card-img-top" src="http://placehold.it/700x400" alt="">
+							<a href="product_view?goodCode=${t2.goodCode}" class="listImgH">
+								<img src="/tour/imgUpload/${t2.fileName}">
 							</a>
 							<div class="card-body">
 								<h4 class="card-title">
@@ -309,8 +317,8 @@ a:link, a:hover, a:visited {
 				<c:forEach var="t3" items="${list3}">
 					<div class="col-lg-4 col-md-6 mb-4">
 						<div class="card h-100">
-							<a href="product_view?goodCode=${t3.goodCode}">
-								<img class="card-img-top" src="http://placehold.it/700x400" alt="">
+							<a href="product_view?goodCode=${t3.goodCode}" class="listImgH">
+								<img src="/tour/imgUpload/${t3.fileName}">
 							</a>
 							<div class="card-body">
 								<h4 class="card-title">

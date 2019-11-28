@@ -48,8 +48,28 @@ public class ProductController {
 		ProductDAOInterface dao = sqlSession.getMapper(ProductDAOInterface.class);
 		
 		List<ProductVO> list1 = dao.travelTypeList("가족여행");
+		if(list1!=null) {
+			for(int i=0; i<list1.size(); i++) {
+				String fname = dao.selectOneImage(list1.get(i).getGoodCode());
+				list1.get(i).setFileName(fname);
+			}
+		}
+		
 		List<ProductVO> list2 = dao.travelTypeList("수학여행");
+		if(list2!=null) {
+			for(int i=0; i<list2.size(); i++) {
+				String fname = dao.selectOneImage(list2.get(i).getGoodCode());
+				list2.get(i).setFileName(fname);
+			}
+		}
+		
 		List<ProductVO> list3 = dao.travelTypeList("현장학습");
+		if(list3!=null) {
+			for(int i=0; i<list3.size(); i++) {
+				String fname = dao.selectOneImage(list3.get(i).getGoodCode());
+				list3.get(i).setFileName(fname);
+			}
+		}
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -108,10 +128,7 @@ public class ProductController {
       }
       scheduleDate += "}}";
       
-      //이미지 파일명 가져오기
-      System.out.println(goodCode);
       String fName = dao.selectOneImage(goodCode);
-      System.out.println(fName);
       String fileName = "/tour/imgUpload/"+fName;
       
       ModelAndView mav = new ModelAndView();

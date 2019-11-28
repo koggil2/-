@@ -21,6 +21,14 @@ public class ProductVO {
 	private String startDate;
 	private String backDate;
 	
+	private String fileName;
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public ProductVO() {}
 	public ProductVO(int num, String goodCode, String travelType, String goodName, String startArea, String destination, String regDate, String travelTerm,
 		   			String goodData, int price, int reserMin, int reserNum, String assure1, String assure2, String assure3, String startDate, String backDate) {
