@@ -153,7 +153,7 @@
 			 		<c:forEach var="p_list" items="${list}">
 				 		<div>
 					 		<a href="product/product_view?goodCode=${p_list.goodCode}">
-					 			<img src="/tour/image/main_img_banner_1.jpg"/>
+					 			<img src="/tour/imgUpload/${p_list.fileName}"/>
 					 		</a>
 					 		${p_list.goodName}<br/>
 					 		${p_list.price} 원

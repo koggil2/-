@@ -14,4 +14,7 @@
 		from gt_product
 		where destination like #{param1}
   	</select>
+  	<select id="selectOneImage" resultType="String">
+		select fileName from gt_pro_img where goodCode=#{goodCode} and rownum=1
+	</select>
   </mapper>

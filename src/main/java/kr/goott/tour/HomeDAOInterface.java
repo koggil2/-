@@ -9,4 +9,6 @@ public interface HomeDAOInterface {
 	public List<ProductVO> select_list();
 	//검색리스트 불러오기
 	public List<ProductVO> search_list(String searchWord);
+	// view 이미지 한장 불러오기
+    public String selectOneImage(String goodCode);
 }

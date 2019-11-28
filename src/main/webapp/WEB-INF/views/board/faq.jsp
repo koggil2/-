@@ -122,7 +122,7 @@
                     	<tr>
                     		<td>${v.no}</td>
 		  					<td><a href="post?num=${v.num}">${v.subject}</a></td>
-		  					<td>${v.userId}</td>
+		  					<td>구트투어</td>
 		  					<td>${v.regDate}</td>
 		  					<td>${v.hit}</td>
                     	</tr>
@@ -130,7 +130,7 @@
                 </tbody>
               </table>
             </div>
-             <c:if test="${memType=='관리자'}">
+             <c:if test="${memType=='직원'}">
           		<button id="write" onclick="location.href='write?commuPage=${vo.commuPage}'" style="float:right;width:80px;text-align:center;">글쓰기</button>
           	</c:if>
           </div>

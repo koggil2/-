@@ -24,6 +24,12 @@ public class HomeController {
 		HomeDAOInterface dao = sqlSession.getMapper(HomeDAOInterface.class);
 		
 		List<ProductVO> list = dao.select_list();
+		if(list!=null) {
+			for(int i=0; i<list.size(); i++) {
+				String fname = dao.selectOneImage(list.get(i).getGoodCode());
+				list.get(i).setFileName(fname);
+			}
+		}
 		
 		model.addAttribute("list", list);
 		
