@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.goott.tour.reservation.ReservationDAOInterface">
-	<select id="getRegister" resultType="kr.goott.tour.register.RegisterVO">
-		select username, tel, email from gt_register where userId=#{param1}
+	<select id="registerInfo" resultType="kr.goott.tour.register.RegisterVO">
+		select userName, tel, email from gt_register where userId=#{param1}
 	</select>
 	<select id="getReservation" resultType="kr.goott.tour.reservation.ReservationVO">
 		select reserName, reserTel, reserEmail, resermemo, goodCode, goodNum from gt_booking 
@@ -25,4 +25,17 @@
 	<delete id="deleteBasket">
 		delete from gt_basket where num=#{num}
 	</delete>
+	<insert id="insertReservation" parameterType="kr.goott.tour.reservation.ReservationVO">
+		insert into gt_booking(num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay) 
+		values(gt_booking_sq.nextval, #{goodCode}, #{sc_num}, #{userId}, #{reserName}, #{reserTel}, #{reserEmail}, #{resermemo}, sysdate, #{price}, #{goodNum}, '예약완료', '결제대기' )
+	</insert>
+	<select id="reservationInfo" resultType="kr.goott.tour.reservation.ReservationVO">
+		select num,num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay 
+		from gt_booking where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId} and state='예약완료' and pay='결제대기'
+	</select>
+	<update id="payReservation" parameterType="kr.goott.tour.reservation.ReservationVO">
+		update gt_booking
+		set payDate=sysdate, pay='결제완료'
+		where num=#{num}
+	</update>
 </mapper>

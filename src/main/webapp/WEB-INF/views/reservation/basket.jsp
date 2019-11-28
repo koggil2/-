@@ -98,13 +98,8 @@
 		});
 		
 		window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
-		
-		//예약하기 클릭시 예약하기 진행
-		$(".btn").click(function(){
-			location.href="reservation";
-			
 		});
-	});
+	
 </script>
 
 <section style="text-align:left">
@@ -114,16 +109,26 @@
     <div class="container" style="font-size:35px;"> 	 
 		<li class="uk-margin-small-right" uk-icon="icon:cart; ratio: 3" id="cartTitle"></li><h1 style="text-align:left;font-weight:bold;">여행 장바구니</h1>
     </div>
+    <script>
+    	function revBtn(goodCode, sc_num, price){
+    		var id="#goodNum"+sc_num;
+    		var goodNum = $(id).text();
+    		location.href="reservation?userId=${logid}&goodCode="+goodCode+"&sc_num="+sc_num+"&price="+price+"&goodNum="+goodNum;
+    	}
+    </script>
 </header>
     <div class="container">
         <section id="cart"> 
+        <c:if test="${cnt==0}">
+        	결과가 없습니다.
+        </c:if>
         <c:forEach var="b" items="${b_list}">
 	        <article class="product">
 	               <header>
 	                   <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
 	               </header>
 	               <div class="content" style="height:195px;">
-	                   <a href="" style="color:black;"><h1>${b.goodCode}</h1>
+	                   <a href="" style="color:black;"><h1>${b.goodCode},${b.sc_num}</h1>
 					${pvo.goodName},${pvo.startArea},${pvo.destination}, ${pvo.travelTerm}</a>
 	                   <div title="You have selected this product to be shipped in the color yellow." style="top:0;text-align: center;line-height:40px;" class="color yellow">출발</div>
 	                   <div style="top: 43px" class="type small">${svo.startDate}</div>
@@ -133,9 +138,9 @@
 	               <footer class="content" style="width:948px;">
 	               	<span class="qt-people">인원 : </span>
 	                   <span class="qt-minus">-</span>
-	                   <span class="qt">0</span>
+	                   <span class="qt" id="goodNum${b.sc_num}">0</span>
 	                   <span class="qt-plus">+</span>
-	                   <input type="button" class="btn" style="font-weight:bold; float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
+	                   <input type="button" class="btn" onclick="revBtn('${b.goodCode}',${b.sc_num},${pvo.price})" style="font-weight:bold; float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
 	                   <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
 	                  	<h2 class="price">${pvo.price} 원</h2>
 	                   <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
