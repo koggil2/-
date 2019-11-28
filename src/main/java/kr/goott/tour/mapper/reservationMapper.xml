@@ -30,7 +30,7 @@
 		values(gt_booking_sq.nextval, #{goodCode}, #{sc_num}, #{userId}, #{reserName}, #{reserTel}, #{reserEmail}, #{resermemo}, sysdate, #{price}, #{goodNum}, '예약완료', '결제대기' )
 	</insert>
 	<select id="reservationInfo" resultType="kr.goott.tour.reservation.ReservationVO">
-		select num,num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay 
+		select num, goodCode, sc_num, userId, reserName, reserTel, reserEmail, resermemo, reserDate, price, goodNum, state, pay 
 		from gt_booking where goodCode=#{goodCode} and sc_num=#{sc_num} and userId=#{userId} and state='예약완료' and pay='결제대기'
 	</select>
 	<update id="payReservation" parameterType="kr.goott.tour.reservation.ReservationVO">

@@ -29,7 +29,7 @@
 			location.href="list?commuPage=${vo.commuPage}";
 		}
 	</script>
-<section>
+
 	<%@ include file="../inc/boardSide.jspf" %>
 	<div id="reviewPan">
 		<div id="reviewTab1">
