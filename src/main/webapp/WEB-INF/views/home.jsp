@@ -78,9 +78,9 @@
 				<!-- 주메뉴 -->
 					<ul class="navbar-header"> 
 						<li class="nav-brand"><a href="/tour/"><img src="/tour/image/Mainlogo.png"id="mainLogo"/></a></li>
-						<li class="nav-item"><a href="/tour/product/product_list">여행상품</a></li>
+						<!-- <li class="nav-item"><a href="/tour/product/product_list">여행상품</a></li> -->
 						<!-- <li class="nav-item"><a href="#">여행만들기</a></li> -->
-						<li class="nav-item"><a href="/tour/product/product_recommendList">추천상품</a></li>
+						<li class="nav-item"><a href="/tour/product/product_recommendList">여행상품</a></li>
 						<li class="nav-item"><a href="/tour/board/list?commuPage=review">커뮤니티</a></li>
 						<c:if test="${memType=='직원'}">
 							<li class="nav-item"><a href="/tour/product/management">상품관리</a></li>

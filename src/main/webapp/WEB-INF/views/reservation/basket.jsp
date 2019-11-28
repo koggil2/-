@@ -23,7 +23,7 @@
 	function changeVal(el) {
 		var qt = parseFloat(el.parent().children(".qt").html());
 		var price = parseFloat(el.parent().children(".price").html());
-		var eq = Math.round(price * qt * 100000) / 100;
+		var eq = Math.round(price * qt * 100) / 100;
 			
 		el.parent().children(".full-price").html( eq + "원" );
 		changeTotal();            
@@ -44,6 +44,7 @@
 	}
 
 	$(document).ready(function(){
+		//삭제 클릭시 장바구니에서 삭제 및 화면에서 삭제
 		$(".remove").click(function(){
 			var params = "goodCode=${pvo.goodCode}&sc_num=${svo.sc_num}&userId=${b_list.get(0).getUserId()}"
 			$.ajax({
@@ -97,11 +98,11 @@
 		});
 		
 		window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
+		
+		//예약하기 클릭시 예약하기 진행
 		$(".btn").click(function(){
 			location.href="reservation";
 			
-		  /* check = true;
-		  $(".remove").click(); */
 		});
 	});
 </script>
@@ -123,7 +124,7 @@
 	               </header>
 	               <div class="content" style="height:195px;">
 	                   <a href="" style="color:black;"><h1>${b.goodCode}</h1>
-					${pvo.goodName},${pvo.startArer},${pvo.destination} ${pvo.travelTerm}</a>
+					${pvo.goodName},${pvo.startArea},${pvo.destination}, ${pvo.travelTerm}</a>
 	                   <div title="You have selected this product to be shipped in the color yellow." style="top:0;text-align: center;line-height:40px;" class="color yellow">출발</div>
 	                   <div style="top: 43px" class="type small">${svo.startDate}</div>
 	                   <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
@@ -134,59 +135,13 @@
 	                   <span class="qt-minus">-</span>
 	                   <span class="qt">0</span>
 	                   <span class="qt-plus">+</span>
-	                   <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
+	                   <input type="button" class="btn" style="font-weight:bold; float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
 	                   <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
-	                  	<h2 class="price">${pvo.price}</h2>
+	                  	<h2 class="price">${pvo.price} 원</h2>
 	                   <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
 	               </footer>
 	           </article>
-            </c:forEach>
-            <!-- <article class="product">
-                <header>
-                    <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
-                </header>
-                <div class="content" style="height:195px;">
-                    <a href="" style="color:black;"><h1>제주도</h1>
-					외돌개, 비자림, 다희연, 산굼부리, 협재해변, 올레7코스로 이어지는 3일 알찬코스! <br/>연인, 가족과 행복한 제주도 여행!</a>
-                    <div title="You have selected this product to be shipped in the color yellow." style="top:0;text-align: center;line-height:40px;" class="color yellow">출발</div>
-                    <div style="top: 43px" class="type small">2019-11-19</div>
-                    <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
-                    <div style="top: 136px" class="type small">2019-11-26</div>
-                </div>
-                <footer class="content" style="width:948px;">
-                	<span class="qt-people">인원 : </span>
-                    <span class="qt-minus">-</span>
-                    <span class="qt">0</span>
-                    <span class="qt-plus">+</span>
-                    <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
-                    <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
-                   	<h2 class="price">20,000원</h2>
-                    <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
-                </footer>
-            </article>
-            <article class="product">
-                <header>
-                    <a class="remove"><img src="../image/jejuMain.jpg" alt=""><h3 style="text-align:center;">상품삭제</h3></a>
-                </header>
-                <div class="content" style="height:195px;">
-                    <a href="" style="color:black;"><h1>제주도</h1>
-					외돌개, 비자림, 다희연, 산굼부리, 협재해변, 올레7코스로 이어지는 3일 알찬코스! <br/>연인, 가족과 행복한 제주도 여행!</a>
-                    <div title="You have selected this product to be shipped in the color yellow." style="top:0;text-align: center;line-height:40px;" class="color yellow">출발</div>
-                    <div style="top: 43px" class="type small">2019-11-19</div>
-                    <div title="You have selected this product to be shipped in the color yellow." style="top:102px;text-align: center;line-height:35px;" class="color yellow" >도착</div>
-                    <div style="top: 136px" class="type small">2019-11-26</div>
-                </div>
-                <footer class="content" style="width:948px;">
-                	<span class="qt-people">인원 : </span>
-                    <span class="qt-minus">-</span>
-                    <span class="qt">0</span>
-                    <span class="qt-plus">+</span>
-                    <input class="btn" style="font-weight:bold;float:right;height:44px;line-height:0.6;margin-left:10px" value="예약하기"/>
-                    <h2 class="full-price" style="border-radius:10px;line-height:2;">원</h2>
-                   	<h2 class="price">20,000원</h2>
-                    <span style="float:right;height:50px;float:right;line-height:45px;">가격(1인당) : </span>
-                </footer>
-            </article> -->               
+            </c:forEach>            
         </section>       
     </div>
 </div>

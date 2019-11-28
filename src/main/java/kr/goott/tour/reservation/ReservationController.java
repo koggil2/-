@@ -53,21 +53,15 @@ public class ReservationController {
 		return mav;
 	}
 	
-//	//예약페이지로 이동
-//	@RequestMapping("/reservation/reservation")
-//	public ModelAndView reservationPage(HttpServletRequest request) {
-//		ReservationDAOInterface dao = sqlSession.getMapper(ReservationDAOInterface.class);
-//		HttpSession hs = request.getSession();
-//		String userId = (String)hs.getAttribute("logid");
-//		RegisterVO vo2 = dao.getRegister(userId);
-//		
-//		ModelAndView mav = new ModelAndView();
-//		
-//		mav.addObject("vo2", vo2);
-//		mav.setViewName("reservation/reservation");
-//		return mav;
-//	}
-//	
+	//예약페이지로 이동
+	@RequestMapping("/reservation/reservation")
+	public ModelAndView reservationPage(HttpServletRequest request) {		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("reservation/reservation");
+		return mav;
+	}
+	
 //	//결제 폼으로 이동
 //	@RequestMapping(value="/reservation/payment", method=RequestMethod.POST)
 //	public ModelAndView paymentPage(ReservationVO vo) {
