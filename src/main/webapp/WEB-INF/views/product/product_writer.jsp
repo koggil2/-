@@ -101,7 +101,7 @@
 							if(confirm("입력하신 코드는 "+goodCode+"는 사용가능합니다.\n이 코드를 사용하시겠습니까?\n(수정이 불가능합니다.)")){
 								$("#goodCode").attr("value",goodCode);
 								$("#goodCodeCopy").val(goodCode);
-								/* document.getElementById("goodCode").setAttribute("readonly"); */
+								document.getElementById("goodCode").setAttribute("readonly","readonly");
 								codeChkOk = false;
 							}else{
 								$("#goodCode").val("");
@@ -463,9 +463,9 @@
 				        <th scope="row">보험</th>
 				        <td class="row1">
 				        	<ul>
-				        		<li><span class="spanWiMr">[여행자보험]</span><input type="radio" name="assure1">가입 <input type="radio" name="assure1" checked>미가입</li>
-				        		<li><span class="spanWiMr">[영업보증보험]</span><input type="radio" name="assure2">가입 <input type="radio" name="assure2" checked>미가입</li>
-				        		<li><span class="spanWiMr">[기획여행 보증보험]</span><input type="radio" name="assure3">가입 <input type="radio" name="assure3" checked>미가입</li>
+				        		<li><span class="spanWiMr">[여행자보험]</span><input type="radio" value="가입" name="assure1">가입 <input type="radio" value="미가입" name="assure1" checked>미가입</li>
+				        		<li><span class="spanWiMr">[영업보증보험]</span><input type="radio" value="가입" name="assure2">가입 <input type="radio" value="미가입" name="assure2" checked>미가입</li>
+				        		<li><span class="spanWiMr">[기획여행 보증보험]</span><input type="radio" value="가입" name="assure3">가입 <input type="radio" value="미가입" name="assure3" checked>미가입</li>
 				        	</ul>
 					    </td>
 				    </tr>
