@@ -119,7 +119,6 @@ public class ReservationController {
 		mav.setViewName("reservation/paymentForm");
 		return mav;
 	}
-	
 	//결제하기
 	@RequestMapping("/reservation/payOk")
 	public ModelAndView payOk(@RequestParam("num") int num) {
@@ -133,5 +132,4 @@ public class ReservationController {
 		mav.setViewName("reservation/payOk");
 		return mav;
 	}
-	
 }

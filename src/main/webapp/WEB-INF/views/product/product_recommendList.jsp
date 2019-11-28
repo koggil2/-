@@ -143,6 +143,7 @@ a:link, a:hover, a:visited {
 	position: relative;
 	top: -15px;
 }
+.carousel-item active img{width:900px;height:600px;}
 </style>
 
 <section>
@@ -184,13 +185,13 @@ a:link, a:hover, a:visited {
 
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_1.jpg" alt="First slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_2.jpg" alt="Second slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_3.jpg" alt="Third slide" style="width:960px;height:500px">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev"> 
@@ -240,13 +241,13 @@ a:link, a:hover, a:visited {
 
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_4.jpg" alt="First slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_5.jpg" alt="Second slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_6.jpg" alt="Third slide" style="width:960px;height:500px">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev"> 
@@ -294,13 +295,13 @@ a:link, a:hover, a:visited {
 
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_7.jpg" alt="First slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_8.jpg" alt="Second slide" style="width:960px;height:500px">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+						<img class="d-block img-fluid" src="/tour/image/main_img_banner_9.jpg" alt="Third slide" style="width:960px;height:500px">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carousel3" role="button" data-slide="prev"> 
