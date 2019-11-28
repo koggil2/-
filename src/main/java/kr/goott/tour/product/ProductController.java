@@ -108,8 +108,12 @@ public class ProductController {
       }
       scheduleDate += "}}";
       
-      System.out.println(scheduleDate);
-
+      //이미지 파일명 가져오기
+      System.out.println(goodCode);
+      String fName = dao.selectOneImage(goodCode);
+      System.out.println(fName);
+      String fileName = "/tour/imgUpload/"+fName;
+      
       ModelAndView mav = new ModelAndView();
       
       if(userId != null) {  
@@ -124,6 +128,7 @@ public class ProductController {
       mav.addObject("scheduleDate", scheduleDate);
       mav.addObject("list", list);
       mav.addObject("vo", vo);
+      mav.addObject("fileName", fileName);
       mav.setViewName("product/product_view");
       
       return mav;

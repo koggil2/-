@@ -107,7 +107,7 @@
 								$("#goodCode").val("");
 							}
 						}else{
-							alert("코드를 입력해주세요.");
+							alert("사용할 수 없는 코드입니다.");
 							$("#goodCode").val("");	
 						}	
 					},
@@ -233,7 +233,6 @@
 			$(".btnClose").css("visibility","hidden");
 			
 			var day = $("#travelTerm option").index($("#travelTerm option:selected"));
-			
 			for(i=1; i<=day; i++){
 				$("#"+i+"DayPan tr td .tableBar").height($("#"+i+"DayPan").height()-70);
 			}
@@ -326,7 +325,15 @@
 	var oldTxt = "";
 	function travelTermChange() {
 		var periodID = document.getElementById("travelTerm");
-		var day = periodID.options[periodID.selectedIndex].value;
+		var dayOption = periodID.options[periodID.selectedIndex].value;
+		var day = 0;
+		if(dayOption=="당일"){
+			day = 1;
+		}else if(dayOption=="1박2일"){
+			day = 2;
+		}else if(dayOption=="2박3일"){
+			day = 3;
+		}
 		if(oldDay==0){
 			var txt= "";
 			for(i=1; i<=day; i++){
@@ -410,17 +417,17 @@
 								<li><span class="spanMr">상품가격</span><input type="text" name="price" id="price" placeholder="가격"/>원</li>
 								<li><span class="spanMr">출발지역</span><select name="startArea" id="startArea">
 										<option value="0">=출발지역=</option>
-										<option value="seoul">서울</option>
-										<option value="incheon">인천</option>
-										<option value="busan">부산</option>
+										<option value="서울">서울</option>
+										<option value="인천">인천</option>
+										<option value="부산">부산</option>
 									</select>
 								</li>
 								<li><span class="spanMr">여행지역</span><input type="text" name="destination" id="destination" placeholder="지역"/></li>
 								<li><span class="spanMr">여행분류</span><select name="travelType" id="travelType">
 										<option value="0">=여행분류=</option>
-										<option value="family">가족여행</option>
-										<option value="school">수학여행</option>
-										<option value="study">현장학습</option>
+										<option value="가족여행">가족여행</option>
+										<option value="수학여행">수학여행</option>
+										<option value="현장학습">현장학습</option>
 									</select></li>
 								<li><span class="spanMr">사진첨부</span><button class="button" onclick="fileSel()">파일 선택</button></li>
 							</ul>
@@ -441,9 +448,9 @@
 				        		<li><span class="spanMr">여행기간</span>
 				        			<select id="travelTerm" name="travelTerm" onchange="travelTermChange()">
 				        				<option value="0">=여행기간=</option>
-				        				<option value="1">당일치기</option>
-				        				<option value="2">1박2일</option>
-				        				<option value="3">2박3일</option>
+				        				<option value="당일">당일치기</option>
+				        				<option value="1박2일">1박2일</option>
+				        				<option value="2박3일">2박3일</option>
 				        			</select>
 				        		</li>
 					        	<li><span class="spanMr">출발일자</span><input type="text" id="startD" readonly/></li>

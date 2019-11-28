@@ -317,7 +317,7 @@ input[id^=cart]:checked+label{background: url(../image/cart_on.png);}
 		<hr/>
 		<div id = "main2">
 			<div id = "imgslide"><!-- 상품 img 슬라이드 div -->
-				<div id="img1"><img src="../image/main_img_banner_1.jpg"/></div>
+				<div id="img1"><img src="${fileName}"/></div>
 				<ul style="margin-top:20px;">
 					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">상품코드</span><span>${vo.goodCode}</span></li>
 					<li><span style="font-weight:bold;margin-right:10px;color:red;width:150px;display:inline-block;text-align:right;">출발지</span><span>${vo.startArea}</span></li>

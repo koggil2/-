@@ -45,4 +45,6 @@ public interface ProductDAOInterface {
     public int insertSchedule(@Param("goodCode") String goodCode
     						, @Param("startDate") String startDate
     						, @Param("backDate") String backDate);
+    // view 이미지 한장 불러오기
+    public String selectOneImage(String goodCode);
 }

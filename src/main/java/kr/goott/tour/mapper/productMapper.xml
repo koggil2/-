@@ -70,4 +70,7 @@
 		insert into gt_schedule(sc_num, goodCode, startDate, backDate)
 		values(gt_schedule_sq.nextval, #{goodCode}, #{startDate}, #{backDate})
 	</insert>
+	<select id="selectOneImage" resultType="String">
+		select fileName from gt_pro_img where goodCode=#{goodCode} and rownum=1
+	</select>
 </mapper>
