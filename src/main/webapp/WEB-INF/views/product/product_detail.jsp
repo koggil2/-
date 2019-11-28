@@ -126,10 +126,9 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 			<div class="sec_div">
 				<div class="gall_big">
 					<div class="w3-content w3-section" style="max-width:500px">
-					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg1.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg2.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg3.jpg" style="width:100%">
-					  <img class="mySlides w3-animate-fading" src="/tour/image/mainimg4.jpg" style="width:100%">
+						<c:forEach var="imgName" items="${imgNames}">
+						  <img class="mySlides w3-animate-fading" src="/tour/imgUpload/${imgName}" style="width:100%">
+					  	</c:forEach>
 					</div>
 				</div>
 				<div class="title_text" style="text-align: left">
@@ -193,7 +192,7 @@ $("#imgBannerText>h2").text("<%=pageSideName%>");
 		        	<ul>
 		        		<li>[여행자보험] ${vo.assure1 }</li>
 		        		<li>[영업보증보험] ${vo.assure2 }</li>
-		        		<li>[기획여행 보증보험]${vo.assure3 }</li>
+		        		<li>[기획여행 보증보험] ${vo.assure3 }</li>
 		        	</ul>
 			    </td>
 			    </tr>
