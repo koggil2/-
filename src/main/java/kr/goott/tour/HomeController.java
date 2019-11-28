@@ -57,6 +57,14 @@ public class HomeController {
 		ModelAndView mav = new ModelAndView();
 		
 		List<ProductVO> list = dao.search_list("%"+searchWord+"%");
+		
+		if(list!=null) {
+			for(int i=0; i<list.size(); i++) {
+				String fname = dao.selectOneImage(list.get(i).getGoodCode());
+				list.get(i).setFileName(fname);
+			}
+		}
+		
 		if(list!=null) {
 			mav.addObject("list", list);
 		}
