@@ -16,7 +16,7 @@
 						<!-- 여행분류과 상품코드 필요함. product_view?goodcode=?&treveltype=? -->
 						<div class="card-body">
 							<h4 class="card-title">
-								<a href="product_view?goodCode=${p_list.goodCode}">${p_list.goodName }</a>
+								<a href="product/product_view?goodCode=${p_list.goodCode}">${p_list.goodName }</a>
 							</h4>
 							<h5>${p_list.price}</h5>
 							<p class="card-text">${p_list.destination}, ${p_list.travelTerm}</p>
