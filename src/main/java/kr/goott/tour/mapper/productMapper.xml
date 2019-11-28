@@ -73,4 +73,7 @@
 	<select id="selectOneImage" resultType="String">
 		select fileName from gt_pro_img where goodCode=#{goodCode} and rownum=1
 	</select>
+	<select id="selectAllImage" resultType="String">
+		select fileName from gt_pro_img where goodCode=#{goodCode}
+	</select>
 </mapper>

@@ -183,8 +183,11 @@ public class ProductController {
 		ScheduleVO svo = new ScheduleVO();
 		svo = dao.selectShcedule(sc_num);
 		
+		List<String> imgNames = dao.selectAllImage(goodCode);
+		
 		mav.addObject("sc", svo);
 		mav.addObject("vo", vo);
+		mav.addObject("imgNames", imgNames);
 		mav.setViewName("product/product_detail");
 
 		//일련번호로 일정정보

@@ -71,7 +71,7 @@
 					<li class="nav-item"><a href="/tour/register/loginForm">로그인</a></li>
 					</c:if>
 					<c:if test="${logid!=null }">
-					<li class="nav-item"><a href="/tour/register/mypage">마이페이지</a></li>
+					<li class="nav-item"><a href="/tour/register/mypage?userId=${logid}">마이페이지</a></li>
 					<li class="nav-item">${logname }님 <a href="/tour/register/logoutOk">로그아웃</a></li>
 					</c:if>
 					</ul>
@@ -131,15 +131,15 @@
 		<div style="margin-bottom:50px;">
 			<div class='row' id='rowdiv'>
 				<div id='hot1' style='background-image:url(/tour/image/jeju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
-					<h1 style="color:white"><a href="#">경주(Gyeongju)</a></h1>
+					<h1 style="color:white"><a href="search?searchWord=경주">경주</a></h1>
 				</div>
 				
 				<div id='hot2' style='background-image:url(/tour/image/gyeongju.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
-					<h1 style="color:white"><a href="#">제주(Jeju)</a></h1>
+					<h1 style="color:white"><a href="search?searchWord=부산">부산</a></h1>
 				</div>
 				
 				<div id='hot3' style='background-image:url(/tour/image/seoul.jpg); background-size:100%;  height:250px; background-repeat: no-repeat; '>
-					<h1 style="color:white"><a href="#">서울(Seoul)</a></h1>
+					<h1 style="color:white"><a href="search?searchWord=정동진">정동진</a></h1>
 				</div>
 			</div> 
 		</div> 

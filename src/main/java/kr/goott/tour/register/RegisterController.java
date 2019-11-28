@@ -1,8 +1,9 @@
 package kr.goott.tour.register;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.goott.tour.product.BasketVO;
+import kr.goott.tour.product.HeartVO;
+import kr.goott.tour.product.ProductVO;
+import kr.goott.tour.product.ScheduleVO;
+import kr.goott.tour.reservation.ReservationDAOInterface;
+import kr.goott.tour.reservation.ReservationVO;
 
 @Controller
 public class RegisterController {
@@ -133,8 +141,42 @@ public class RegisterController {
 	
 	//마이페이지 이동
 	@RequestMapping("/register/mypage")
-	public String mypage() {
-		return "register/mypage";
+	public ModelAndView mypage(@RequestParam("userId") String userId) {
+		RegisterDAOInterface dao = sqlSession.getMapper(RegisterDAOInterface.class);
+		ReservationDAOInterface r_dao = sqlSession.getMapper(ReservationDAOInterface.class);
+		
+		ModelAndView mav = new ModelAndView();
+		//예약리스트
+		List<ReservationVO> r_list = dao.myRevList(userId);
+			for(int i=0; i<r_list.size(); i++) {
+				ProductVO pvo = r_dao.productInfo(r_list.get(i).getGoodCode());
+				ScheduleVO svo = r_dao.scheduleInfo(r_list.get(i).getSc_num());
+				mav.addObject("pvo", pvo);
+				mav.addObject("svo", svo);
+			}
+		//결제리스트
+		List<ReservationVO> p_list = dao.myPayList(userId);
+			for(int i=0; i<p_list.size(); i++) {
+				ProductVO pvo = r_dao.productInfo(p_list.get(i).getGoodCode());
+				ScheduleVO svo = r_dao.scheduleInfo(p_list.get(i).getSc_num());
+				mav.addObject("pvo", pvo);
+				mav.addObject("svo", svo);
+			}
+		//관심리스트
+		List<HeartVO> l_list = dao.myLikeList(userId);
+			for(int i=0; i<l_list.size(); i++) {
+				ProductVO pvo = r_dao.productInfo(l_list.get(i).getGoodCode());
+				ScheduleVO svo = r_dao.scheduleInfo(l_list.get(i).getSc_num());
+				mav.addObject("pvo", pvo);
+				mav.addObject("svo", svo);
+			}
+		
+		
+		mav.addObject("l_list", l_list);
+		mav.addObject("r_list", r_list);
+		mav.addObject("p_list", p_list);
+		mav.setViewName("register/mypage");
+		return mav;
 	}
 	
 	//회원탈퇴 폼으로 이동

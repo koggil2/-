@@ -47,4 +47,7 @@ public interface ProductDAOInterface {
     						, @Param("backDate") String backDate);
     // view 이미지 한장 불러오기
     public String selectOneImage(String goodCode);
+    
+    // detail 이미지 불러오기
+    public List<String> selectAllImage(String goodCode);
 }
