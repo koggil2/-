@@ -96,7 +96,7 @@ public class ReservationController {
 		
 		mav.addObject("rev_vo", rev_vo);
 		mav.addObject("cnt", cnt);
-		mav.setViewName("/reservation/reservationOk");
+		mav.setViewName("reservation/reservationOk");
 		return mav;
 	}
 	
